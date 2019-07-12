@@ -132,6 +132,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdoptersController.cs" />
+    <Compile Include="Controllers\DogsController.cs" />
+    <Compile Include="Controllers\GiversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -139,6 +142,7 @@
     <Compile Include="Models\Adopter.cs" />
     <Compile Include="Models\Dog.cs" />
     <Compile Include="Models\Giver.cs" />
+    <Compile Include="Models\UGetADogContext.cs" />
     <Compile Include="Models\UGetADogDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -178,6 +182,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Adopters\Create.cshtml" />
+    <Content Include="Views\Adopters\Delete.cshtml" />
+    <Content Include="Views\Adopters\Details.cshtml" />
+    <Content Include="Views\Adopters\Edit.cshtml" />
+    <Content Include="Views\Adopters\Index.cshtml" />
+    <Content Include="Views\Dogs\Create.cshtml" />
+    <Content Include="Views\Dogs\Delete.cshtml" />
+    <Content Include="Views\Dogs\Details.cshtml" />
+    <Content Include="Views\Dogs\Edit.cshtml" />
+    <Content Include="Views\Dogs\Index.cshtml" />
+    <Content Include="Views\Givers\Create.cshtml" />
+    <Content Include="Views\Givers\Delete.cshtml" />
+    <Content Include="Views\Givers\Details.cshtml" />
+    <Content Include="Views\Givers\Edit.cshtml" />
+    <Content Include="Views\Givers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
