@@ -14,8 +14,7 @@ namespace UGetADog.Models
         public bool Trained { get; set; }
         public bool Immune { get; set; }
         public bool Castrated { get; set; }
-        public string Sex { get; set; }
+        public string Gender { get; set; }
         public Giver Owner { get; set; }
-
     }
 }

@@ -24,5 +24,7 @@ namespace UGetADog.Models
         public System.Data.Entity.DbSet<UGetADog.Models.Dog> Dogs { get; set; }
 
         public System.Data.Entity.DbSet<UGetADog.Models.Giver> Givers { get; set; }
+
+        public System.Data.Entity.DbSet<UGetADog.Models.User> Users { get; set; }
     }
 }
