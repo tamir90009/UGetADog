@@ -32,15 +32,15 @@ namespace UGetADog.Models
 
     
         [Display(Name = "is dog trained")]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is trained must be checked.")]
+       // [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is trained must be checked.")]
         public bool Trained { get; set; }
 
         [Display(Name = "is dog immune")]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is immune must be checked.")]
+       // [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is immune must be checked.")]
         public bool Immune { get; set; }
 
         [Display(Name = "is dog Castrated")]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is Castrated must be checked.")]
+       // [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is Castrated must be checked.")]
         public bool Castrated { get; set; }
 
         [DisplayFormat(NullDisplayText = "Not gender specified")]
