@@ -4,16 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.Core;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UGetADog.Models
 {
     public class Dog
     {
-        [key]
+        [Key]
         public int DogID { get; set; }
 
-        [ForeignKey("GiverID")]
-        public Giver OwnerID { get; set; }
+        //[ForeignKey("GiverID")]
+        //set - ownerid=giver.getid
+        public int GiverID { get; set; }
 
         [Required(ErrorMessage = "Dog name is requried")]
         [Display(Name = "Dog Name")]
