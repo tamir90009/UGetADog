@@ -31,9 +31,10 @@ namespace UGetADog.Models
         [Display(Name = "Last name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Age is requried")]
-        [Display(Name = "Age")]
-        public int Age { get; set; }
+        [Required(ErrorMessage = "user age is requried")]
+        [Display(Name = "user age")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
+        public double Age { get; set; }
 
         [Required(ErrorMessage = "Gender is requried")]
         [Display(Name = "Gender")]

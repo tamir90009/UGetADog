@@ -141,6 +141,10 @@
     <Compile Include="Migrations\201907161659533_db.Designer.cs">
       <DependentUpon>201907161659533_db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907161722181_duble age.cs" />
+    <Compile Include="Migrations\201907161722181_duble age.Designer.cs">
+      <DependentUpon>201907161722181_duble age.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\User.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907161659533_db.resx">
       <DependentUpon>201907161659533_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907161722181_duble age.resx">
+      <DependentUpon>201907161722181_duble age.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
