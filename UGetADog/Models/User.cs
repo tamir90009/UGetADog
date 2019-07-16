@@ -31,9 +31,13 @@ namespace UGetADog.Models
         [Display(Name = "Last name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Address is requried")]
-        [Display(Name = "Address")]
-        public string Address { get; set; }
+        [Required(ErrorMessage = "Age is requried")]
+        [Display(Name = "Age")]
+        public int Age { get; set; }
+
+        [Required(ErrorMessage = "Gender is requried")]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
 
 
     }
