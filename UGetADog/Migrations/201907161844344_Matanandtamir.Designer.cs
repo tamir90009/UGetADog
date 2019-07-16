@@ -7,13 +7,13 @@ namespace UGetADog.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class dubleage : IMigrationMetadata
+    public sealed partial class Matanandtamir : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(dubleage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Matanandtamir));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907161722181_duble age"; }
+            get { return "201907161844344_Matanandtamir"; }
         }
         
         string IMigrationMetadata.Source

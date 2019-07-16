@@ -10,7 +10,6 @@ namespace UGetADog.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "UGetADog.Models.UGetADogContext";
         }
 
         protected override void Seed(UGetADog.Models.UGetADogContext context)

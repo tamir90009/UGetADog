@@ -133,13 +133,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
-    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907161702215_db.cs" />
-    <Compile Include="Migrations\201907161702215_db.Designer.cs">
-      <DependentUpon>201907161702215_db.cs</DependentUpon>
+    <Compile Include="Migrations\201907161844344_Matanandtamir.cs" />
+    <Compile Include="Migrations\201907161844344_Matanandtamir.Designer.cs">
+      <DependentUpon>201907161844344_Matanandtamir.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\keyAttribute.cs" />
@@ -256,11 +252,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907161317287_InitialCreate.resx">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907161702215_db.resx">
-      <DependentUpon>201907161702215_db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907161844344_Matanandtamir.resx">
+      <DependentUpon>201907161844344_Matanandtamir.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
