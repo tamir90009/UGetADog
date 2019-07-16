@@ -18,8 +18,7 @@ namespace UGetADog.Models
         public UGetADogContext() : base("name=UGetADogContext")
         {
         }
-
-        public System.Data.Entity.DbSet<UGetADog.Models.Adopter> Adopters { get; set; }
+        
 
         public System.Data.Entity.DbSet<UGetADog.Models.Dog> Dogs { get; set; }
 
