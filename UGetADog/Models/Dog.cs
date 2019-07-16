@@ -14,7 +14,7 @@ namespace UGetADog.Models
         public int DogID { get; set; }
 
         //[ForeignKey("GiverID")]
-        //set - ownerid=giver.getid
+        //set - ownerid==giver.getid
         public int GiverID { get; set; }
 
         [Required(ErrorMessage = "Dog name is requried")]
