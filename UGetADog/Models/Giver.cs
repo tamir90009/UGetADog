@@ -4,15 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.Core;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace UGetADog.Models
 {
     public class Giver
     {
         [key]
         public int GiverID { get; set; }
-
-        [ForeignKey("UserID")]
-        public int UserID { get; set; }
+        public int UID { get; set; }
+        [ForeignKey("UID")]
+        public virtual User UserID { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]

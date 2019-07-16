@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Age)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Race)
+            @Html.DisplayNameFor(model => model.Breed)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Trained)
@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.Castrated)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sex)
+            @Html.DisplayNameFor(model => model.Gender)
         </th>
         <th></th>
     </tr>
@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.Age)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Race)
+            @Html.DisplayFor(modelItem => item.Breed)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Trained)
@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.Castrated)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Sex)
+            @Html.DisplayFor(modelItem => item.Gender)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.DogID }) |

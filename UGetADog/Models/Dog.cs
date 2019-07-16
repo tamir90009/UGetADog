@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.Core;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UGetADog.Models
 {
@@ -12,8 +13,9 @@ namespace UGetADog.Models
         [key]
         public int DogID { get; set; }
 
-        [ForeignKey("GiverID")]
-        public Giver OwnerID { get; set; }
+        public int ID { get; set; }
+        [ForeignKey("ID")]
+        public virtual Giver GiverID { get; set; }
 
         [Required(ErrorMessage = "Dog name is requried")]
         [Display(Name = "Dog Name")]
