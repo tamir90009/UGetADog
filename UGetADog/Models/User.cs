@@ -32,7 +32,7 @@ namespace UGetADog.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "user age is requried")]
-        [Display(Name = "user age")]
+        [Display(Name = "Age")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public double Age { get; set; }
 

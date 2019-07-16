@@ -46,10 +46,11 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GiverID,Phone,Rating")] Giver giver)
+        public ActionResult Create([Bind(Include ="GiverID,Phone,Rating")] Giver giver)
         {
             if (ModelState.IsValid)
             {
+                giver.UID = 3;
                 db.Givers.Add(giver);
                 db.SaveChanges();
                 return RedirectToAction("Index");
