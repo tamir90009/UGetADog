@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using UGetADog.Models;
 
+
 namespace UGetADog.Controllers
 {
     public class DogsController : Controller
@@ -50,6 +51,7 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
+                dog.GID = 14;
                 db.Dogs.Add(dog);
                 db.SaveChanges();
                 return RedirectToAction("Index");
