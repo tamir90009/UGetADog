@@ -10,11 +10,11 @@ namespace UGetADog.Models
 {
     public class Giver
     {
-        [Key]
+        [key]
         public int GiverID { get; set; }
-
-        //[ForeignKey("UserID")]
-        public int UserID { get; set; }
+        public int UID { get; set; }
+        [ForeignKey("UID")]
+        public virtual User UserID { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]

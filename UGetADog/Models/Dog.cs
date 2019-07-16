@@ -10,12 +10,12 @@ namespace UGetADog.Models
 {
     public class Dog
     {
-        [Key]
+        [key]
         public int DogID { get; set; }
 
-        //[ForeignKey("GiverID")]
-        //set - ownerid=giver.getid
-        public int GiverID { get; set; }
+        public int ID { get; set; }
+        [ForeignKey("ID")]
+        public virtual Giver GiverID { get; set; }
 
         [Required(ErrorMessage = "Dog name is requried")]
         [Display(Name = "Dog Name")]
