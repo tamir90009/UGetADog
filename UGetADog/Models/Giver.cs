@@ -24,6 +24,9 @@ namespace UGetADog.Models
 
     
         public Double Rating { get; set; }
+        public string Address { get; set; }
+        public Double Latitude { get; set; }
+        public Double Longtitude { get; set; }
 
         public ICollection<Dog> Dogs{ get; set; }
     }

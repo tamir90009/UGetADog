@@ -27,21 +27,25 @@
         <th>
             @Html.DisplayNameFor(model => model.Rating)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longtitude)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td>
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
@@ -49,9 +53,18 @@
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GiverID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GiverID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GiverID })
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longtitude)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.GiverID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.GiverID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.GiverID })
         </td>
     </tr>
 }
