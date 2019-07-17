@@ -48,6 +48,12 @@ namespace UGetADog.Models
         [DisplayFormat(NullDisplayText = "Not gender specified")]
         public string Gender { get; set; }
 
+
+        public string Size { get; set; }
+
+        public string Description { get; set; }
+
+        public string Image { get; set; }
         
     }
 }
