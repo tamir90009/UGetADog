@@ -133,15 +133,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907161844344_Matanandtamir.cs" />
-    <Compile Include="Migrations\201907161844344_Matanandtamir.Designer.cs">
-      <DependentUpon>201907161844344_Matanandtamir.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907161915363_db2.cs" />
-    <Compile Include="Migrations\201907161915363_db2.Designer.cs">
-      <DependentUpon>201907161915363_db2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Dog.cs" />
@@ -254,14 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907161844344_Matanandtamir.resx">
-      <DependentUpon>201907161844344_Matanandtamir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907161915363_db2.resx">
-      <DependentUpon>201907161915363_db2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

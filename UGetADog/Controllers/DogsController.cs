@@ -51,7 +51,7 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                dog.GID = 14;
+                dog.GID = 6;
                 db.Dogs.Add(dog);
                 db.SaveChanges();
                 return RedirectToAction("Index");
