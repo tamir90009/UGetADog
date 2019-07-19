@@ -46,7 +46,7 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Email,Password,FirstName,LastName,Age,Gender")] User user)
+        public ActionResult Create([Bind(Include = "UserID,Email,Password,FirstName,LastName,Age,Gender,Role")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Email,Password,FirstName,LastName,Age,Gender")] User user)
+        public ActionResult Edit([Bind(Include = "UserID,Email,Password,FirstName,LastName,Age,Gender,Role")] User user)
         {
             if (ModelState.IsValid)
             {
