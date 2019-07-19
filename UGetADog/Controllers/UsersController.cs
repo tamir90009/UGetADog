@@ -4,9 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using UGetADog.Models;
+
+
 
 namespace UGetADog.Controllers
 {
@@ -122,6 +125,45 @@ namespace UGetADog.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // GET: Login
+        public ActionResult login()
+        {
+           // if (CheckIfUserHaveGuidOnSession(Session))
+            //{
+              //  return RedirectToAction("Index", "Threads");
+            //}
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult login([Bind(Include ="Email,Password")] User user)
+        {
+            //if (ModelState.IsValid)
+            //{
+                var v = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                if (v != null)
+                {
+                    Session["user"] = v.FirstName.ToString()+" "+v.LastName.ToString();
+                    Session["ID"] = v.UserID.ToString();
+                    //Session["role"] = v.role.ToString();
+
+                    return RedirectToAction("Index", "Dogs");
+                }
+            //}
+
+            return View(); //change for error view
+        }
+
+
+        //GET: Users/Logout
+        public ActionResult Logout()
+        {
+            Session.Clear(); //?
+            return RedirectToAction("Index", "Home");
         }
     }
 }
