@@ -26,5 +26,6 @@ namespace UGetADog.Models
         public Double Rating { get; set; }
 
         public ICollection<Dog> Dogs{ get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

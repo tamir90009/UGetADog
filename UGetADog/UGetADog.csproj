@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\DogsController.cs" />
     <Compile Include="Controllers\GiversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -133,6 +134,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
+    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
+      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907190802252_db.cs" />
+    <Compile Include="Migrations\201907190802252_db.Designer.cs">
+      <DependentUpon>201907190802252_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Dog.cs" />
@@ -208,11 +219,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Adopters\Create.cshtml" />
-    <Content Include="Views\Adopters\Delete.cshtml" />
-    <Content Include="Views\Adopters\Details.cshtml" />
-    <Content Include="Views\Adopters\Edit.cshtml" />
-    <Content Include="Views\Adopters\Index.cshtml" />
     <Content Include="Views\Dogs\Create.cshtml" />
     <Content Include="Views\Dogs\Delete.cshtml" />
     <Content Include="Views\Dogs\Details.cshtml" />
@@ -237,6 +243,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Givers\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -249,6 +261,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201907161317287_InitialCreate.resx">
+      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907190802252_db.resx">
+      <DependentUpon>201907190802252_db.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
