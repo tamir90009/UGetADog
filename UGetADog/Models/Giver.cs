@@ -12,6 +12,7 @@ namespace UGetADog.Models
     {
         [key]
         public int GiverID { get; set; }
+
         public int UID { get; set; }
         [ForeignKey("UID")]
         public virtual User UserID { get; set; }
@@ -24,6 +25,9 @@ namespace UGetADog.Models
 
     
         public Double Rating { get; set; }
+        public string Address { get; set; }
+        public Double Latitude { get; set; }
+        public Double Longtitude { get; set; }
 
         public ICollection<Dog> Dogs{ get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
