@@ -6,6 +6,18 @@
 
 <h2>Index</h2>
 
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1396861977224095";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -47,7 +59,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.DogID)
@@ -87,7 +100,10 @@
             @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.DogID })
         </td>
+        <td>
+            <div class="fb-share-button" data-href="http://youtube.com"></div>
+        </td>
     </tr>
-}
+    }
 
 </table>

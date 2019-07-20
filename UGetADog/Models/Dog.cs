@@ -17,6 +17,17 @@ namespace UGetADog.Models
         [Display(Name = "Female")]
         Female
     }
+
+    public enum DogSize
+    {
+        [Display(Name = "Small")]
+        Small,
+        [Display(Name = "Medium")]
+        Medium,
+        [Display(Name = "Large")]
+        Large
+
+    }
     public class Dog
     {
         [key]
@@ -56,7 +67,7 @@ namespace UGetADog.Models
         public DogGender? Gender { get; set; }
 
 
-        public string Size { get; set; }
+        public DogSize? Size { get; set; }
 
         public string Description { get; set; }
 
