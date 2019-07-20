@@ -10,141 +10,120 @@ using UGetADog.Models;
 
 namespace UGetADog.Controllers
 {
-    public class GiversController : Controller
+    public class CommentsController : Controller
     {
         private UGetADogContext db = new UGetADogContext();
 
-        // GET: Givers
+        // GET: Comments
         public ActionResult Index()
         {
-            
-            //might be with no s
-           //ViewBag.Selected = "Givers";
-
-            //IEnumerable<Giver> givers = (IEnumerable<Giver>)TempData["Givers"] ?? db.Givers.ToList();
-
-           // return View(givers);
-
-            return View(db.Givers.ToList());
+            var comments = db.Comments.Include(c => c.Giver);
+            return View(comments.ToList());
         }
 
-        // GET: Givers/Details/5
+        // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(giver);
+            return View(comment);
         }
 
-        // GET: Givers/Create
+        // GET: Comments/Create
         public ActionResult Create()
         {
+            ViewBag.GiverID = new SelectList(db.Givers, "GiverID", "Phone");
             return View();
         }
 
-        // POST: Givers/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GiverID,Phone,Rating")] Giver giver)
+        public ActionResult Create([Bind(Include = "CommentID,GiverID,DogName,Username,Content")] Comment comment)
         {
+            Giver giver = db.Givers.Find(comment.GiverID);
             if (ModelState.IsValid)
             {
-                giver.UID = 2;
-                db.Givers.Add(giver);
+                comment.Giver = giver;
+                db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home");
             }
 
-            return View(giver);
+           // ViewBag.GiverID = new SelectList(db.Givers, "GiverID", "Phone", comment.GiverID);
+            return View(comment);
         }
 
-        // GET: Givers/Edit/5
+        // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(giver);
+            ViewBag.GiverID = new SelectList(db.Givers, "GiverID", "Phone", comment.GiverID);
+            //check if unauthorized
+            return View(comment);
         }
 
-        // POST: Givers/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GiverID,Phone,Rating")] Giver giver)
+        public ActionResult Edit([Bind(Include = "CommentID,GiverID,DogName,Username,Content")] Comment comment)
         {
+
+            //check if unauthorized
             if (ModelState.IsValid)
             {
-                db.Entry(giver).State = EntityState.Modified;
+                db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(giver);
+            ViewBag.GiverID = new SelectList(db.Givers, "GiverID", "Phone", comment.GiverID);
+            return View(comment);
         }
 
-        // GET: Givers/Delete/5
+        // GET: Comments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(giver);
+            return View(comment);
         }
 
-        // POST: Givers/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Giver giver = db.Givers.Find(id);
-            if (giver.Comments != null)
-            {
-                db.Comments.RemoveRange(giver.Comments);
-
-            }
-            db.Givers.Remove(giver);
+            Comment comment = db.Comments.Find(id);
+            db.Comments.Remove(comment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Show(int id)
-        {
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
-            {
-                return HttpNotFound();
-            }
-
-            TempData["Givers"] = giver;
-
-            return RedirectToAction("Index", "Givers");
-
-        }
-
 
         protected override void Dispose(bool disposing)
         {

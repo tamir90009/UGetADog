@@ -1,0 +1,72 @@
+﻿
+@model IEnumerable<UGetADog.Models.FullGiver>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LasttName
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Gender
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Raiting
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giver.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giver.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giver.Rating)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
