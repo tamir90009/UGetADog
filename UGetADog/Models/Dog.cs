@@ -55,7 +55,7 @@ namespace UGetADog.Models
         [DisplayFormat(NullDisplayText = "Not gender specified")]
         public DogGender? Gender { get; set; }
 
-
+        [DisplayFormat(NullDisplayText = "No Size specified")]
         public string Size { get; set; }
 
         public string Description { get; set; }
