@@ -50,7 +50,7 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                giver.UID = 9;
+                giver.UID = 1;
                 db.Givers.Add(giver);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,7 +83,7 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                giver.UID = 9;
+                giver.UID = 1;
                 db.Entry(giver).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
