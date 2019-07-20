@@ -92,11 +92,13 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
+        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
         {
             if (ModelState.IsValid)
             {
-                dog.GID = 7;
+                //var OldDog = db.Dogs.Find(dog.DogID);
+
+                //dog.GID = OldDog.GID;
                 db.Entry(dog).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
