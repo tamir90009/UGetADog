@@ -24,7 +24,7 @@ namespace UGetADog.Controllers
         public ActionResult Details(int? id)
         {
             if (id == null)
-            {
+            { 
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);

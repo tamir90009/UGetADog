@@ -51,7 +51,7 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                dog.GID = 7;
+                dog.GID = 8;
                 db.Dogs.Add(dog);
                 var giver = db.Givers.Find(dog.GID);
                 if (giver.Dogs == null)

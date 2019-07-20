@@ -133,39 +133,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
-    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907161659533_db.cs" />
-    <Compile Include="Migrations\201907161659533_db.Designer.cs">
-      <DependentUpon>201907161659533_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907161722181_duble age.cs" />
-    <Compile Include="Migrations\201907161722181_duble age.Designer.cs">
-      <DependentUpon>201907161722181_duble age.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907161915363_db2.cs" />
-    <Compile Include="Migrations\201907161915363_db2.Designer.cs">
-      <DependentUpon>201907161915363_db2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191129107_dbb.cs" />
-    <Compile Include="Migrations\201907191129107_dbb.Designer.cs">
-      <DependentUpon>201907191129107_dbb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191142203_role.cs" />
-    <Compile Include="Migrations\201907191142203_role.Designer.cs">
-      <DependentUpon>201907191142203_role.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191202559_gender.cs" />
-    <Compile Include="Migrations\201907191202559_gender.Designer.cs">
-      <DependentUpon>201907191202559_gender.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191224391_dogender.cs" />
-    <Compile Include="Migrations\201907191224391_dogender.Designer.cs">
-      <DependentUpon>201907191224391_dogender.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Dog.cs" />
@@ -278,32 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907161317287_InitialCreate.resx">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907161659533_db.resx">
-      <DependentUpon>201907161659533_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907161722181_duble age.resx">
-      <DependentUpon>201907161722181_duble age.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907161915363_db2.resx">
-      <DependentUpon>201907161915363_db2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191129107_dbb.resx">
-      <DependentUpon>201907191129107_dbb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191142203_role.resx">
-      <DependentUpon>201907191142203_role.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191202559_gender.resx">
-      <DependentUpon>201907191202559_gender.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191224391_dogender.resx">
-      <DependentUpon>201907191224391_dogender.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
