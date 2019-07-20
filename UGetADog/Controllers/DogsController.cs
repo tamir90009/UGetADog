@@ -51,8 +51,20 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                dog.GID = 6;
+                dog.GID = 7;
                 db.Dogs.Add(dog);
+                var giver = db.Givers.Find(dog.GID);
+                if (giver.Dogs == null)
+                {
+                    giver.Dogs = new List<Dog>();
+                    giver.Dogs.Add(dog);
+                }
+                else
+                {
+                    giver.Dogs.Add(dog);
+                }
+                
+                db.Entry(giver).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

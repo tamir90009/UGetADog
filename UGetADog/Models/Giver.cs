@@ -29,6 +29,6 @@ namespace UGetADog.Models
         public Double Latitude { get; set; }
         public Double Longtitude { get; set; }
 
-        public ICollection<Dog> Dogs{ get; set; }
+        public List<Dog> Dogs{ get; set; }
     }
 }
