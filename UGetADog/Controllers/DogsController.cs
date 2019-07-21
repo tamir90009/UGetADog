@@ -127,8 +127,7 @@ namespace UGetADog.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpPost, ActionName("Contact")]
-       // [ValidateAntiForgeryToken]
+
         public ActionResult Contact(int? id)
         {
             Dog dog = db.Dogs.Find(id);
@@ -136,7 +135,7 @@ namespace UGetADog.Controllers
             {
                 return HttpNotFound();
             }
-            return RedirectToAction("Details", "Givers", new { id = dog.GID });
+            return RedirectToAction("Details", "FullGivers", new { id = dog.GID } );
         }
 
 

@@ -63,6 +63,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.giver.Rating)
             </td>
+            <td>
+
+                @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })
+            </td>
         </tr>
     }
 

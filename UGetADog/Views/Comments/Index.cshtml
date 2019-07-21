@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<UGetADog.Models.Comment>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -15,7 +9,10 @@
             @Html.DisplayNameFor(model => model.Giver.Phone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Username)
+            @Html.DisplayNameFor(model => model.Sendername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DogName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Content)
@@ -29,7 +26,10 @@
             @Html.DisplayFor(modelItem => item.Giver.Phone)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Username)
+            @Html.DisplayFor(modelItem => item.Sendername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DogName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Content)

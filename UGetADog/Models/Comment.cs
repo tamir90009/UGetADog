@@ -18,11 +18,10 @@ namespace UGetADog.Models
         [ForeignKey("GiverID")]
         public virtual Giver Giver { get; set; }
 
-        [Required(ErrorMessage = "name is requried")]
-        [Display(Name = "User Name")]
-        public string Username { get; set; }
-
-        [Required(ErrorMessage = "dog name is requried")]
+        [Required(ErrorMessage = "your name is requried")]
+        [Display(Name = "Sender Name")]
+        public string Sendername { get; set; }
+        
         [Display(Name = "Dog Name")]
         public string DogName { get; set; }
 
