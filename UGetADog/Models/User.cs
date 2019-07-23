@@ -16,24 +16,29 @@ namespace UGetADog.Models
         [Required(ErrorMessage = "Email is requried")]
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public String Email { get; set; }
 
         [Required(ErrorMessage = "Enter a password")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public String Password { get; set; }
 
         [Required(ErrorMessage = "First name is requried")]
         [Display(Name = "First name")]
-        public string FirstName { get; set; }
+        public String FirstName { get; set; }
 
         [Required(ErrorMessage = "Last name is requried")]
         [Display(Name = "Last name")]
-        public string LastName { get; set; }
+        public String LastName { get; set; }
 
-        [Required(ErrorMessage = "Address is requried")]
-        [Display(Name = "Address")]
-        public string Address { get; set; }
+        [Required(ErrorMessage = "user age is requried")]
+        [Display(Name = "Age")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
+        public Double Age { get; set; }
+
+        [Required(ErrorMessage = "Gender is requried")]
+        [Display(Name = "Gender")]
+        public String Gender { get; set; }
 
 
     }

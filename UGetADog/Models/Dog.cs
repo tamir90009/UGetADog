@@ -6,6 +6,8 @@ using System.Data.Entity.Core;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
+
 namespace UGetADog.Models
 {
     public class Dog
@@ -13,8 +15,8 @@ namespace UGetADog.Models
         [key]
         public int DogID { get; set; }
 
-        public int ID { get; set; }
-        [ForeignKey("ID")]
+        public int GID { get; set; }
+        [ForeignKey("GID")]
         public virtual Giver GiverID { get; set; }
 
         [Required(ErrorMessage = "Dog name is requried")]
@@ -46,6 +48,12 @@ namespace UGetADog.Models
         [DisplayFormat(NullDisplayText = "Not gender specified")]
         public string Gender { get; set; }
 
+
+        public string Size { get; set; }
+
+        public string Description { get; set; }
+
+        public string Image { get; set; }
         
     }
 }

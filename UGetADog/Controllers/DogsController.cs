@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using UGetADog.Models;
 
+
 namespace UGetADog.Controllers
 {
     public class DogsController : Controller
@@ -46,10 +47,11 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender")] Dog dog)
+        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
         {
             if (ModelState.IsValid)
             {
+                dog.GID = 6;
                 db.Dogs.Add(dog);
                 db.SaveChanges();
                 return RedirectToAction("Index");

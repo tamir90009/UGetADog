@@ -10,7 +10,6 @@ namespace UGetADog.Models
     {
         public DbSet<Dog> Dogs { get; set; }
         public DbSet<Giver> Givers { get; set; }
-        public DbSet<User> Adopters { get; set; }
         public DbSet<User> Users { get; set; }
 
    

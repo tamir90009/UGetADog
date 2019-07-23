@@ -1,0 +1,6 @@
+﻿error that related to db conflicts - 
+	1. Enable-Migrations -ContextTypeName UGetADog.Models.UGetADogContext -Force
+	2. Add-Migration
+	3. Add whatever name you want
+	4. Update-Database
+
