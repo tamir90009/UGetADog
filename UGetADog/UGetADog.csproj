@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\DogsController.cs" />
     <Compile Include="Controllers\FullGiversController.cs" />
     <Compile Include="Controllers\GiversController.cs" />
@@ -135,6 +136,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
+    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
+      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907190802252_db.cs" />
+    <Compile Include="Migrations\201907190802252_db.Designer.cs">
+      <DependentUpon>201907190802252_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907191101471_db2.cs" />
+    <Compile Include="Migrations\201907191101471_db2.Designer.cs">
+      <DependentUpon>201907191101471_db2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
     <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
       <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
@@ -208,6 +223,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="BugMeNot.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -246,6 +262,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Givers\Show.cshtml" />
     <Content Include="Views\Users\login.cshtml" />
     <Content Include="Views\Training\Index.cshtml" />
     <Content Include="Views\FullGivers\Index.cshtml" />
@@ -268,8 +290,11 @@
     <EmbeddedResource Include="Migrations\201907161317287_InitialCreate.resx">
       <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191151192_db.resx">
-      <DependentUpon>201907191151192_db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907190802252_db.resx">
+      <DependentUpon>201907190802252_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907191101471_db2.resx">
+      <DependentUpon>201907191101471_db2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

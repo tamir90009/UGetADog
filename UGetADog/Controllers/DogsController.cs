@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using UGetADog.Models;
 
-
 namespace UGetADog.Controllers
 {
     public class DogsController : Controller
@@ -18,7 +17,13 @@ namespace UGetADog.Controllers
         // GET: Dogs
         public ActionResult Index()
         {
-            return View(db.Dogs.ToList());
+            //might be DOG
+            ViewBag.Selected = "Dogs";
+
+            IEnumerable<Dog> dogs = (IEnumerable<Dog>)TempData["Dogs"] ?? db.Dogs.ToList();
+
+            return View(dogs);
+            //return View(db.Gogs.ToList());
         }
 
         // GET: Dogs/Details/5
@@ -123,6 +128,17 @@ namespace UGetADog.Controllers
             return View(dog);
         }
 
+        [HttpPost]
+        public ActionResult Contact(int id)
+        {
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Index");
+        }
+
         // POST: Dogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -132,6 +148,32 @@ namespace UGetADog.Controllers
             db.Dogs.Remove(dog);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult Search([Bind(Include = "Age,Breed,Gender")] Dog dog)
+        {
+            IEnumerable<Dog> dogs = db.Dogs.ToList();
+
+            if (dog.Age.HasValue)
+            {
+                dogs = dogs.Where(d => d.Age == dog.Age);
+            }
+
+            if (!string.IsNullOrEmpty(dog.Breed))
+            {
+                dogs = dogs.Where(d => d.Breed.ToUpper().Contains(dog.Breed.ToUpper()));
+            }
+
+            if (!string.IsNullOrEmpty(dog.Gender))
+            {
+                dogs = dogs.Where(d => d.Gender.ToUpper().Contains(dog.Gender.ToUpper()));
+            }
+
+            TempData["Dogs"] = dogs;
+
+            return RedirectToAction("Index", "Dogs");
         }
 
         protected override void Dispose(bool disposing)
@@ -169,4 +211,5 @@ namespace UGetADog.Controllers
 
 
     }
+
 }

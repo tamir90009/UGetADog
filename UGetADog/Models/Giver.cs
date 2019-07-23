@@ -30,5 +30,6 @@ namespace UGetADog.Models
         public Double Longtitude { get; set; }
 
         public ICollection<Dog> Dogs{ get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
