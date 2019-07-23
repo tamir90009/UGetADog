@@ -91,8 +91,10 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                giver.UID = 1;
-                db.Entry(giver).State = EntityState.Modified;
+                var oldgiver = db.Givers.Find(giver.GiverID);
+                giver.UID = oldgiver.UID;
+                //db.Entry(giver).State = EntityState.Modified;
+                db.Entry(oldgiver).CurrentValues.SetValues(giver);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
