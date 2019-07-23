@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,8 +48,24 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
+        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,file")] Dog dog, HttpPostedFileBase file)
         {
+            try
+            {
+
+                if (file != null)
+                {
+                    string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    dog.file = file.FileName;
+                }
+                ViewBag.FileStatus = "File uploaded successfully.";
+            }
+            catch (Exception)
+            {
+
+                ViewBag.FileStatus = "Error while file uploading.";
+            }
             if (ModelState.IsValid)
             {
                 dog.GID = 1;
@@ -92,7 +109,7 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
+        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,file")] Dog dog)
         {
             if (ModelState.IsValid)
             {

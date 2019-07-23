@@ -18,6 +18,8 @@
 </script>
 
 
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -54,7 +56,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Image)
+            image
         </th>
         <th></th>
     </tr>
@@ -93,17 +95,18 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            <img src="~/Images/@Html.DisplayFor(modelItem => item.file)" height=100 width=200 />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
             @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.DogID })
         </td>
-        <td>
-            <div class="fb-share-button" data-href="http://youtube.com"></div>
-        </td>
-    </tr>
+            
+            <td>
+                <div class="fb-share-button" data-href="http://youtube.com/" data-layout="button_count" data-size="small"></div>
+            </td>
+        </tr>
     }
 
 </table>

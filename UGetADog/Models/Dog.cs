@@ -71,7 +71,11 @@ namespace UGetADog.Models
 
         public string Description { get; set; }
 
-        public string Image { get; set; }
-        
+        [DataType(DataType.Upload)]
+        [Display(Name = "Upload File")]
+        [Required(ErrorMessage = "Please choose file to upload.")]
+        public string file { get; set; }
+
+
     }
 }
