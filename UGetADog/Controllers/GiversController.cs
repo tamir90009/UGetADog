@@ -40,22 +40,8 @@ namespace UGetADog.Controllers
             {
                 return HttpNotFound();
             }
-
             return View(giver);
-
         }
-
-        //moved to fullusers - fear of deleting
-       /* public ActionResult Message(int? id)
-        {
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
-            {
-                return HttpNotFound();
-            }
-            return RedirectToAction("Create", "Comments", new { id = giver.GiverID });
-
-        }*/
 
         // GET: Givers/Create
         public ActionResult Create()
@@ -169,6 +155,5 @@ namespace UGetADog.Controllers
             }
             base.Dispose(disposing);
         }
-
     }
 }
