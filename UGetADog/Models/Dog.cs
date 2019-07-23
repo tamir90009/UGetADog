@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UGetADog.Models
 {
-    public enum DpgGender
+    public enum DgGender
     {
         [Display(Name = "Male")]
         Male,
@@ -66,8 +66,8 @@ namespace UGetADog.Models
         [DisplayFormat(NullDisplayText = "Not gender specified")]
         public DogGender? Gender { get; set; }
 
-
-        public DogSize? Size { get; set; }
+        [DisplayFormat(NullDisplayText = "No Size specified")]
+        public string Size { get; set; }
 
         public string Description { get; set; }
 

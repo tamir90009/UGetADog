@@ -133,23 +133,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907201825189_db.cs" />
-    <Compile Include="Migrations\201907201825189_db.Designer.cs">
-      <DependentUpon>201907201825189_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907201837214_new.cs" />
-    <Compile Include="Migrations\201907201837214_new.Designer.cs">
-      <DependentUpon>201907201837214_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907221916107_n.cs" />
-    <Compile Include="Migrations\201907221916107_n.Designer.cs">
-      <DependentUpon>201907221916107_n.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907222038165_e.cs" />
-    <Compile Include="Migrations\201907222038165_e.Designer.cs">
-      <DependentUpon>201907222038165_e.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Dog.cs" />
@@ -253,7 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -263,20 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907201825189_db.resx">
-      <DependentUpon>201907201825189_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907201837214_new.resx">
-      <DependentUpon>201907201837214_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907221916107_n.resx">
-      <DependentUpon>201907221916107_n.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907222038165_e.resx">
-      <DependentUpon>201907222038165_e.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
