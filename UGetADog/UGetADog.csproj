@@ -135,41 +135,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
-    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907190802252_db.cs" />
-    <Compile Include="Migrations\201907190802252_db.Designer.cs">
-      <DependentUpon>201907190802252_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191101471_db2.cs" />
-    <Compile Include="Migrations\201907191101471_db2.Designer.cs">
-      <DependentUpon>201907191101471_db2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907201138516_nemigraton.cs" />
-    <Compile Include="Migrations\201907201138516_nemigraton.Designer.cs">
-      <DependentUpon>201907201138516_nemigraton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907201237071_migratinAfterGiver.cs" />
-    <Compile Include="Migrations\201907201237071_migratinAfterGiver.Designer.cs">
-      <DependentUpon>201907201237071_migratinAfterGiver.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907201345098_mergeTamirBreanchMigration.cs" />
-    <Compile Include="Migrations\201907201345098_mergeTamirBreanchMigration.Designer.cs">
-      <DependentUpon>201907201345098_mergeTamirBreanchMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907201446430_migratinAfterSenderNae.cs" />
-    <Compile Include="Migrations\201907201446430_migratinAfterSenderNae.Designer.cs">
-      <DependentUpon>201907201446430_migratinAfterSenderNae.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907201508064_tryToPassDogIDToComment.cs" />
-    <Compile Include="Migrations\201907201508064_tryToPassDogIDToComment.Designer.cs">
-      <DependentUpon>201907201508064_tryToPassDogIDToComment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907211435450_migratinForComments.cs" />
-    <Compile Include="Migrations\201907211435450_migratinForComments.Designer.cs">
-      <DependentUpon>201907211435450_migratinForComments.cs</DependentUpon>
+    <Compile Include="Migrations\201907231453398_Reset2.cs" />
+    <Compile Include="Migrations\201907231453398_Reset2.Designer.cs">
+      <DependentUpon>201907231453398_Reset2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -295,32 +263,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907161317287_InitialCreate.resx">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907190802252_db.resx">
-      <DependentUpon>201907190802252_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191101471_db2.resx">
-      <DependentUpon>201907191101471_db2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907201138516_nemigraton.resx">
-      <DependentUpon>201907201138516_nemigraton.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907201237071_migratinAfterGiver.resx">
-      <DependentUpon>201907201237071_migratinAfterGiver.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907201345098_mergeTamirBreanchMigration.resx">
-      <DependentUpon>201907201345098_mergeTamirBreanchMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907201446430_migratinAfterSenderNae.resx">
-      <DependentUpon>201907201446430_migratinAfterSenderNae.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907201508064_tryToPassDogIDToComment.resx">
-      <DependentUpon>201907201508064_tryToPassDogIDToComment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907211435450_migratinForComments.resx">
-      <DependentUpon>201907211435450_migratinForComments.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907231453398_Reset2.resx">
+      <DependentUpon>201907231453398_Reset2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

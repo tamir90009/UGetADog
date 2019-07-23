@@ -56,7 +56,7 @@ namespace UGetADog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CommentID,GiverID,DogName,Sendername,Content")] Comment comment , int id )
-        {
+        {           
             if (ModelState.IsValid)
             {
                 var giver = db.Givers.Find(id);
@@ -64,7 +64,7 @@ namespace UGetADog.Controllers
                 {
                     comment.GiverID = giver.GiverID;
                     comment.Giver = giver;
-
+           
                     db.Comments.Add(comment);
                     giver.Comments.Add(comment);
 

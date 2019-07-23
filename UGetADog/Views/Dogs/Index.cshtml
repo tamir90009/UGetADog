@@ -25,7 +25,7 @@
         <div class="searchContriner">
             @Html.LabelFor(model => dog.Gender, htmlAttributes: new { @class = "control-label col-md-3" })
             <span class="col-md-4">
-                @Html.EditorFor(model => dog.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EnumDropDownListFor(model => dog.Gender, new { htmlAttributes = new { @class = "form-control" } })
             </span>
         </div>
         <div class="searchContriner">
@@ -34,138 +34,109 @@
         //add searches for admin
     }
 </section>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @if (Model.Count() > 0)
-    {
-        <table id="dogsTable" class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Age)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Breed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Trained)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Immune)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Castrated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </th>
-                <th></th>
-            </tr>
-<div id="fb-root"></div>
-<script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1396861977224095";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
-
-
 
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DogID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Breed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Trained)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Immune)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Castrated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Size)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            image
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DogID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Breed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trained)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Immune)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Castrated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Size)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            <img src="~/Images/@Html.DisplayFor(modelItem => item.file)" height=100 width=200 />
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.DogID })
-        </td>
-            
-            <td>
-                <div class="fb-share-button" data-href="http://youtube.com/" data-layout="button_count" data-size="small"></div>
-            </td>
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DogID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trained)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Immune)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Castrated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                image
+            </th>
+            <th></th>
         </tr>
-    }
 
-        </table>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DogID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trained)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Immune)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Castrated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <img src="~/Images/@Html.DisplayFor(modelItem => item.File)" height=100 width=200 />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DogID }) |
+                    @Html.ActionLink("Contact", "Contact", new { id = item.DogID })
+                </td>
+
+                <td>
+                    <div class="fb-share-button" data-href="http://youtube.com/" data-layout="button_count" data-size="small"></div>
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1396861977224095";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

@@ -53,16 +53,16 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,file")] Dog dog, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog, HttpPostedFileBase File)
         {
             try
             {
 
-                if (file != null)
+                if (File != null)
                 {
-                    string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
-                    file.SaveAs(path);
-                    dog.file = file.FileName;
+                    string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(File.FileName));
+                    File.SaveAs(path);
+                    dog.File = File.FileName;
                 }
                 ViewBag.FileStatus = "File uploaded successfully.";
             }
@@ -73,7 +73,7 @@ namespace UGetADog.Controllers
             }
             if (ModelState.IsValid)
             {
-                dog.GID = 1;
+                dog.GID = 8;
                 db.Dogs.Add(dog);
                 var giver = db.Givers.Find(dog.GID);
                 if (giver.Dogs == null)
@@ -114,7 +114,7 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,file")] Dog dog)
+        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog)
         {
 
             if (ModelState.IsValid)
@@ -182,9 +182,9 @@ namespace UGetADog.Controllers
                 dogs = dogs.Where(d => d.Breed.ToUpper().Contains(dog.Breed.ToUpper()));
             }
 
-            if (!string.IsNullOrEmpty(dog.Gender))
+            if (dog.Gender != null)
             {
-                dogs = dogs.Where(d => d.Gender.ToUpper().Equals(dog.Gender.ToUpper()));
+                dogs = dogs.Where(d => d.Gender.Equals(dog.Gender));
             }
 
             TempData["Dogs"] = dogs;

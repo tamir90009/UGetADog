@@ -64,14 +64,14 @@ namespace UGetADog.Models
         public DogGender? Gender { get; set; }
 
         [DisplayFormat(NullDisplayText = "No Size specified")]
-        public string Size { get; set; }
+        public DogSize Size { get; set; }
 
         public string Description { get; set; }
 
         [DataType(DataType.Upload)]
         [Display(Name = "Upload File")]
         [Required(ErrorMessage = "Please choose file to upload.")]
-        public string file { get; set; }
+        public string File { get; set; }
 
 
     }
