@@ -67,35 +67,35 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Age)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Breed)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Trained)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Immune)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Castrated)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.DogID })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.DogID })
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trained)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Immune)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Castrated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DogID }) |
+                    @Html.ActionLink("Contact", "Contact", new { id = item.DogID })
+                </td>
+            </tr>
             }
 
         </table>

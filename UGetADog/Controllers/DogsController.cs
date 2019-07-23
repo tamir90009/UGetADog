@@ -52,10 +52,12 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DogID,ID,Name,Age,Breed,Trained,Immune,Castrated,Gender")] Dog dog)
+        public ActionResult Create([Bind(Include = "DogID,ID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
         {
             if (ModelState.IsValid)
             {
+                dog.DogID = 2;
+                dog.GID = 3;
                 db.Dogs.Add(dog);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,10 +86,12 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender")] Dog dog)
+        public ActionResult Edit([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
         {
+
             if (ModelState.IsValid)
             {
+                dog.GID = 3;
                 db.Entry(dog).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,16 +114,7 @@ namespace UGetADog.Controllers
             return View(dog);
         }
 
-        [HttpPost]
-        public ActionResult Contact(int id)
-        {
-            Dog dog = db.Dogs.Find(id);
-            if (dog == null)
-            {
-                return HttpNotFound();
-            }
-            return RedirectToAction("Index");
-        }
+
 
         // POST: Dogs/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -130,6 +125,17 @@ namespace UGetADog.Controllers
             db.Dogs.Remove(dog);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Contact(int? id)
+        {
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Details", "FullGivers", new { id = dog.GID } );
         }
 
 
@@ -150,7 +156,7 @@ namespace UGetADog.Controllers
 
             if (!string.IsNullOrEmpty(dog.Gender))
             {
-                dogs = dogs.Where(d => d.Gender.ToUpper().Contains(dog.Gender.ToUpper()));
+                dogs = dogs.Where(d => d.Gender.ToUpper().Equals(dog.Gender.ToUpper()));
             }
 
             TempData["Dogs"] = dogs;

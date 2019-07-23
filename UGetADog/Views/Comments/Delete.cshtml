@@ -1,11 +1,5 @@
 ﻿@model UGetADog.Models.Comment
 
-@{
-    ViewBag.Title = "Delete";
-}
-
-<h2>Delete</h2>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Comment</h4>
@@ -20,11 +14,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Username)
+            @Html.DisplayNameFor(model => model.Sendername)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Username)
+            @Html.DisplayFor(model => model.Sendername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DogName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DogName)
         </dd>
 
         <dt>
