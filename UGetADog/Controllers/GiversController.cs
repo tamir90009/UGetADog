@@ -18,6 +18,22 @@ namespace UGetADog.Controllers
         public ActionResult Index()
         {
             return View(db.Givers.ToList());
+
+            /*var GiversAndUsers =    (from g in db.Givers
+                                    join u in db.Users on g.UID equals u.UserID
+                                    select new
+                                     {
+                                         FirstName = u.FirstName,
+                                         LasttName = u.LastName,
+                                         Email = u.Email,
+                                         Age = u.Age,
+                                         Gender = u.Gender,
+                                         Phone = g.Phone,
+                                         Address = g.Address,
+                                         Raiting = g.Rating
+                                     }).ToList();
+
+            return View(GiversAndUsers);*/
         }
 
         // GET: Givers/Details/5
@@ -50,7 +66,7 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                giver.UID = 8;
+                giver.UID = int.Parse(Session["ID"].ToString());
                 db.Givers.Add(giver);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -111,7 +127,9 @@ namespace UGetADog.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Giver giver = db.Givers.Find(id);
+            User user = db.Users.Find(giver.UID);
             db.Givers.Remove(giver);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

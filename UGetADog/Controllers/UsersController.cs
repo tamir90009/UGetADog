@@ -20,7 +20,7 @@ namespace UGetADog.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+                return View(db.Users.ToList());
         }
 
         // GET: Users/Details/5
@@ -149,7 +149,8 @@ namespace UGetADog.Controllers
                 {
                     Session["user"] = v.FirstName.ToString()+" "+v.LastName.ToString();
                     Session["ID"] = v.UserID.ToString();
-                    //Session["role"] = v.role.ToString();
+                //Session["role"] = v.role.ToString();
+                //Session["Address"] = v.Address.ToString();
 
                     return RedirectToAction("Index", "Dogs");
                 }
@@ -164,6 +165,36 @@ namespace UGetADog.Controllers
         {
             Session.Clear(); //?
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public bool IsUserAdmin(HttpSessionStateBase session)
+        {
+            bool IsUserAdmin = false;
+            //if (session["role"].ToString() == "admin")
+            if (session["ID"].ToString() == "6")
+            {
+                IsUserAdmin = true;
+            }
+            return IsUserAdmin;
+        }
+
+        [HttpGet]
+        public bool IsUserGiver(HttpSessionStateBase session)
+        {
+            bool IsUserGiver = false;
+            //if (Session["role"].ToString() == "giver")
+            if (session["ID"].ToString() == "7")
+            {
+                IsUserGiver = true;
+            }
+            return IsUserGiver;
+        }
+
+        public ActionResult Weather()
+        {
+            //return View(Session["user"].ToString());
+            return View();
         }
     }
 }

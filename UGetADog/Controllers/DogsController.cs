@@ -49,6 +49,23 @@ namespace UGetADog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
         {
+            //UsersController loginController = new UsersController();
+            //if (loginController.IsUserAdmin(Session) | loginController.IsUserGiver(Session))
+            //{
+            if (ModelState.IsValid)
+            {
+                //dog.GID = int.Parse(Session["ID"].ToString());
+                //dog.DogID = int.Parse(Session["ID"].ToString());
+                dog.GID = 6;
+                dog.DogID = 1;
+                db.Dogs.Add(dog);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            //}
+            return View(dog);//change to you dont have permissions
+
+            /*return RedirectToAction("login", "Admins");
             if (ModelState.IsValid)
             {
                 dog.GID = 6;
@@ -57,7 +74,7 @@ namespace UGetADog.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(dog);
+            return View(dog);*/
         }
 
         // GET: Dogs/Edit/5
@@ -125,5 +142,31 @@ namespace UGetADog.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult AdminIndex()
+        {
+            //T.D.L:make that only admins will be able to see that page
+
+            return View(db.Dogs.ToList());
+        }
+
+        public ActionResult GetDogsPerCity()
+        {
+            var status = (from d in db.Dogs
+                          join g in db.Givers
+                          on d.GID equals g.GiverID
+                          group d by g.Address into dogsGroup
+                          select new { City = dogsGroup.Key, Count = dogsGroup.Count() }).ToArray();
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAverageAgesPerBreed()
+        {
+            var average = (from d in db.Dogs group d by d.Breed into dogsGroup select new { Breed = dogsGroup.Key, Average = dogsGroup.Average(i => i.Age)}).ToArray();
+
+            return Json(average, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }

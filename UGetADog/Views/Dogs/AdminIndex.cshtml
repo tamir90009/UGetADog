@@ -1,0 +1,109 @@
+﻿@model IEnumerable<UGetADog.Models.Dog>
+
+@{
+    ViewBag.Title = "AdminIndex";
+}
+
+<h2>AdminIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div id="mainContent">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GiverID.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trained)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Immune)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Castrated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiverID.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trained)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Immune)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Castrated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DogID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <div id="postStatsSection">
+        <h3>Most viewed posts</h3>
+    </div>
+    <div id="barChartSection">
+        <h3>Top Writers</h3>
+    </div>
+
+
+    <script src=@Url.Content("~/Scripts/Charts/BarChart.js")></script>
+    <script src=@Url.Content("~/Scripts/Charts/PieChart.js")></script>
+</div>
