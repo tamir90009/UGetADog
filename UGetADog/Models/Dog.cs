@@ -13,8 +13,8 @@ namespace UGetADog.Models
         [key]
         public int DogID { get; set; }
 
-        public int ID { get; set; }
-        [ForeignKey("ID")]
+        public int GID { get; set; }
+        [ForeignKey("GID")]
 
         //useless - shachar recommand on removing 
         public virtual Giver CurrGiver{ get; set; }
