@@ -19,19 +19,20 @@ namespace UGetADog.Models
         public virtual User UserID { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        [Display(Name = "PhoNE_Number")]
-        [Required(ErrorMessage = "PhoNE_NumbeR_Required!")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",ErrorMessage = "Entered phoNE_formaT_is noT_valid.")]
-        public string Phone_{ get; set; }
+        [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "Phone NumbeR_Required!")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",ErrorMessage = "Entered phone format is not valid.")]
+        public string Phone { get; set; }
 
     
         public Double Rating { get; set; }
-        public GiverAddress Address { get; set; }
+        public String Address { get; set; }
         public Double Latitude { get; set; }
         public Double Longtitude { get; set; }
 
         public List<Dog> Dogs{ get; set; }
     }
+    /*
     public enum GiverAddress
     {
         [Display(Name = "אבו ג'ווייעד")]
@@ -2549,5 +2550,5 @@ namespace UGetADog.Models
         [Display(Name = "תרום")]
         TARUM,
 
-    }
+    }*/
 }
