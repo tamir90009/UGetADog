@@ -20,7 +20,7 @@ namespace UGetADog.Models
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]
-        [Required(ErrorMessage = "Phone NumbeR_Required!")]
+        [Required(ErrorMessage = "Phone Number Required!")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",ErrorMessage = "Entered phone format is not valid.")]
         public string Phone { get; set; }
 
@@ -31,6 +31,7 @@ namespace UGetADog.Models
         public Double Longtitude { get; set; }
 
         public List<Dog> Dogs{ get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
     /*
     public enum GiverAddress

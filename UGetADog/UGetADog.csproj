@@ -126,13 +126,54 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\DogsController.cs" />
+    <Compile Include="Controllers\FullGiversController.cs" />
     <Compile Include="Controllers\GiversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
+    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
+      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907190802252_db.cs" />
+    <Compile Include="Migrations\201907190802252_db.Designer.cs">
+      <DependentUpon>201907190802252_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907191101471_db2.cs" />
+    <Compile Include="Migrations\201907191101471_db2.Designer.cs">
+      <DependentUpon>201907191101471_db2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907201138516_nemigraton.cs" />
+    <Compile Include="Migrations\201907201138516_nemigraton.Designer.cs">
+      <DependentUpon>201907201138516_nemigraton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907201237071_migratinAfterGiver.cs" />
+    <Compile Include="Migrations\201907201237071_migratinAfterGiver.Designer.cs">
+      <DependentUpon>201907201237071_migratinAfterGiver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907201345098_mergeTamirBreanchMigration.cs" />
+    <Compile Include="Migrations\201907201345098_mergeTamirBreanchMigration.Designer.cs">
+      <DependentUpon>201907201345098_mergeTamirBreanchMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907201446430_migratinAfterSenderNae.cs" />
+    <Compile Include="Migrations\201907201446430_migratinAfterSenderNae.Designer.cs">
+      <DependentUpon>201907201446430_migratinAfterSenderNae.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907201508064_tryToPassDogIDToComment.cs" />
+    <Compile Include="Migrations\201907201508064_tryToPassDogIDToComment.Designer.cs">
+      <DependentUpon>201907201508064_tryToPassDogIDToComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907211435450_migratinForComments.cs" />
+    <Compile Include="Migrations\201907211435450_migratinForComments.Designer.cs">
+      <DependentUpon>201907211435450_migratinForComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\FullGiver.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Dog.cs" />
@@ -233,6 +274,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Givers\Show.cshtml" />
+    <Content Include="Views\FullGivers\Index.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\FullGivers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,6 +293,35 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201907161317287_InitialCreate.resx">
+      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907190802252_db.resx">
+      <DependentUpon>201907190802252_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907191101471_db2.resx">
+      <DependentUpon>201907191101471_db2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907201138516_nemigraton.resx">
+      <DependentUpon>201907201138516_nemigraton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907201237071_migratinAfterGiver.resx">
+      <DependentUpon>201907201237071_migratinAfterGiver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907201345098_mergeTamirBreanchMigration.resx">
+      <DependentUpon>201907201345098_mergeTamirBreanchMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907201446430_migratinAfterSenderNae.resx">
+      <DependentUpon>201907201446430_migratinAfterSenderNae.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907201508064_tryToPassDogIDToComment.resx">
+      <DependentUpon>201907201508064_tryToPassDogIDToComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907211435450_migratinForComments.resx">
+      <DependentUpon>201907211435450_migratinForComments.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -17,6 +17,14 @@ namespace UGetADog.Controllers
         // GET: Givers
         public ActionResult Index()
         {
+            
+            //might be with no s
+           //ViewBag.Selected = "Givers";
+
+            //IEnumerable<Giver> givers = (IEnumerable<Giver>)TempData["Givers"] ?? db.Givers.ToList();
+
+           // return View(givers);
+
             return View(db.Givers.ToList());
         }
 
@@ -32,8 +40,22 @@ namespace UGetADog.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(giver);
+
         }
+
+        //moved to fullusers - fear of deleting
+       /* public ActionResult Message(int? id)
+        {
+            Giver giver = db.Givers.Find(id);
+            if (giver == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Create", "Comments", new { id = giver.GiverID });
+
+        }*/
 
         // GET: Givers/Create
         public ActionResult Create()
@@ -46,7 +68,7 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GiverID,Phone,Rating,Address,Latitude,Longtitude")] Giver giver)
+        public ActionResult Create([Bind(Include = "GiverID,Phone,Rating")] Giver giver)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +101,7 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GiverID,Phone,Rating,Address,Latitude,Longtitude")] Giver giver)
+        public ActionResult Edit([Bind(Include = "GiverID,Phone,Rating")] Giver giver)
         {
             if (ModelState.IsValid)
             {
@@ -112,10 +134,32 @@ namespace UGetADog.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Giver giver = db.Givers.Find(id);
+            if (giver.Comments != null)
+            {
+                db.Comments.RemoveRange(giver.Comments);
+
+            }
             db.Givers.Remove(giver);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Show(int id)
+        {
+            Giver giver = db.Givers.Find(id);
+            if (giver == null)
+            {
+                return HttpNotFound();
+            }
+
+            TempData["Givers"] = giver;
+
+            return RedirectToAction("Index", "Givers");
+
+        }
+
 
         protected override void Dispose(bool disposing)
         {
@@ -125,5 +169,6 @@ namespace UGetADog.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }
