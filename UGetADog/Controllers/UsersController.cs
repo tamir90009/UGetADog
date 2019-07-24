@@ -58,6 +58,10 @@ namespace UGetADog.Controllers
                 Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
                 Session["ID"] = user.UserID.ToString();
                 Session["Role"] = user.Role.ToString();
+                if (user.Role.ToString() == "GIVER")
+                {
+                    return RedirectToAction("Create", "Givers");
+                }
                 return RedirectToAction("Index");
             }
 

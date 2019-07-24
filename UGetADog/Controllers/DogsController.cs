@@ -74,7 +74,6 @@ namespace UGetADog.Controllers
             if (ModelState.IsValid)
             {
                 dog.GID = int.Parse(Session["GID"].ToString());
-                //dog.GID = 8;
                 db.Dogs.Add(dog);
                 var giver = db.Givers.Find(dog.GID);
                 if (giver.Dogs == null)
@@ -93,8 +92,7 @@ namespace UGetADog.Controllers
             }
             //}
             return View(dog);//change to you dont have permissions
-
-            return View(dog);
+            
         }
 
         // GET: Dogs/Edit/5
@@ -163,10 +161,12 @@ namespace UGetADog.Controllers
         public ActionResult Contact(int? id)
         {
             Dog dog = db.Dogs.Find(id);
+            
             if (dog == null)
             {
                 return HttpNotFound();
             }
+            Session["DogID"] = id.ToString();
             return RedirectToAction("Details", "FullGivers", new { id = dog.GID } );
         }
 

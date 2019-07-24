@@ -56,7 +56,8 @@ namespace UGetADog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CommentID,GiverID,DogName,Sendername,Content")] Comment comment , int id )
-        {           
+        {
+            MLsController mls = new MLsController();
             if (ModelState.IsValid)
             {
                 var giver = db.Givers.Find(id);
@@ -64,15 +65,31 @@ namespace UGetADog.Controllers
                 {
                     comment.GiverID = giver.GiverID;
                     comment.Giver = giver;
-           
-                    db.Comments.Add(comment);
-                    giver.Comments.Add(comment);
+                    int dog_id = int.Parse(Session["DogID"].ToString());
+                    var d= db.Dogs.Where(b => b.DogID.Equals(dog_id)).FirstOrDefault();
+                    if (d != null)
+                    {
+                        comment.DogName = d.Name;
+                        db.Comments.Add(comment);
+                        giver.Comments.Add(comment);                       
+                        db.SaveChanges();
 
-                  //  db.Givers.Attach(giver);
-                  //  db.Entry(giver).State = EntityState.Modified;
-                    db.SaveChanges();
-                    //return RedirectToAction("Details", "FullGivers", new { id = comment.GiverID });
-                    return RedirectToAction("Index", "FullGivers");
+
+                        //add choise to machine learnin
+                     
+                        int user_id = int.Parse(Session["ID"].ToString());
+                        var user = db.Users.Where(b => b.UserID.Equals(user_id)).FirstOrDefault();
+                        if(user != null)
+                        {
+                            
+                            mls.Create(user_id,d.DogID,user.Age, user.Gender, user.FirstName, d.Breed);
+                        }
+                        
+                        //return after
+                        // return RedirectToAction("Index", "FullGivers");
+
+                    }
+                    return RedirectToAction("Index", "Dogs");
                 }
             }
 
@@ -146,13 +163,26 @@ namespace UGetADog.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search(int ? id)
+        public ActionResult Search( )
         {
-            IEnumerable<Comment> Comments = db.Comments.Include(c => c.Giver).ToList();
-            Comments = Comments.Where(c => c.Equals(id));
-            TempData["Comments"] = Comments;
+            if (Session["Role"].ToString() == "GIVER")
+            {
+                int id = int.Parse(Session["GID"].ToString());
+                var g = db.Givers.Where(b => b.GiverID.Equals(id)).FirstOrDefault();
+                if(g != null)
+                {
+                    IEnumerable<Comment> Comments = db.Comments.ToList();
+                    Comments = Comments.Where(c => c.GiverID.Equals(id));
+                    
+                    TempData["Comments"] = Comments;
+                    return RedirectToAction("Index", "Comments");
+                }
 
-            return RedirectToAction("Index");
+                //error
+                return RedirectToAction("Home");
+            }
+            //error 
+            return RedirectToAction("Home");
         }
 
         protected override void Dispose(bool disposing)
