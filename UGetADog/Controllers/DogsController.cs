@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -23,8 +24,8 @@ namespace UGetADog.Controllers
             IEnumerable<Dog> dogs = (IEnumerable<Dog>)TempData["Dogs"] ?? db.Dogs.ToList();
 
             return View(dogs);
-            //return View(db.Gogs.ToList());
         }
+        
 
         // GET: Dogs/Details/5
         public ActionResult Details(int? id)
@@ -52,34 +53,48 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,Image")] Dog dog)
+        public ActionResult Create([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog, HttpPostedFileBase File)
         {
-            //UsersController loginController = new UsersController();
-            //if (loginController.IsUserAdmin(Session) | loginController.IsUserGiver(Session))
-            //{
+            try
+            {
+
+                if (File != null)
+                {
+                    string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(File.FileName));
+                    File.SaveAs(path);
+                    dog.File = File.FileName;
+                }
+                ViewBag.FileStatus = "File uploaded successfully.";
+            }
+            catch (Exception)
+            {
+
+                ViewBag.FileStatus = "Error while file uploading.";
+            }
             if (ModelState.IsValid)
             {
                 //dog.GID = int.Parse(Session["ID"].ToString());
-                //dog.DogID = int.Parse(Session["ID"].ToString());
-                dog.GID = 6;
-                dog.DogID = 1;
+                dog.GID = 8;
                 db.Dogs.Add(dog);
+                var giver = db.Givers.Find(dog.GID);
+                if (giver.Dogs == null)
+                {
+                    giver.Dogs = new List<Dog>();
+                    giver.Dogs.Add(dog);
+                }
+                else
+                {
+                    giver.Dogs.Add(dog);
+                }
+                
+                db.Entry(giver).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             //}
             return View(dog);//change to you dont have permissions
 
-            /*return RedirectToAction("login", "Admins");
-            if (ModelState.IsValid)
-            {
-                dog.GID = 6;
-                db.Dogs.Add(dog);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(dog);*/
+            return View(dog);
         }
 
         // GET: Dogs/Edit/5
@@ -102,11 +117,14 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DogID,Name,Age,Breed,Trained,Immune,Castrated,Gender")] Dog dog)
+        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dog).State = EntityState.Modified;
+                var olddog = db.Dogs.Find(dog.DogID);
+                dog.GID = olddog.GID;
+                //db.Entry(dog).State = EntityState.Modified;
+                db.Entry(olddog).CurrentValues.SetValues(dog);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -128,16 +146,7 @@ namespace UGetADog.Controllers
             return View(dog);
         }
 
-        [HttpPost]
-        public ActionResult Contact(int id)
-        {
-            Dog dog = db.Dogs.Find(id);
-            if (dog == null)
-            {
-                return HttpNotFound();
-            }
-            return RedirectToAction("Index");
-        }
+
 
         // POST: Dogs/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -148,6 +157,17 @@ namespace UGetADog.Controllers
             db.Dogs.Remove(dog);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Contact(int? id)
+        {
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Details", "FullGivers", new { id = dog.GID } );
         }
 
 
@@ -166,9 +186,9 @@ namespace UGetADog.Controllers
                 dogs = dogs.Where(d => d.Breed.ToUpper().Contains(dog.Breed.ToUpper()));
             }
 
-            if (!string.IsNullOrEmpty(dog.Gender))
+            if (dog.Gender != null)
             {
-                dogs = dogs.Where(d => d.Gender.ToUpper().Contains(dog.Gender.ToUpper()));
+                dogs = dogs.Where(d => d.Gender.Equals(dog.Gender));
             }
 
             TempData["Dogs"] = dogs;

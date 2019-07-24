@@ -17,7 +17,7 @@ namespace UGetADog.Controllers
         // GET: Givers
         public ActionResult Index()
         {
-
+            
             //might be with no s
             //ViewBag.Selected = "Givers";
 
@@ -91,7 +91,10 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(giver).State = EntityState.Modified;
+                var oldgiver = db.Givers.Find(giver.GiverID);
+                giver.UID = oldgiver.UID;
+                //db.Entry(giver).State = EntityState.Modified;
+                db.Entry(oldgiver).CurrentValues.SetValues(giver);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -146,6 +149,7 @@ namespace UGetADog.Controllers
             return RedirectToAction("Index", "Givers");
 
         }
+
 
         protected override void Dispose(bool disposing)
         {

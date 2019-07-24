@@ -8,6 +8,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UGetADog.Models
 {
+    public enum DgGender
+    {
+        [Display(Name = "Male")]
+        Male,
+        [Display(Name = "Female")]
+        Female
+    }
+
+    public enum DogSize
+    {
+        [Display(Name = "Small")]
+        Small,
+        [Display(Name = "Medium")]
+        Medium,
+        [Display(Name = "Large")]
+        Large
+
+    }
     public class Dog
     {
         [key]
@@ -32,7 +50,7 @@ namespace UGetADog.Models
         [Display(Name = "dog breed")]
         public string Breed { get; set; }
 
-
+    
         [Display(Name = "is dog trained")]
         public bool Trained { get; set; }
 
@@ -43,12 +61,18 @@ namespace UGetADog.Models
         public bool Castrated { get; set; }
 
         [DisplayFormat(NullDisplayText = "Not gender specified")]
-        public string Gender { get; set; }
-        public string Size { get; set; }
+        public DogGender? Gender { get; set; }
+
+        [DisplayFormat(NullDisplayText = "No Size specified")]
+        public DogSize Size { get; set; }
 
         public string Description { get; set; }
 
-        public string Image { get; set; }
+        [DataType(DataType.Upload)]
+        [Display(Name = "Upload File")]
+        [Required(ErrorMessage = "Please choose file to upload.")]
+        public string File { get; set; }
+
 
     }
 }

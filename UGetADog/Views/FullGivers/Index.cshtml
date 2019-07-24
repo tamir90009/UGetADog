@@ -18,13 +18,12 @@
         <th>
             Email
         </th>
-        @{/*<th>
-Age
-</th>
-<th>
-Gender
-</th>*/
-        }
+        <th>
+            Age
+        </th>
+        <th>
+            Gender
+        </th>
         <th>
             Phone
         </th>
@@ -39,35 +38,39 @@ Gender
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.Email)
-        </td>
-        @{/*<td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Email)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.user.Age)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.user.Gender)
-            </td>*/
-        }
-        <td>
-            @Html.DisplayFor(modelItem => item.giver.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.giver.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.giver.Rating)
-        </td>
-    </tr>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giver.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giver.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giver.Rating)
+            </td>
+            <td>
+
+                @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })
+            </td>
+        </tr>
     }
 
 </table>
+
 
 

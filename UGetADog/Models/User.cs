@@ -5,9 +5,27 @@ using System.Web;
 using System.Data.Entity.Core;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 
 namespace UGetADog.Models
 {
+    public enum UserAuthorization
+    {
+        [Browsable(false)] ADMIN,
+        [Browsable(true)]
+        [Display(Name = "Giver")]
+        GIVER,
+        [Display(Name = "Adopter")]
+        ADOPTER
+    }
+
+    public enum DogGender
+    {
+        [Display(Name = "Male")]
+        Male,
+        [Display(Name = "Female")]
+        Female
+    }
     public class User
     {
         [Key]
@@ -38,8 +56,8 @@ namespace UGetADog.Models
 
         [Required(ErrorMessage = "Gender is requried")]
         [Display(Name = "Gender")]
-        public String Gender { get; set; }
-
+        public DogGender? Gender { get; set; }
+        public UserAuthorization? Role { get; set; }
 
     }
 }
