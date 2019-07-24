@@ -14,7 +14,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.GiverID.Phone)
+                @Html.DisplayNameFor(model => model.DogID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -44,7 +44,7 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Image)
+                image
             </th>
             <th></th>
         </tr>
@@ -53,7 +53,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.GiverID.Phone)
+                    @Html.DisplayFor(modelItem => item.DogID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -83,27 +83,29 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Image)
+                    <img src="~/Images/@Html.DisplayFor(modelItem => item.File)" height=100 width=200 />
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.DogID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DogID }) |
+                    @Html.ActionLink("Contact", "Contact", new { id = item.DogID })
                 </td>
             </tr>
-        }
 
-    </table>
+          }
+
+        </table>
 
 
-    <div id="postStatsSection">
-        <h3>Most viewed posts</h3>
+        <div id="postStatsSection">
+            <h3>Most viewed posts</h3>
+        </div>
+        <div id="barChartSection">
+            <h3>Top Writers</h3>
+        </div>
+
+
+        <script src=@Url.Content("~/Scripts/Charts/BarChart.js")></script>
+        <script src=@Url.Content("~/Scripts/Charts/PieChart.js")></script>
     </div>
-    <div id="barChartSection">
-        <h3>Top Writers</h3>
-    </div>
-
-
-    <script src=@Url.Content("~/Scripts/Charts/BarChart.js")></script>
-    <script src=@Url.Content("~/Scripts/Charts/PieChart.js")></script>
-</div>

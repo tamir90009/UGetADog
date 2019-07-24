@@ -5,14 +5,14 @@ namespace UGetADog.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<UGetADog.Models.UGetADogDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<UGetADog.Models.UGetADogContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(UGetADog.Models.UGetADogDBContext context)
+        protected override void Seed(UGetADog.Models.UGetADogContext context)
         {
             //  This method will be called after migrating to the latest version.
 

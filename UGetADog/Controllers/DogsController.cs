@@ -73,8 +73,8 @@ namespace UGetADog.Controllers
             }
             if (ModelState.IsValid)
             {
-                //dog.GID = int.Parse(Session["ID"].ToString());
-                dog.GID = 8;
+                dog.GID = int.Parse(Session["GID"].ToString());
+                //dog.GID = 8;
                 db.Dogs.Add(dog);
                 var giver = db.Givers.Find(dog.GID);
                 if (giver.Dogs == null)

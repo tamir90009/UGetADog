@@ -61,6 +61,8 @@ namespace UGetADog.Controllers
                 giver.UID = int.Parse(Session["ID"].ToString());
                 db.Givers.Add(giver);
                 db.SaveChanges();
+                Session["Address"] = giver.Address.ToString();
+                Session["GID"] = giver.GiverID.ToString();
                 return RedirectToAction("Index");
             }
 

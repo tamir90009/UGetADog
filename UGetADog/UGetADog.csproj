@@ -136,17 +136,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907231129007_db3.cs" />
-    <Compile Include="Migrations\201907231129007_db3.Designer.cs">
-      <DependentUpon>201907231129007_db3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907190802252_db.cs" />
-    <Compile Include="Migrations\201907190802252_db.Designer.cs">
-      <DependentUpon>201907190802252_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191101471_db2.cs" />
-    <Compile Include="Migrations\201907191101471_db2.Designer.cs">
-      <DependentUpon>201907191101471_db2.cs</DependentUpon>
+    <Compile Include="Migrations\201907242046514_mig.cs" />
+    <Compile Include="Migrations\201907242046514_mig.Designer.cs">
+      <DependentUpon>201907242046514_mig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -174,6 +166,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Charts\BarCharts.js" />
+    <Content Include="Scripts\Charts\d3.js" />
     <Content Include="Scripts\Charts\PieCharts.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -283,8 +276,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907231129007_db3.resx">
-      <DependentUpon>201907231129007_db3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907242046514_mig.resx">
+      <DependentUpon>201907242046514_mig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

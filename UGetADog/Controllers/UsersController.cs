@@ -55,6 +55,9 @@ namespace UGetADog.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
+                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                Session["ID"] = user.UserID.ToString();
+                Session["Role"] = user.Role.ToString();
                 return RedirectToAction("Index");
             }
 
@@ -130,11 +133,6 @@ namespace UGetADog.Controllers
         // GET: Login
         public ActionResult login()
         {
-           // if (CheckIfUserHaveGuidOnSession(Session))
-            //{
-              //  return RedirectToAction("Index", "Threads");
-            //}
-
             return View();
         }
 
@@ -142,42 +140,30 @@ namespace UGetADog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult login([Bind(Include ="Email,Password")] User user)
         {
-            //if (ModelState.IsValid)
-            //{
+            //add try and catch
                 var v = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
                 if (v != null)
                 {
                     Session["user"] = v.FirstName.ToString()+" "+v.LastName.ToString();
                     Session["ID"] = v.UserID.ToString();
-                //Session["role"] = v.role.ToString();
-                //Session["Address"] = v.Address.ToString();
-                /*if (v.Role == "Giver")
-                {
-                    g = db.Givers.Where(b => b.UID.Equals(v.UserID))..FirstOrDefault();
+                    Session["Role"] = v.Role.ToString();
+                    if (v.Role.ToString() == "GIVER")
+                    {
+                    var g = db.Givers.Where(b => b.UID.Equals(v.UserID)).FirstOrDefault();
                     Session["Address"]= g.Address.ToString();
-                }*/
+                    Session["GID"] = g.GiverID.ToString();
+                    }
 
                 return RedirectToAction("Index", "Dogs");
                 }
-            //}
-
             return View(); //change for error view
-        }
-
-
-        //GET: Users/Logout
-        public ActionResult Logout()
-        {
-            Session.Clear(); //?
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public bool IsUserAdmin(HttpSessionStateBase session)
         {
             bool IsUserAdmin = false;
-            //if (session["role"].ToString() == "admin")
-            if (session["ID"].ToString() == "6")
+            if (session["Role"].ToString() == "ADMIN")
             {
                 IsUserAdmin = true;
             }
@@ -188,18 +174,11 @@ namespace UGetADog.Controllers
         public bool IsUserGiver(HttpSessionStateBase session)
         {
             bool IsUserGiver = false;
-            //if (Session["role"].ToString() == "giver")
-            if (session["ID"].ToString() == "7")
+            if (Session["Role"].ToString() == "GIVER")
             {
                 IsUserGiver = true;
             }
             return IsUserGiver;
         }
-
-        /*public ActionResult Weather()
-        {
-            //return View(Session["user"].ToString());
-            return View();
-        }*/
     }
 }
