@@ -131,34 +131,17 @@
     <Compile Include="Controllers\FullGiversController.cs" />
     <Compile Include="Controllers\GiversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TrainingController.cs" />
+    <Compile Include="Controllers\AdoptingController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
-    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907190802252_db.cs" />
-    <Compile Include="Migrations\201907190802252_db.Designer.cs">
-      <DependentUpon>201907190802252_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191101471_db2.cs" />
-    <Compile Include="Migrations\201907191101471_db2.Designer.cs">
-      <DependentUpon>201907191101471_db2.cs</DependentUpon>
+    <Compile Include="Migrations\201907231129007_db3.cs" />
+    <Compile Include="Migrations\201907231129007_db3.Designer.cs">
+      <DependentUpon>201907231129007_db3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Migrations\201907161317287_InitialCreate.cs" />
-    <Compile Include="Migrations\201907161317287_InitialCreate.Designer.cs">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191151192_db.cs" />
-    <Compile Include="Migrations\201907191151192_db.Designer.cs">
-      <DependentUpon>201907191151192_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FullGiver.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\User.cs" />
@@ -219,6 +202,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Adopting\YouTube.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -269,10 +253,10 @@
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Givers\Show.cshtml" />
     <Content Include="Views\Users\login.cshtml" />
-    <Content Include="Views\Training\Index.cshtml" />
+    <Content Include="Views\Adopting\Index.cshtml" />
     <Content Include="Views\FullGivers\Index.cshtml" />
-    <Content Include="Views\Users\Weather.cshtml" />
     <Content Include="Views\Dogs\AdminIndex.cshtml" />
+    <Content Include="Views\Givers\Weather.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,14 +271,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907161317287_InitialCreate.resx">
-      <DependentUpon>201907161317287_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907190802252_db.resx">
-      <DependentUpon>201907190802252_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191101471_db2.resx">
-      <DependentUpon>201907191101471_db2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907231129007_db3.resx">
+      <DependentUpon>201907231129007_db3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

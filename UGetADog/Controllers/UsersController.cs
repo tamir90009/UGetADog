@@ -151,8 +151,13 @@ namespace UGetADog.Controllers
                     Session["ID"] = v.UserID.ToString();
                 //Session["role"] = v.role.ToString();
                 //Session["Address"] = v.Address.ToString();
+                /*if (v.Role == "Giver")
+                {
+                    g = db.Givers.Where(b => b.UID.Equals(v.UserID))..FirstOrDefault();
+                    Session["Address"]= g.Address.ToString();
+                }*/
 
-                    return RedirectToAction("Index", "Dogs");
+                return RedirectToAction("Index", "Dogs");
                 }
             //}
 
@@ -191,10 +196,10 @@ namespace UGetADog.Controllers
             return IsUserGiver;
         }
 
-        public ActionResult Weather()
+        /*public ActionResult Weather()
         {
             //return View(Session["user"].ToString());
             return View();
-        }
+        }*/
     }
 }

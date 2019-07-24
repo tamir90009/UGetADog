@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace UGetADog.Controllers
 {
-    public class TrainingController : Controller
+    public class AdoptingController : Controller
     {
         // GET: Training
         public ActionResult Index()

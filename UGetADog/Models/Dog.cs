@@ -13,11 +13,11 @@ namespace UGetADog.Models
         [key]
         public int DogID { get; set; }
 
-        public int ID { get; set; }
-        [ForeignKey("ID")]
+        public int GID { get; set; }
+        [ForeignKey("GID")]
 
         //useless - shachar recommand on removing 
-        public virtual Giver CurrGiver{ get; set; }
+        public virtual Giver CurrGiver { get; set; }
 
         [Required(ErrorMessage = "Dog name is requried")]
         [Display(Name = "Dog Name")]
@@ -26,13 +26,13 @@ namespace UGetADog.Models
         [Required(ErrorMessage = "dog age is requried")]
         [Display(Name = "dog age")]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
-        public double ? Age { get; set; }
+        public double? Age { get; set; }
 
         [Required(ErrorMessage = "dog breed is requried")]
         [Display(Name = "dog breed")]
         public string Breed { get; set; }
 
-    
+
         [Display(Name = "is dog trained")]
         public bool Trained { get; set; }
 
@@ -44,7 +44,11 @@ namespace UGetADog.Models
 
         [DisplayFormat(NullDisplayText = "Not gender specified")]
         public string Gender { get; set; }
+        public string Size { get; set; }
 
-        
+        public string Description { get; set; }
+
+        public string Image { get; set; }
+
     }
 }

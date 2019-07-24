@@ -18,12 +18,13 @@
         <th>
             Email
         </th>
-        <th>
-            Age
-        </th>
-        <th>
-            Gender
-        </th>
+        @{/*<th>
+Age
+</th>
+<th>
+Gender
+</th>*/
+        }
         <th>
             Phone
         </th>
@@ -48,12 +49,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.user.Email)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.Gender)
-        </td>
+        @{/*<td>
+                @Html.DisplayFor(modelItem => item.user.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Gender)
+            </td>*/
+        }
         <td>
             @Html.DisplayFor(modelItem => item.giver.Phone)
         </td>
