@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<UGetADog.Models.Dog>
 
 @{
+    /**/
+
     ViewBag.Title = "Dogs";
 }
 
@@ -8,7 +10,7 @@
     @using (Html.BeginForm("Search", "Dogs", FormMethod.Get))
     {
         var dog = new UGetADog.Models.Dog();
-       // insert check if user role
+        // insert check if user role
 
         <div class="searchContriner">
             @Html.LabelFor(model => dog.Age, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -21,7 +23,7 @@
             <span class="col-md-4">
                 @Html.EditorFor(model => dog.Breed, new { htmlAttributes = new { @class = "form-control" } })
             </span>
-       </div>
+        </div>
         <div class="searchContriner">
             @Html.LabelFor(model => dog.Gender, htmlAttributes: new { @class = "control-label col-md-3" })
             <span class="col-md-4">
@@ -129,6 +131,16 @@
         }
 
     </table>
+
+    <section>
+        @using (Html.BeginForm("ShowMyDogs", "Dogs", FormMethod.Get))
+        {
+            <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
+        }
+    </section>
+
+
+
 }
 <div id="fb-root"></div>
 <script>
