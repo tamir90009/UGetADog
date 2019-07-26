@@ -22,7 +22,7 @@ namespace UGetADog.Controllers
             ViewBag.Selected = "Dogs";
 
             IEnumerable<Dog> dogs = (IEnumerable<Dog>)TempData["Dogs"] ?? db.Dogs.ToList();
-            
+
             return View(dogs);
         }
         
@@ -73,7 +73,8 @@ namespace UGetADog.Controllers
             }
             if (ModelState.IsValid)
             {
-                dog.GID = 2;
+                dog.GID = int.Parse(Session["GID"].ToString());
+                //dog.GID = 8;
                 db.Dogs.Add(dog);
                 var giver = db.Givers.Find(dog.GID);
                 if (giver.Dogs == null)
@@ -90,6 +91,8 @@ namespace UGetADog.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //}
+            return View(dog);//change to you dont have permissions
 
             return View(dog);
         }
@@ -116,7 +119,6 @@ namespace UGetADog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog)
         {
-
             if (ModelState.IsValid)
             {
                 var olddog = db.Dogs.Find(dog.DogID);
@@ -194,17 +196,6 @@ namespace UGetADog.Controllers
             return RedirectToAction("Index", "Dogs");
         }
 
-        [HttpGet]
-        public ActionResult ShowMyDogs()
-        {
-            IEnumerable<Dog> dogs = db.Dogs.ToList();
-            dogs = db.Dogs.Where(d => d.GID == 1).ToList();
-            TempData["Dogs"] = dogs;
-
-            return RedirectToAction("Index", "Dogs");
-
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -213,7 +204,32 @@ namespace UGetADog.Controllers
             }
             base.Dispose(disposing);
         }
-      
+
+        public ActionResult AdminIndex()
+        {
+            //T.D.L:make that only admins will be able to see that page
+
+            return View(db.Dogs.ToList());
+        }
+
+        public ActionResult GetDogsPerCity()
+        {
+            var status = (from d in db.Dogs
+                          join g in db.Givers
+                          on d.GID equals g.GiverID
+                          group d by g.Address into dogsGroup
+                          select new { City = dogsGroup.Key, Count = dogsGroup.Count() }).ToArray();
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAverageAgesPerBreed()
+        {
+            var average = (from d in db.Dogs group d by d.Breed into dogsGroup select new { Breed = dogsGroup.Key, Average = dogsGroup.Average(i => i.Age)}).ToArray();
+
+            return Json(average, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 
 }
