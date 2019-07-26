@@ -196,6 +196,18 @@ namespace UGetADog.Controllers
             return RedirectToAction("Index", "Dogs");
         }
 
+        public ActionResult MyDogs()
+        {
+            IEnumerable<Dog> dogs = db.Dogs.ToList();
+            int gid = int.Parse(Session["GID"].ToString());
+            dogs = db.Dogs.Where(d => d.GID == gid).ToList();
+            //TempData["Dogs"] = dogs;
+
+            //return RedirectToAction("Index", "Dogs");
+            return View(dogs);
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
