@@ -21,7 +21,7 @@ namespace UGetADog.Models
         [Required(ErrorMessage = "your name is requried")]
         [Display(Name = "Sender Name")]
         public string Sendername { get; set; }
-
+        
         [Display(Name = "Dog Name")]
         public string DogName { get; set; }
 
