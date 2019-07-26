@@ -1,9 +1,12 @@
 ﻿var map;
 
-function initMap() {
-    map = new google.maps.Map($('#map')[0], {
+function initMap(user_position) {
+    var user = { lat: user_position.coords.latitude, lng: user_position.coords.longitude };
+    var map = new google.maps.Map($('#map')[0], {
+        center: user,
         zoom: 15
     });
+    new google.maps.Marker({ position: user, map: map });
 }
 
 function CheckAddress() {
@@ -39,9 +42,6 @@ function handleGeocoderResult(results, status) {
     }
 }
 
-function defaultMap() {
-    map.setCenter({ lat: 31.771959, lng: 35.217018 });
-}
 
 function showAddressIsNotValid() {
     $("#Address").val("Not Valid");
@@ -51,6 +51,7 @@ function deleteMap() {
     $('#map').remove();
 }
 
+/*
 function putMarkerOnMapAndSetMapCenter(geolocation) {
     var location = geolocation.geometry.location;
     var position = { lat: location.lat(), lng: location.lng() };
@@ -64,10 +65,43 @@ function putMarkerOnMapAndSetMapCenter(geolocation) {
 
     setInfoWindowForMarker(geolocation.formatted_address, marker);
 }
-
+*/
+/*
 function setInfoWindowForMarker(content, marker) {
     var infoWindow = new google.maps.InfoWindow({
         content: content
     });
     infoWindow.open(map, marker);
+}
+*/
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(initMap);
+    }
+    else {
+        $('#map')[0].innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function getreverseLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(reversegeocode);
+    }
+    else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function reversegeocode(position) {
+
+    var latlng = { lat: position.coords.latitude, lng: position.coords.longitude };
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({ 'location': latlng }, function (results, status) {
+        if (status === 'OK') {
+            x.innerHTML = results[0].address_components[2].short_name;
+        }
+        else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+    });
 }
