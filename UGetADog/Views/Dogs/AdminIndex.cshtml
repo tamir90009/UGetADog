@@ -1,45 +1,16 @@
 ﻿@model IEnumerable<UGetADog.Models.Dog>
 
 @{
-    /**/
-
-    ViewBag.Title = "Dogs";
+    ViewBag.Title = "AdminIndex";
 }
 
-<section id="search">
-    @using (Html.BeginForm("Search", "Dogs", FormMethod.Get))
-    {
-        var dog = new UGetADog.Models.Dog();
-        // insert check if user role
+<h2>AdminIndex</h2>
 
-        <div class="searchContriner">
-            @Html.LabelFor(model => dog.Age, htmlAttributes: new { @class = "control-label col-md-3" })
-            <span class="col-md-4">
-                @Html.EditorFor(model => dog.Age, new { htmlAttributes = new { @class = "form-control" } })
-            </span>
-        </div>
-        <div class="searchContriner">
-            @Html.LabelFor(model => dog.Breed, htmlAttributes: new { @class = "control-label col-md-3" })
-            <span class="col-md-4">
-                @Html.EditorFor(model => dog.Breed, new { htmlAttributes = new { @class = "form-control" } })
-            </span>
-        </div>
-        <div class="searchContriner">
-            @Html.LabelFor(model => dog.Gender, htmlAttributes: new { @class = "control-label col-md-3" })
-            <span class="col-md-4">
-                @Html.EnumDropDownListFor(model => dog.Gender, new { htmlAttributes = new { @class = "form-control" } })
-            </span>
-        </div>
-        <div class="searchContriner">
-            <input class="btn btn-default" type="submit" name="Search" value="חפש" />
-        </div>
-        //add searches for admin
-    }
-</section>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
-
-@if (Model.Count() > 0)
-{
+<div id="mainContent">
     <table class="table">
         <tr>
             <th>
@@ -115,22 +86,26 @@
                     <img src="~/Images/@Html.DisplayFor(modelItem => item.File)" height=100 width=200 />
                 </td>
                 <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DogID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.DogID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DogID }) |
                     @Html.ActionLink("Contact", "Contact", new { id = item.DogID })
                 </td>
             </tr>
-        }
 
-    </table>
+          }
 
-    <section>
-        @using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
-        {
-            <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
-        }
-    </section>
+        </table>
 
 
+        <div id="postStatsSection">
+            <h3>Most viewed posts</h3>
+        </div>
+        <div id="barChartSection">
+            <h3>Top Writers</h3>
+        </div>
 
-}
 
+        <script src=@Url.Content("~/Scripts/Charts/BarChart.js")></script>
+        <script src=@Url.Content("~/Scripts/Charts/PieChart.js")></script>
+    </div>

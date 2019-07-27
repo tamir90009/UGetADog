@@ -19,11 +19,11 @@ namespace UGetADog.Controllers
         {
             
             //might be with no s
-           //ViewBag.Selected = "Givers";
+            //ViewBag.Selected = "Givers";
 
             //IEnumerable<Giver> givers = (IEnumerable<Giver>)TempData["Givers"] ?? db.Givers.ToList();
 
-           // return View(givers);
+            // return View(givers);
 
             return View(db.Givers.ToList());
         }
@@ -58,9 +58,11 @@ namespace UGetADog.Controllers
         {
             if (ModelState.IsValid)
             {
-                giver.UID = 1;
+                giver.UID = int.Parse(Session["ID"].ToString());
                 db.Givers.Add(giver);
                 db.SaveChanges();
+                Session["Address"] = giver.Address.ToString();
+                Session["GID"] = giver.GiverID.ToString();
                 return RedirectToAction("Index");
             }
 
@@ -122,12 +124,14 @@ namespace UGetADog.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Giver giver = db.Givers.Find(id);
+            User user = db.Users.Find(giver.UID);
             if (giver.Comments != null)
             {
                 db.Comments.RemoveRange(giver.Comments);
 
             }
             db.Givers.Remove(giver);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -156,6 +160,11 @@ namespace UGetADog.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Weather()
+        {
+            return View();
         }
     }
 }

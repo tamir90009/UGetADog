@@ -131,15 +131,11 @@
     <Compile Include="Controllers\FullGiversController.cs" />
     <Compile Include="Controllers\GiversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AdoptingController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907231453398_Reset2.cs" />
-    <Compile Include="Migrations\201907231453398_Reset2.Designer.cs">
-      <DependentUpon>201907231453398_Reset2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\FullGiver.cs" />
     <Compile Include="Models\keyAttribute.cs" />
@@ -160,10 +156,21 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\20190611_221559.jpg" />
+    <Content Include="Images\dog.jfif" />
+    <Content Include="Images\golden-retriever-puppy.jpg" />
+    <Content Include="Images\IMG-20190619-WA0006.jpg" />
+    <Content Include="Images\signal group_chat.png" />
+    <Content Include="Images\signal.jpg" />
+    <Content Include="Images\פופאי עומד.jpeg" />
+    <Content Include="Images\פופאי שוכב.jpeg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Charts\BarCharts.js" />
+    <Content Include="Scripts\Charts\d3.js" />
+    <Content Include="Scripts\Charts\PieCharts.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -200,6 +207,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Adopting\YouTube.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -250,7 +258,16 @@
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Delete.cshtml" />
-    <Content Include="Views\FullGivers\Details.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Givers\Show.cshtml" />
+    <Content Include="Views\Users\login.cshtml" />
+    <Content Include="Views\Adopting\Index.cshtml" />
+    <Content Include="Views\FullGivers\Index.cshtml" />
+    <Content Include="Views\Dogs\AdminIndex.cshtml" />
+    <Content Include="Views\Givers\Weather.cshtml" />
+    <Content Include="Views\Dogs\MyDogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,11 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907231453398_Reset2.resx">
-      <DependentUpon>201907231453398_Reset2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
