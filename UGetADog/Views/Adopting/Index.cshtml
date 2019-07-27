@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Adopting</h2>
+
+<div id="mainContent">
+
+    <h2>Reasons why you should adopt a dog:</h2>
+
+    <p>
+        <div id="player" style="height: 300px; width: 80%;"></div>
+    </p>
+
+    <script src='@Url.Content("~/Scripts/Adopting/YouTube.js")'></script>
+</div>
+
+<div class="fb-share-button" data-href="https://www.youtube.com/watch?v=kk57tfBUoJo" data-layout="button_count" data-size="small"></div>
+
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1396861977224095";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

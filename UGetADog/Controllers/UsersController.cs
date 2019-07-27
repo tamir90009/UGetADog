@@ -4,9 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using UGetADog.Models;
+
+
 
 namespace UGetADog.Controllers
 {
@@ -17,7 +20,7 @@ namespace UGetADog.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+                return View(db.Users.ToList());
         }
 
         // GET: Users/Details/5
@@ -52,6 +55,13 @@ namespace UGetADog.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
+                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                Session["ID"] = user.UserID.ToString();
+                Session["Role"] = user.Role.ToString();
+                if (user.Role.ToString() == "GIVER")
+                {
+                    return RedirectToAction("Create", "Givers");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -122,6 +132,57 @@ namespace UGetADog.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // GET: Login
+        public ActionResult login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult login([Bind(Include ="Email,Password")] User user)
+        {
+            //add try and catch
+                var v = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                if (v != null)
+                {
+                    Session["user"] = v.FirstName.ToString()+" "+v.LastName.ToString();
+                    Session["ID"] = v.UserID.ToString();
+                    Session["Role"] = v.Role.ToString();
+                    if (v.Role.ToString() == "GIVER")
+                    {
+                    var g = db.Givers.Where(b => b.UID.Equals(v.UserID)).FirstOrDefault();
+                    Session["Address"]= g.Address.ToString();
+                    Session["GID"] = g.GiverID.ToString();
+                    }
+
+                return RedirectToAction("Index", "Dogs");
+                }
+            return View(); //change for error view
+        }
+
+        [HttpGet]
+        public bool IsUserAdmin(HttpSessionStateBase session)
+        {
+            bool IsUserAdmin = false;
+            if (session["Role"].ToString() == "ADMIN")
+            {
+                IsUserAdmin = true;
+            }
+            return IsUserAdmin;
+        }
+
+        [HttpGet]
+        public bool IsUserGiver(HttpSessionStateBase session)
+        {
+            bool IsUserGiver = false;
+            if (Session["Role"].ToString() == "GIVER")
+            {
+                IsUserGiver = true;
+            }
+            return IsUserGiver;
         }
     }
 }
