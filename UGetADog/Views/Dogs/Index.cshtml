@@ -122,15 +122,23 @@
         }
 
     </table>
+}
 
     <section>
-        @using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
+        @try
         {
-            <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
+            if (Session["Role"].ToString() == "Giver")
+            {
+                using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
+                {
+                    <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
+                }
+            }
         }
+        catch
+        {
+
+        }
+
     </section>
-
-
-
-}
 

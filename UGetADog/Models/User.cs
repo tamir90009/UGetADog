@@ -9,14 +9,15 @@ using System.ComponentModel;
 
 namespace UGetADog.Models
 {
+
     public enum UserAuthorization
     {
-        [Browsable(false)] ADMIN,
-        [Browsable(true)]
+        [Display(Name = "Admin")]
+        Admin,
         [Display(Name = "Giver")]
-        GIVER,
+        Giver,
         [Display(Name = "Adopter")]
-        ADOPTER
+        Adopter
     }
 
     public enum DogGender
@@ -42,21 +43,26 @@ namespace UGetADog.Models
         public String Password { get; set; }
 
         [Required(ErrorMessage = "First name is requried")]
+        [DataType(DataType.Text)]
         [Display(Name = "First name")]
         public String FirstName { get; set; }
 
         [Required(ErrorMessage = "Last name is requried")]
+        [DataType(DataType.Text)]
         [Display(Name = "Last name")]
         public String LastName { get; set; }
 
         [Required(ErrorMessage = "user age is requried")]
         [Display(Name = "Age")]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
+        [Range(0, 120, ErrorMessage = "Please enter valid integer Number")]
         public Double Age { get; set; }
 
         [Required(ErrorMessage = "Gender is requried")]
         [Display(Name = "Gender")]
         public DogGender? Gender { get; set; }
+
+        [Required(ErrorMessage = "Role is requried")]
+        [Display(Name = "Role")]
         public UserAuthorization? Role { get; set; }
 
     }

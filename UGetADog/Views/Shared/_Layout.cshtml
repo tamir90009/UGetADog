@@ -18,17 +18,62 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Dog", "Index", "Dogs")</li>
-                    <li>@Html.ActionLink("User", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Giver", "Index", "givers")</li>
-                    <li>@Html.ActionLink("FullGiver", "Index", "FullGivers")</li>
-                    <li>@Html.ActionLink("LogIn", "Login", "Users")</li>
-                    <li>@Html.ActionLink("Weather", "Weather", "Givers")</li>
+                    @try
+                    {
+                        if (Session["Role"].ToString() == "Admin")
+                        {
+                            <li>@Html.ActionLink("User", "Index", "Users")</li>
+                            <li>@Html.ActionLink("Giver", "Index", "givers")</li>
+                            <li>@Html.ActionLink("FullGiver", "Index", "FullGivers")</li>
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+
+                    @try
+                    {
+                        if ((Session["Role"].ToString() == "Adopter") || (Session["Role"].ToString() == "Giver"))
+                        {
+                            <li>@Html.ActionLink("My Account", "MyAccount", "Users")</li>
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+
+                    @try
+                    {
+                        if (Session["ID"].ToString() != null)
+                        {
+
+                        }
+                    }
+                    catch
+                    {
+                        <li>@Html.ActionLink("LogIn", "Login", "Users")</li>
+                    }
+
+                    @try
+                    {
+                        if ((Session["ID"].ToString() != null) && (Session["Role"].ToString()!= "Adopter"))
+                        {
+                            <li>@Html.ActionLink("Weather", "Weather", "Givers")</li>
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+
                     <li>@Html.ActionLink("You Should Adopt", "Index", "Adopting")</li>
                 </ul>
             </div>

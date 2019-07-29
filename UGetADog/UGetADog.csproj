@@ -266,6 +266,8 @@
     <Content Include="Views\Dogs\AdminIndex.cshtml" />
     <Content Include="Views\Givers\Weather.cshtml" />
     <Content Include="Views\Dogs\MyDogs.cshtml" />
+    <Content Include="Views\Users\MyAccount.cshtml" />
+    <Content Include="Views\FullGivers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
