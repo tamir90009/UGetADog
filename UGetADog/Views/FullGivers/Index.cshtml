@@ -1,34 +1,55 @@
 ﻿
 @model IEnumerable<UGetADog.Models.FullGiver>
-
+    <script>
+        $(document).ready(function () {
+            getCurrentLocation();
+        }
+    </script>
 @{
     ViewBag.Title = "Index";
 }
 
-<section id="search">
-    @using (Html.BeginForm("Index", "FullGivers", FormMethod.Get))
-    {
-        var fullGiver = new UGetADog.Models.User();
-        // insert check if user role
+                      <section id="search">
+                          @using (Html.BeginForm("Index", "FullGivers", FormMethod.Get))
+                          {
+                          var user = new UGetADog.Models.User();
+                          var giver = new UGetADog.Models.Giver();
+                          //var fullGiver = new UGetADog.Models.FullGiver();
 
-        <div class="searchContriner">
-            @Html.LabelFor(model => fullGiver.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
-            <span class="col-md-4">
-                @Html.EditorFor(model => fullGiver.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-            </span>
-        </div>
-        <div class="searchContriner">
-            @Html.LabelFor(model => fullGiver.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
-            <span class="col-md-4">
-                @Html.EditorFor(model => fullGiver.LastName, new { htmlAttributes = new { @class = "form-control" } })
-            </span>
-        </div>
-        <div class="searchContriner">
-            <input class="btn btn-default" type="submit" name="Search" value="חפש" />
-        </div>
-        //add searches for admin
-    }
-</section>
+                          // insert check if user role
+
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => user.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => user.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => user.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => user.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => giver.Latitude, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => giver.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => giver.Longtitude, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => giver.Longtitude, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+
+
+                          <div class="searchContriner">
+                              <input class="btn btn-default" type="submit" name="Search" value="חפש" />
+                          </div>
+                          //add searches for admin
+                          }
+                      </section>
 
 
 <h2>Index</h2>

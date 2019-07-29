@@ -254,7 +254,6 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Comments\Create.cshtml" />
     <Content Include="Views\Givers\Show.cshtml" />
-    <Content Include="Views\FullGivers\Index.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Delete.cshtml" />
@@ -268,6 +267,7 @@
     <Content Include="Views\Dogs\AdminIndex.cshtml" />
     <Content Include="Views\Givers\Weather.cshtml" />
     <Content Include="Views\Dogs\MyDogs.cshtml" />
+    <Content Include="Views\FullGivers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

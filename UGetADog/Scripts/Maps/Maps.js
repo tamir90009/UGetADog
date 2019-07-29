@@ -80,6 +80,7 @@ function setInfoWindowForMarker(content, marker) {
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(initMap);
+        navigator.geolocation.watchPosition(showPosition);
     }
     else {
         $('#map')[0].innerHTML = "Geolocation is not supported by this browser.";
@@ -171,4 +172,17 @@ function allForSearch() {
     else {
         $('#map')[0].innerHTML = "Geolocation is not supported by this browser.";
     }
+}
+
+
+function getCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    document.getElementById("giver_Latitude").value = position.coords.latitude;
+    document.getElementById("giver_Longtitude").value = position.coords.longitude;
 }
