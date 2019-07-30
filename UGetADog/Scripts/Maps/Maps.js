@@ -86,7 +86,7 @@ function getLocation() {
         $('#map')[0].innerHTML = "Geolocation is not supported by this browser.";
     }
 }
-
+// noa's function
 function getreverseLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(reversegeocode);
@@ -95,6 +95,7 @@ function getreverseLocation() {
         $('#map')[0].innerHTML = "Geolocation is not supported by this browser.";
     }
 }
+//noa's function
 function reversegeocode(position) {
 
     var latlng = { lat: position.coords.latitude, lng: position.coords.longitude };

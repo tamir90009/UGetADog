@@ -64,7 +64,7 @@ namespace UGetADog.Controllers
             return (rad / Math.PI * 180.0);
         }
 
-        public Double Distance(Double lat1, Double lon1, Double lat2, Double lon2, Char unit)
+        public Double Distance(Double lat1, Double lon1, Double lat2, Double lon2)
         {
             if ((lat1 == lat2) && (lon1 == lon2))
             {
@@ -76,15 +76,8 @@ namespace UGetADog.Controllers
                 Double dist = Math.Sin(Deg2rad(lat1)) * Math.Sin(Deg2rad(lat2)) + Math.Cos(Deg2rad(lat1)) * Math.Cos(Deg2rad(lat2)) * Math.Cos(Deg2rad(theta));
                 dist = Math.Acos(dist);
                 dist = Rad2deg(dist);
-                dist = dist * 60 * 1.1515;
-                if (unit == 'K')
-                {
-                    dist = dist * 1.609344;
-                }
-                else if (unit == 'N')
-                {
-                    dist = dist * 0.8684;
-                }
+                dist = dist * 60 * 1.1515;               
+                dist = dist * 1.609344;
                 return (dist);
             }
         }
@@ -94,7 +87,7 @@ namespace UGetADog.Controllers
         public ActionResult Index([Bind(Include = "FirstName,LastName")] User user, [Bind(Include = "Latitude,Longtitude")] Giver giver)
         //public ActionResult Index(String FirstName, String LastName)
         {
-            Func<Giver, Giver, Boolean> CheckDistance = (Giver userloc, Giver g) => { return Distance(userloc.Latitude, userloc.Longtitude, g.Latitude, lon2: g.Longtitude, unit: 'K') < 20; };
+            Func<Giver, Giver, Boolean> CheckDistance = (Giver userloc, Giver g) => { return Distance(userloc.Latitude, userloc.Longtitude, g.Latitude, lon2: g.Longtitude) < 20; };
             if (user.FirstName == null && user.LastName == null)
             {
                 var GiversAndUsers = (from g in db.Givers
