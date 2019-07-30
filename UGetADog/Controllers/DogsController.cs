@@ -224,7 +224,13 @@ namespace UGetADog.Controllers
 
         public ActionResult GetAverageAgesPerBreed()
         {
-            var average = (from d in db.Dogs group d by d.Breed into dogsGroup select new { Breed = dogsGroup.Key, Average = dogsGroup.Average(i => i.Age)}).ToArray();
+            var average = (from d in db.Dogs
+                           group d by d.Breed into dogsGroup
+                           select new
+                           {
+                               Breed = dogsGroup.Key,
+                               Average = dogsGroup.Average(a=> a.Age)
+                           }).ToArray(); 
 
             return Json(average, JsonRequestBehavior.AllowGet);
         }

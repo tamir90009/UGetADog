@@ -1,12 +1,10 @@
-﻿'use strict';
-function getBarChartData() {
-    $.ajax('/Dogs/GetAverageAgesPerBreedy').then(function (data) {
+﻿function getBarChartData() {
+    $.ajax('/Dogs/GetAverageAgesPerBreed').then(function (data) {
         if (data && data.length) {
-            // set the dimensions and margins of the graph
-            var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-                width = 400 - margin.left - margin.right,
-                height = 200 - margin.top - margin.bottom;
-
+            // set the Properties of the graph size
+            var margin = { top: 20, right: 20, bottom: 20, left: 20 },
+                width = 500 - margin.left - margin.right,
+                height = 350 - margin.top - margin.bottom;
             var x = d3.scaleBand()
                 .range([0, width])
                 .padding(0.1);
@@ -14,8 +12,7 @@ function getBarChartData() {
                 .range([height, 0]);
 
             // append the svg object to the body of the page
-            // append a 'group' element to 'svg'
-            // moves the 'group' element to the top left margin
+            // append a group element to svg and moves it to the top left margin
             var svg = d3.select("#barChartSection").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
@@ -23,24 +20,20 @@ function getBarChartData() {
                 .attr("transform",
                     "translate(" + margin.left + "," + margin.top + ")");
 
-            // format the data
-            data.forEach(function (d) {
-                d.Count = +d.Count;
-            });
+            // Scale the range of the data
+            x.domain(data.map(function (d) { return d.Breed; }));
+            y.domain([0, d3.max(data, function (d) { return d.Average; })]);
 
-            // Scale the range of the data in the domains
-            x.domain(data.map(function (d) { return d.Writer; }));
-            y.domain([0, d3.max(data, function (d) { return d.Count; })]);
-
-            // append the rectangles for the bar chart
+            // add and set the rectangles for the bar chart
             svg.selectAll(".bar")
                 .data(data)
                 .enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function (d) { return x(d.Writer); })
+                .attr("x", function (d) { return x(d.Breed); })
                 .attr("width", x.bandwidth())
-                .attr("y", function (d) { return y(d.Count); })
-                .attr("height", function (d) { return height - y(d.Count); });
+                .attr("y", function (d) { return y(d.Average); })
+                .attr("height", function (d) { return height - y(d.Average); })
+                .attr("fill", "blue");
 
             // add the x Axis
             svg.append("g")
