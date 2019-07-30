@@ -74,7 +74,6 @@ namespace UGetADog.Controllers
             if (ModelState.IsValid)
             {
                 dog.GID = int.Parse(Session["GID"].ToString());
-                //dog.GID = 8;
                 db.Dogs.Add(dog);
                 var giver = db.Givers.Find(dog.GID);
                 if (giver.Dogs == null)
@@ -89,12 +88,11 @@ namespace UGetADog.Controllers
                 
                 db.Entry(giver).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyDogs");
             }
             //}
             return View(dog);//change to you dont have permissions
-
-            return View(dog);
+            
         }
 
         // GET: Dogs/Edit/5
@@ -126,7 +124,7 @@ namespace UGetADog.Controllers
                 //db.Entry(dog).State = EntityState.Modified;
                 db.Entry(olddog).CurrentValues.SetValues(dog);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyDogs");
             }
             return View(dog);
         }
@@ -156,17 +154,19 @@ namespace UGetADog.Controllers
             Dog dog = db.Dogs.Find(id);
             db.Dogs.Remove(dog);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MyDogs");
         }
 
 
         public ActionResult Contact(int? id)
         {
             Dog dog = db.Dogs.Find(id);
+            
             if (dog == null)
             {
                 return HttpNotFound();
             }
+            Session["DogID"] = id.ToString();
             return RedirectToAction("Details", "FullGivers", new { id = dog.GID } );
         }
 
@@ -198,13 +198,20 @@ namespace UGetADog.Controllers
 
         public ActionResult MyDogs()
         {
-            IEnumerable<Dog> dogs = db.Dogs.ToList();
-            int gid = int.Parse(Session["GID"].ToString());
-            dogs = db.Dogs.Where(d => d.GID == gid).ToList();
-            //TempData["Dogs"] = dogs;
+            try
+            {
+                IEnumerable<Dog> dogs = db.Dogs.ToList();
+                int gid = int.Parse(Session["GID"].ToString());
+                dogs = db.Dogs.Where(d => d.GID == gid).ToList();
+                //TempData["Dogs"] = dogs;
 
-            //return RedirectToAction("Index", "Dogs");
-            return View(dogs);
+                //return RedirectToAction("Index", "Dogs");
+                return View(dogs);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
         }
 
@@ -236,7 +243,13 @@ namespace UGetADog.Controllers
 
         public ActionResult GetAverageAgesPerBreed()
         {
-            var average = (from d in db.Dogs group d by d.Breed into dogsGroup select new { Breed = dogsGroup.Key, Average = dogsGroup.Average(i => i.Age)}).ToArray();
+            var average = (from d in db.Dogs
+                           group d by d.Breed into dogsGroup
+                           select new
+                           {
+                               Breed = dogsGroup.Key,
+                               Average = dogsGroup.Average(a=> a.Age)
+                           }).ToArray(); 
 
             return Json(average, JsonRequestBehavior.AllowGet);
         }

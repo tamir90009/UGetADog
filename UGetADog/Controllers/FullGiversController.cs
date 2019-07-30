@@ -23,28 +23,57 @@ namespace UGetADog.Controllers
                                       giver = g,
                                       user = u
                                   });
-
-            return View(GiversAndUsers);
+            try
+            {
+                if (Session["Role"].ToString() == "Admin")
+                {
+                    return View(GiversAndUsers);
+                }
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
         // GET: Givers/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Session["GID"].ToString() == id.ToString())
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+
+                    var currgiver = (from g in db.Givers
+                                     join u in db.Users on g.UID equals u.UserID
+                                     where g.GiverID == id
+                                     select new FullGiver
+                                     {
+                                         giver = g,
+                                         user = u
+                                     });
+
+
+                    return View(currgiver);
+                }
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
             }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
 
-            var currgiver = (from g in db.Givers
-                                  join u in db.Users on g.UID equals u.UserID
-                                  where g.GiverID == id
-                                  select new FullGiver
-                                  {
-                                      giver = g,
-                                      user = u
-                                  });
-
-
-            return View(currgiver);
+            }
 
         }
 
