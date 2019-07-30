@@ -88,7 +88,7 @@ namespace UGetADog.Controllers
                 
                 db.Entry(giver).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyDogs");
             }
             //}
             return View(dog);//change to you dont have permissions
@@ -124,7 +124,7 @@ namespace UGetADog.Controllers
                 //db.Entry(dog).State = EntityState.Modified;
                 db.Entry(olddog).CurrentValues.SetValues(dog);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyDogs");
             }
             return View(dog);
         }
@@ -154,7 +154,7 @@ namespace UGetADog.Controllers
             Dog dog = db.Dogs.Find(id);
             db.Dogs.Remove(dog);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MyDogs");
         }
 
 
@@ -194,6 +194,25 @@ namespace UGetADog.Controllers
             TempData["Dogs"] = dogs;
 
             return RedirectToAction("Index", "Dogs");
+        }
+
+        public ActionResult MyDogs()
+        {
+            try
+            {
+                IEnumerable<Dog> dogs = db.Dogs.ToList();
+                int gid = int.Parse(Session["GID"].ToString());
+                dogs = db.Dogs.Where(d => d.GID == gid).ToList();
+                //TempData["Dogs"] = dogs;
+
+                //return RedirectToAction("Index", "Dogs");
+                return View(dogs);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         protected override void Dispose(bool disposing)

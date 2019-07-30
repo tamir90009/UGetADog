@@ -137,21 +137,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907261156331_db5.cs" />
-    <Compile Include="Migrations\201907261156331_db5.Designer.cs">
-      <DependentUpon>201907261156331_db5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907261249400_dbb.cs" />
-    <Compile Include="Migrations\201907261249400_dbb.Designer.cs">
-      <DependentUpon>201907261249400_dbb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907261255440_d_no.cs" />
-    <Compile Include="Migrations\201907261255440_d_no.Designer.cs">
-      <DependentUpon>201907261255440_d_no.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907261339584_fff.cs" />
-    <Compile Include="Migrations\201907261339584_fff.Designer.cs">
-      <DependentUpon>201907261339584_fff.cs</DependentUpon>
+    <Compile Include="Migrations\201907301301418_db4.cs" />
+    <Compile Include="Migrations\201907301301418_db4.Designer.cs">
+      <DependentUpon>201907301301418_db4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ML.cs" />
@@ -281,6 +269,9 @@
     <Content Include="Views\MLs\Details.cshtml" />
     <Content Include="Views\MLs\Edit.cshtml" />
     <Content Include="Views\MLs\Index.cshtml" />
+    <Content Include="Views\Dogs\MyDogs.cshtml" />
+    <Content Include="Views\Users\MyAccount.cshtml" />
+    <Content Include="Views\FullGivers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,17 +286,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907261156331_db5.resx">
-      <DependentUpon>201907261156331_db5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907261249400_dbb.resx">
-      <DependentUpon>201907261249400_dbb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907261255440_d_no.resx">
-      <DependentUpon>201907261255440_d_no.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907261339584_fff.resx">
-      <DependentUpon>201907261339584_fff.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907301301418_db4.resx">
+      <DependentUpon>201907301301418_db4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

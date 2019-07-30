@@ -165,7 +165,7 @@ namespace UGetADog.Controllers
         [HttpGet]
         public ActionResult Search( )
         {
-            if (Session["Role"].ToString() == "GIVER")
+            if ((Session["Role"].ToString()).ToUpper() == "GIVER")
             {
                 int id = int.Parse(Session["GID"].ToString());
                 var g = db.Givers.Where(b => b.GiverID.Equals(id)).FirstOrDefault();
