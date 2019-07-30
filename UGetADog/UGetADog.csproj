@@ -132,15 +132,17 @@
     <Compile Include="Controllers\GiversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdoptingController.cs" />
+    <Compile Include="Controllers\MLsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907242046514_mig.cs" />
-    <Compile Include="Migrations\201907242046514_mig.Designer.cs">
-      <DependentUpon>201907242046514_mig.cs</DependentUpon>
+    <Compile Include="Migrations\201907301429235_mig.cs" />
+    <Compile Include="Migrations\201907301429235_mig.Designer.cs">
+      <DependentUpon>201907301429235_mig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ML.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\FullGiver.cs" />
     <Compile Include="Models\keyAttribute.cs" />
@@ -168,6 +170,7 @@
     <Content Include="Scripts\Charts\BarChart.js" />
     <Content Include="Scripts\Charts\d3.js" />
     <Content Include="Scripts\Charts\PieChart.js" />
+    <Content Include="Scripts\Charts\PieChart_ML.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -259,9 +262,17 @@
     <Content Include="Views\Givers\Show.cshtml" />
     <Content Include="Views\Users\login.cshtml" />
     <Content Include="Views\Adopting\Index.cshtml" />
-    <Content Include="Views\FullGivers\Index.cshtml" />
     <Content Include="Views\Dogs\AdminIndex.cshtml" />
     <Content Include="Views\Givers\Weather.cshtml" />
+    <Content Include="Views\FullGivers\Details.cshtml" />
+    <Content Include="Views\MLs\Create.cshtml" />
+    <Content Include="Views\MLs\Delete.cshtml" />
+    <Content Include="Views\MLs\Details.cshtml" />
+    <Content Include="Views\MLs\Edit.cshtml" />
+    <Content Include="Views\MLs\Index.cshtml" />
+    <Content Include="Views\Dogs\MyDogs.cshtml" />
+    <Content Include="Views\Users\MyAccount.cshtml" />
+    <Content Include="Views\FullGivers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,8 +287,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907242046514_mig.resx">
-      <DependentUpon>201907242046514_mig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907301429235_mig.resx">
+      <DependentUpon>201907301429235_mig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

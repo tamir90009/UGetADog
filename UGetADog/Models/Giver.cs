@@ -26,6 +26,9 @@ namespace UGetADog.Models
 
     
         public Double Rating { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Address")]
         public String Address { get; set; }
         public Double Latitude { get; set; }
         public Double Longtitude { get; set; }
