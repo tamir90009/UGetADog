@@ -137,9 +137,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907301301418_db4.cs" />
-    <Compile Include="Migrations\201907301301418_db4.Designer.cs">
-      <DependentUpon>201907301301418_db4.cs</DependentUpon>
+    <Compile Include="Migrations\201907301719107_db332.cs" />
+    <Compile Include="Migrations\201907301719107_db332.Designer.cs">
+      <DependentUpon>201907301719107_db332.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ML.cs" />
@@ -163,6 +163,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\puppy_eyes.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -286,8 +287,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907301301418_db4.resx">
-      <DependentUpon>201907301301418_db4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907301719107_db332.resx">
+      <DependentUpon>201907301719107_db332.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
