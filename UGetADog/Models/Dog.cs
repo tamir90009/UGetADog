@@ -43,7 +43,7 @@ namespace UGetADog.Models
 
         [Required(ErrorMessage = "dog age is requried")]
         [Display(Name = "dog age")]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
+        [Range(0, 120, ErrorMessage = "Please enter valid integer Number")]
         public double? Age { get; set; }
 
         [Required(ErrorMessage = "dog breed is requried")]

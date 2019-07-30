@@ -17,7 +17,7 @@ namespace UGetADog.Controllers
         // GET: Givers
         public ActionResult Index()
         {
-            
+
             //might be with no s
             //ViewBag.Selected = "Givers";
 
@@ -25,22 +25,51 @@ namespace UGetADog.Controllers
 
             // return View(givers);
 
-            return View(db.Givers.ToList());
+            try
+            {
+                if (Session["Role"].ToString() == "Admin")
+                {
+                    return View(db.Givers.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Givers/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Session["GID"].ToString() == id.ToString())
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    Giver giver = db.Givers.Find(id);
+                    if (giver == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(giver);
+                }
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
+
             }
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
+            catch
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(giver);
         }
 
         // GET: Givers/Create
@@ -63,7 +92,7 @@ namespace UGetADog.Controllers
                 db.SaveChanges();
                 Session["Address"] = giver.Address.ToString();
                 Session["GID"] = giver.GiverID.ToString();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyAccount", "Users");
             }
 
             return View(giver);
@@ -72,16 +101,31 @@ namespace UGetADog.Controllers
         // GET: Givers/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Session["GID"].ToString() == id.ToString())
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    Giver giver = db.Givers.Find(id);
+                    if (giver == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(giver);
+                }
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
+
             }
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
+            catch
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(giver);
         }
 
         // POST: Givers/Edit/5
@@ -98,7 +142,7 @@ namespace UGetADog.Controllers
                 //db.Entry(giver).State = EntityState.Modified;
                 db.Entry(oldgiver).CurrentValues.SetValues(giver);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyAccount", "Users");
             }
             return View(giver);
         }
@@ -106,16 +150,31 @@ namespace UGetADog.Controllers
         // GET: Givers/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Session["GID"].ToString() == id.ToString())
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    Giver giver = db.Givers.Find(id);
+                    if (giver == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(giver);
+                }
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
+
             }
-            Giver giver = db.Givers.Find(id);
-            if (giver == null)
+            catch
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(giver);
         }
 
         // POST: Givers/Delete/5
