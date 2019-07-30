@@ -14,7 +14,7 @@ namespace UGetADog.Controllers
         private UGetADogContext db = new UGetADogContext();
         
         // GET: FullGivers
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             var GiversAndUsers = (from g in db.Givers
                                   join u in db.Users on g.UID equals u.UserID
@@ -39,13 +39,13 @@ namespace UGetADog.Controllers
                 return RedirectToAction("Index", "Home");
             }
             
-        }
+        }*/
         // GET: Givers/Details/5
         public ActionResult Details(int? id)
         {
             try
             {
-                if (Session["GID"].ToString() == id.ToString())
+                if (Session["ID"] != null)
                 {
                     if (id == null)
                     {
@@ -111,71 +111,86 @@ namespace UGetADog.Controllers
             }
         }
 
-         // GET api/user/firstname/lastname/address
+        // GET api/user/firstname/lastname/address
         [HttpGet]
         public ActionResult Index([Bind(Include = "FirstName,LastName")] User user, [Bind(Include = "Latitude,Longtitude")] Giver giver)
         //public ActionResult Index(String FirstName, String LastName)
         {
             Func<Giver, Giver, Boolean> CheckDistance = (Giver userloc, Giver g) => { return Distance(userloc.Latitude, userloc.Longtitude, g.Latitude, lon2: g.Longtitude) < 20; };
-            if (user.FirstName == null && user.LastName == null)
+            try
             {
-                var GiversAndUsers = (from g in db.Givers
-                                      join u in db.Users on g.UID equals u.UserID
-                                      select new FullGiver
-                                      {
-                                          giver = g,
-                                          user = u
-                                      });
-                return View(GiversAndUsers);
+                if (Session["Role"].ToString() != null)
+                {
+
+                    if (user.FirstName == null && user.LastName == null)
+                    {
+                        var GiversAndUsers = (from g in db.Givers
+                                              join u in db.Users on g.UID equals u.UserID
+                                              select new FullGiver
+                                              {
+                                                  giver = g,
+                                                  user = u
+                                              });
+                        return View(GiversAndUsers);
+                    }
+                    /*FullGiver fullGiver = new FullGiver();
+                    fullGiver.user.FirstName = FirstName;
+                    fullGiver.user.LastName = LastName;*/
+                    if (!string.IsNullOrEmpty(user.FirstName) && !string.IsNullOrEmpty(user.LastName))
+                    {
+
+                        var fullGivers = (from g in db.Givers.AsEnumerable()
+                                          join u in db.Users.AsEnumerable() on g.UID equals u.UserID
+                                          where (u.FirstName == user.FirstName) &&
+                                          (u.LastName == user.LastName) &&
+                                          (CheckDistance(giver, g))
+                                          select new FullGiver
+                                          {
+                                              giver = g,
+                                              user = u
+                                          });
+                        TempData["FullGivers"] = fullGivers;
+                        return View(fullGivers);
+                    }
+                    else if (!string.IsNullOrEmpty(user.FirstName))
+                    {
+                        var fullGivers = (from g in db.Givers.AsEnumerable()
+                                          join u in db.Users.AsEnumerable() on g.UID equals u.UserID
+                                          where u.FirstName == user.FirstName &&
+                                          (CheckDistance(giver, g))
+                                          select new FullGiver
+                                          {
+                                              giver = g,
+                                              user = u
+                                          });
+                        TempData["FullGivers"] = fullGivers;
+                        return View(fullGivers);
+                    }
+                    else if (!string.IsNullOrEmpty(user.LastName))
+                    {
+                        var fullGivers = (from g in db.Givers.AsEnumerable()
+                                          join u in db.Users.AsEnumerable() on g.UID equals u.UserID
+                                          where u.LastName == user.LastName &&
+                                          (CheckDistance(giver, g))
+                                          select new FullGiver
+                                          {
+                                              giver = g,
+                                              user = u
+                                          });
+                        TempData["FullGivers"] = fullGivers;
+                        return View(fullGivers);
+                    }
+                    return View();
+                }
+                else
+                {
+                    return View();
+                }
             }
-            /*FullGiver fullGiver = new FullGiver();
-            fullGiver.user.FirstName = FirstName;
-            fullGiver.user.LastName = LastName;*/
-            if (!string.IsNullOrEmpty(user.FirstName) && !string.IsNullOrEmpty(user.LastName))
+            catch
             {
-                
-                var fullGivers = (from g in db.Givers.AsEnumerable()
-                                  join u in db.Users.AsEnumerable() on g.UID equals u.UserID
-                                  where (u.FirstName == user.FirstName) &&
-                                  (u.LastName == user.LastName) &&
-                                  (CheckDistance(giver, g))
-                               select new FullGiver
-                               {
-                                   giver = g,
-                                   user = u
-                               });
-                TempData["FullGivers"] = fullGivers;
-                return View(fullGivers);
+                return RedirectToAction("login", "Users");
             }
-            else if (!string.IsNullOrEmpty(user.FirstName))
-            {
-                var fullGivers = (from g in db.Givers.AsEnumerable()
-                                  join u in db.Users.AsEnumerable() on g.UID equals u.UserID
-                               where u.FirstName == user.FirstName &&
-                               (CheckDistance(giver, g))
-                                  select new FullGiver
-                               {
-                                   giver = g,
-                                   user = u
-                               });
-                TempData["FullGivers"] = fullGivers;
-                return View(fullGivers);
-            }
-            else if (!string.IsNullOrEmpty(user.LastName))
-            {
-                var fullGivers = (from g in db.Givers.AsEnumerable()
-                                  join u in db.Users.AsEnumerable() on g.UID equals u.UserID
-                               where u.LastName == user.LastName &&
-                               (CheckDistance(giver, g))
-                                  select new FullGiver
-                               {
-                                   giver = g,
-                                   user = u
-                               });
-                TempData["FullGivers"] = fullGivers;
-                return View(fullGivers);
-            }
-            return View();
         }
     }
 }

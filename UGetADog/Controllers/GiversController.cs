@@ -47,7 +47,7 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["GID"].ToString() == id.ToString())
+                if (Session["GID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
                 {
                     if (id == null)
                     {
@@ -68,14 +68,29 @@ namespace UGetADog.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Users");
             }
         }
 
         // GET: Givers/Create
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                if (Session["ID"] != null || Session["Role"].ToString() == "Admin")
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("login", "Users");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("login", "Users");
+            }
+
         }
 
         // POST: Givers/Create
@@ -103,7 +118,7 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["GID"].ToString() == id.ToString())
+                if (Session["GID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
                 {
                     if (id == null)
                     {
@@ -124,7 +139,7 @@ namespace UGetADog.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Users");
             }
         }
 
@@ -152,7 +167,7 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["GID"].ToString() == id.ToString())
+                if (Session["GID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
                 {
                     if (id == null)
                     {
@@ -173,7 +188,7 @@ namespace UGetADog.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Users");
             }
         }
 

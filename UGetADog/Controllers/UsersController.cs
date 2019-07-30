@@ -34,7 +34,7 @@ namespace UGetADog.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Users");
             }
         }
 
@@ -62,7 +62,7 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["ID"].ToString() == id.ToString())
+                if (Session["ID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
                 {
                     if (id == null)
                     {
@@ -83,7 +83,7 @@ namespace UGetADog.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Users");
             }
         }
 
@@ -122,7 +122,7 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if(Session["ID"].ToString()==id.ToString())
+                if(Session["ID"].ToString()==id.ToString() || Session["Role"].ToString() == "Admin")
                 {
                     if (id == null)
                     {
@@ -142,7 +142,7 @@ namespace UGetADog.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Users");
             }
 
         }
@@ -175,7 +175,7 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["ID"].ToString() == id.ToString())
+                if (Session["ID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
                 {
                     if (id == null)
                     {
@@ -190,13 +190,13 @@ namespace UGetADog.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("MyAccount", "Users");
+                    return RedirectToAction("login", "Users");
                 }
 
             }
             catch
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("login", "Users");
             }
         }
 
@@ -231,19 +231,26 @@ namespace UGetADog.Controllers
         public ActionResult login([Bind(Include ="Email,Password")] User user)
         {
             //add try and catch
-                var v = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
-                if (v != null)
+            var v = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+            if (v != null)
+            {
+                Session["user"] = v.FirstName.ToString()+" "+v.LastName.ToString();
+                Session["ID"] = v.UserID.ToString();
+                Session["Role"] = v.Role.ToString();
+                if (v.Role.ToString() == "Giver" || v.Role.ToString() == "Admin")
                 {
-                    Session["user"] = v.FirstName.ToString()+" "+v.LastName.ToString();
-                    Session["ID"] = v.UserID.ToString();
-                    Session["Role"] = v.Role.ToString();
-                    if (v.Role.ToString() == "Giver")
-                    {
-                    var g = db.Givers.Where(b => b.UID.Equals(v.UserID)).FirstOrDefault();
-                    Session["Address"]= g.Address.ToString();
+                var g = db.Givers.Where(b => b.UID.Equals(v.UserID)).FirstOrDefault();
+                if (g != null)
+                {
+                    Session["Address"] = g.Address.ToString();
                     Session["GID"] = g.GiverID.ToString();
-                    }
-
+                }
+                else
+                {
+                    Session["Address"] = "rishon lezion";
+                    Session["GID"] = 0;
+                }
+                }
                 FormsAuthentication.SetAuthCookie(user.Email, false);
 
                 return RedirectToAction("MyAccount", "Users");
