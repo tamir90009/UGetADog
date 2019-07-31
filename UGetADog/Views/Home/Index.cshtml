@@ -1,31 +1,136 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<script type="text/javascript">
+    var can, ctx, addAngle, addScale, step, steps = 200,
+        delay = 20;
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    function init() {
+        can = document.getElementById("CanvasDiv");
+        ctx = can.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.font = "80pt Times New Roman";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        addAngle = Math.PI * 4 / steps;
+        addScale = 1 / steps;
+        step = 0;
+        RotateTextSphere()
+    }
+
+    function RotateTextSphere() {
+        step++;
+        //set it to be empty - reset
+        ctx.clearRect(0, 0, can.width, can.height);
+        ctx.save();
+        //understand the proportion of the rectangle to move in it
+        ctx.translate(can.width / 2, can.height / 2);
+        //multiply scle by step to movement
+        ctx.scale(addScale * step, addScale * step);
+        //move in the circleby angle and distance
+        ctx.rotate(addAngle * step);
+        ctx.fillText("Get A Dog", 0, 0);
+        ctx.restore();
+        //timeout the animation
+        if (step < steps)
+            var t = setTimeout('RotateTextSphere()', 15);
+    }
+
+    //second canvas
+    var c = document.getElementById('imageCanvas');
+    var ctx = c.getContext('2d');
+    var img = document.createElement('img');
+    img.src = '~/img/dog_canvas';
+    var pat = ctx.createPattern(img, 'repeat-x');
+    ctx.rect(0, 0, 150, 100);
+    ctx.fillStyle = pat;
+    ctx.fill();
+
+</script>
+<script>
+    function draw() {
+
+        var c = document.getElementById("imageCanvas");
+        var ctx = c.getContext("2d");
+        //set it to be empty - reset
+        ctx.clearRect(0, 0, c.width, c.height);
+        var img = document.getElementById("dog")
+        var pat = ctx.createPattern(img, 'repeat-x');
+        ctx.rect(0, 0, 600, 600);
+        ctx.fillStyle = pat;
+        ctx.fill();
+    }
+</script>
+<body onload="init();">
+    <div class="subdiv" style="background-color: #ff6666;">
+        <canvas id="CanvasDiv" width="600" height="300"></canvas>
+    </div>
+</body>
+
+@{ /*
+    <div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div> */
+}
 
 <div class="row">
-    @Html.ActionLink("MyComments", "Search", "Comments")
-
-    @{
-        //if (Session["Role"].ToString()!= "null")
-        if (Session.Count != 0)
+    @try
+    {
+        if ((Session["Role"].ToString() == "Giver"))
         {
-            <div id="machineLearning">
-                <div id="PieChartSection">
-                    <h3>Recommended Dogs: </h3>
-                </div>
+            @Html.ActionLink("MyComments", "Search", "Comments")
 
-                <script src=@Url.Content("~/Scripts/Charts/d3.js")></script>
-                <script src="~/Scripts/jquery-3.3.1.js"></script>
-                <script src=@Url.Content("~/Scripts/Charts/PieChart_ML.js")></script>
-            </div>
-            }
         }
+    }
+    catch
+    {
 
+    }
 
+    @if (Session.Count != 0)
+    {
+        <div id="machineLearning">
+            <div id="PieChartSection">
+                <h3>Recommended Dogs: </h3>
+            </div>
+
+            <script src=@Url.Content("~/Scripts/Charts/d3.js")></script>
+            <script src="~/Scripts/jquery-3.3.1.js"></script>
+            <script src=@Url.Content("~/Scripts/Charts/PieChart_ML.js")></script>
+
+        </div>
+    }
+
+    @{ /*
+
+             < div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+    */}
+</div>
+<div>
+    <br /><br />
+    <button style="height:30px;width:150px" onclick="draw()">need convincing?</button>
+    <br /><br />
+    <img src="~/img/puppy_eyes.jpg" id="dog" width="0" height="0">
+    <canvas id="imageCanvas" width="600" height="600"></canvas>
+</div>
+

@@ -50,7 +50,7 @@ function getPieChartData() {
                 .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
                 .attr("dy", ".35em")
                 .style("text-anchor", "middle")
-                .text(function (d) { return d.data.label + '-' + Math.round(d.data.value); });
+                .text(function (d) { return d.data.label + '-' + Math.round(d.data.value) + "%"; });
         }
 
     });
