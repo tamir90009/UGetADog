@@ -16,14 +16,6 @@ function onYouTubeIframeAPIReady() {
             'onStateChange': onPlayerStateChange
         }
     });
-    /*player = new YT.Player('player2', {
-        height: '100',
-        width: '150',
-        videoId: 'LkkhbawCdPM',
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
-    });*/
 }
 
 //The API will call this function when the video player is ready.

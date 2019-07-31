@@ -57,41 +57,54 @@ namespace UGetADog.Controllers
         {
             try
             {
+                if (Session["GID"] != null)
+                {
 
-                if (File != null)
-                {
-                    string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(File.FileName));
-                    File.SaveAs(path);
-                    dog.File = File.FileName;
-                }
-                ViewBag.FileStatus = "File uploaded successfully.";
-            }
-            catch (Exception)
-            {
+                    try
+                    {
 
-                ViewBag.FileStatus = "Error while file uploading.";
+                        if (File != null)
+                        {
+                            string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(File.FileName));
+                            File.SaveAs(path);
+                            dog.File = File.FileName;
+                        }
+                        ViewBag.FileStatus = "File uploaded successfully.";
+                    }
+                    catch (Exception)
+                    {
+
+                        ViewBag.FileStatus = "Error while file uploading.";
+                    }
+                    if (ModelState.IsValid)
+                    {
+                        dog.GID = int.Parse(Session["GID"].ToString());
+                        db.Dogs.Add(dog);
+                        var giver = db.Givers.Find(dog.GID);
+                        if (giver.Dogs == null)
+                        {
+                            giver.Dogs = new List<Dog>();
+                            giver.Dogs.Add(dog);
+                        }
+                        else
+                        {
+                            giver.Dogs.Add(dog);
+                        }
+
+                        db.Entry(giver).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("MyDogs");
+                    }
+                }
+                return View(dog);
             }
-            if (ModelState.IsValid)
+
+            catch
             {
-                dog.GID = int.Parse(Session["GID"].ToString());
-                db.Dogs.Add(dog);
-                var giver = db.Givers.Find(dog.GID);
-                if (giver.Dogs == null)
-                {
-                    giver.Dogs = new List<Dog>();
-                    giver.Dogs.Add(dog);
-                }
-                else
-                {
-                    giver.Dogs.Add(dog);
-                }
-                
-                db.Entry(giver).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("MyDogs");
+                return RedirectToAction("login", "Users");
             }
             //}
-            return View(dog);//change to you dont have permissions
+            //change to you dont have permissions
             
         }
 
@@ -117,16 +130,31 @@ namespace UGetADog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var olddog = db.Dogs.Find(dog.DogID);
-                dog.GID = olddog.GID;
-                //db.Entry(dog).State = EntityState.Modified;
-                db.Entry(olddog).CurrentValues.SetValues(dog);
-                db.SaveChanges();
-                return RedirectToAction("MyDogs");
+                if (Session["GID"].ToString() == dog.GID.ToString() || Session["Role"].ToString() == "Admin")
+                {
+
+                    if (ModelState.IsValid)
+                    {
+                        var olddog = db.Dogs.Find(dog.DogID);
+                        dog.GID = olddog.GID;
+                        //db.Entry(dog).State = EntityState.Modified;
+                        db.Entry(olddog).CurrentValues.SetValues(dog);
+                        db.SaveChanges();
+                        return RedirectToAction("MyDogs");
+                    }
+                    return View(dog);
+                }
+                else
+                {
+                    return RedirectToAction("MyDogs");
+                }
             }
-            return View(dog);
+            catch
+            {
+                return RedirectToAction("MyAccount", "Users");
+            }
         }
 
         // GET: Dogs/Delete/5
@@ -243,7 +271,13 @@ namespace UGetADog.Controllers
 
         public ActionResult GetAverageAgesPerBreed()
         {
-            var average = (from d in db.Dogs group d by d.Breed into dogsGroup select new { Breed = dogsGroup.Key, Average = dogsGroup.Average(i => i.Age)}).ToArray();
+            var average = (from d in db.Dogs
+                           group d by d.Breed into dogsGroup
+                           select new
+                           {
+                               Breed = dogsGroup.Key,
+                               Average = dogsGroup.Average(a=> a.Age)
+                           }).ToArray(); 
 
             return Json(average, JsonRequestBehavior.AllowGet);
         }

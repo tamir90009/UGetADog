@@ -1,43 +1,99 @@
 ﻿
 @model IEnumerable<UGetADog.Models.FullGiver>
-
+    <script>
+        $(document).ready(function () {
+            getCurrentLocation();
+        }
+    </script>
 @{
     ViewBag.Title = "Index";
 }
 
+                      <section id="search">
+                          @using (Html.BeginForm("Index", "FullGivers", FormMethod.Get))
+                          {
+                          var user = new UGetADog.Models.User();
+                          var giver = new UGetADog.Models.Giver();
+                          //var fullGiver = new UGetADog.Models.FullGiver();
+
+                          // insert check if user role
+
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => user.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => user.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => user.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => user.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => giver.Latitude, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => giver.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+                          <div class="searchContriner">
+                              @Html.LabelFor(model => giver.Longtitude, htmlAttributes: new { @class = "control-label col-md-3" })
+                              <span class="col-md-4">
+                                  @Html.EditorFor(model => giver.Longtitude, new { htmlAttributes = new { @class = "form-control" } })
+                              </span>
+                          </div>
+
+
+                          <div class="searchContriner">
+                              <input class="btn btn-default" type="submit" name="Search" value="חפש" />
+                          </div>
+                          //add searches for admin
+                          }
+                      </section>
+
+
 <h2>Index</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            FirstName
-        </th>
-        <th>
-            LasttName
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Age
-        </th>
-        <th>
-            Gender
-        </th>
-        <th>
-            Phone
-        </th>
-        <th>
-            Address
-        </th>
-        <th>
-            Raiting
-        </th>
-        <th></th>
-    </tr>
+@if (Model.Count() > 0)
+{
+    <table id="FullGiverTable" class="table">
+        <tr>
+            <th>
+                FirstName
+            </th>
+            <th>
+                LasttName
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Latitude
+            </th>
+            <th>
+                Longtitude
+            </th>
+            <th>
+                Raiting
+            </th>
 
-    @foreach (var item in Model)
-    {
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.user.FirstName)
@@ -61,6 +117,12 @@
                 @Html.DisplayFor(modelItem => item.giver.Address)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.giver.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giver.Longtitude)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.giver.Rating)
             </td>
             <td>
@@ -68,9 +130,14 @@
                 @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })
             </td>
         </tr>
-    }
+        }
 
-</table>
+    </table>
+}
+<div id="map"></div>
 
+<link href="@Url.Content("~/Style/FullGiver.css")" rel="stylesheet" type="text/css" />
+<script defer type="text/javascript" src='@Url.Content("~/Scripts/Maps/Maps.js")'></script>
+<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpnLM3zfO3mHTnwkkG2l-WuZlXuJnUJCM&callback=getLocation"></script>
 
 

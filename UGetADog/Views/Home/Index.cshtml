@@ -75,23 +75,32 @@
    </div> */
 }
 
- <div class="row">
-     @try
+<div class="row">
+    @try
      {
          if ((Session["Role"].ToString() == "Giver"))
          {
-             @Html.ActionLink("MyComments", "Search", "Comments")
+    @Html.ActionLink("MyComments", "Search", "Comments")
 
          }
+    }
+    catch
+    {
 
-         @Html.ActionLink("suggest_dog", "Recommended_dog", "Home")
+    }
+    <div id="machineLearning">
+        <div id="PieChartSection">
+            <h3>Recommended Dogs: </h3>
+        </div>
 
-     }
-     catch
-     {
+        <script src=@Url.Content("~/Scripts/Charts/d3.js")></script>
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src=@Url.Content("~/Scripts/Charts/PieChart_ML.js")></script>
 
-     }
-     @{ /*
+    </div>
+
+
+    @{ /*
 
            < div class="col-md-4">
       <h2>Getting started</h2>

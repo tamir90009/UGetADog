@@ -39,7 +39,8 @@ namespace UGetADog.Controllers
             MLsController mls = new MLsController();
             Dictionary<string, double> result;
             result= mls.Calc(int.Parse(Session["ID"].ToString()));
-            return View();
+            var test = result.ToArray();
+            return Json(test, JsonRequestBehavior.AllowGet);
         }
 
     }
