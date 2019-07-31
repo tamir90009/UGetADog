@@ -137,9 +137,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907301747450_mls.cs" />
-    <Compile Include="Migrations\201907301747450_mls.Designer.cs">
-      <DependentUpon>201907301747450_mls.cs</DependentUpon>
+    <Compile Include="Migrations\201907311535507_mig1.cs" />
+    <Compile Include="Migrations\201907311535507_mig1.Designer.cs">
+      <DependentUpon>201907311535507_mig1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ML.cs" />
@@ -287,8 +287,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907301747450_mls.resx">
-      <DependentUpon>201907301747450_mls.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907311535507_mig1.resx">
+      <DependentUpon>201907311535507_mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

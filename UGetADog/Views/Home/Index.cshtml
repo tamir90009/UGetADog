@@ -11,15 +11,21 @@
 <div class="row">
     @Html.ActionLink("MyComments", "Search", "Comments")
 
-    <div id="machineLearning">
-        <div id="PieChartSection">
-            <h3>Recommended Dogs: </h3>
-        </div>
+    @{
+        //if (Session["Role"].ToString()!= "null")
+        if (Session.Count != 0)
+        {
+            <div id="machineLearning">
+                <div id="PieChartSection">
+                    <h3>Recommended Dogs: </h3>
+                </div>
 
-        <script src=@Url.Content("~/Scripts/Charts/d3.js")></script>
-        <script src="~/Scripts/jquery-3.3.1.js"></script>
-        <script src=@Url.Content("~/Scripts/Charts/PieChart_ML.js")></script>
-        
+                <script src=@Url.Content("~/Scripts/Charts/d3.js")></script>
+                <script src="~/Scripts/jquery-3.3.1.js"></script>
+                <script src=@Url.Content("~/Scripts/Charts/PieChart_ML.js")></script>
+            </div>
+            }
+        }
+
+
     </div>
-
-</div>
