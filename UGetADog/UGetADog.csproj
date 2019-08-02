@@ -261,7 +261,6 @@
     <Content Include="Views\Adopting\Index.cshtml" />
     <Content Include="Views\Dogs\AdminIndex.cshtml" />
     <Content Include="Views\Givers\Weather.cshtml" />
-    <Content Include="Views\FullGivers\Details.cshtml" />
     <Content Include="Views\MLs\Create.cshtml" />
     <Content Include="Views\MLs\Delete.cshtml" />
     <Content Include="Views\MLs\Details.cshtml" />
