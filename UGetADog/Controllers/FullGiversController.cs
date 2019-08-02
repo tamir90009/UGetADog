@@ -95,6 +95,10 @@ namespace UGetADog.Controllers
 
         public Double Distance(Double lat1, Double lon1, Double lat2, Double lon2)
         {
+            if (lat1 == 0 && lon1 == 0)
+            {
+                return 0;
+            }
             if ((lat1 == lat2) && (lon1 == lon2))
             {
                 return 0;
@@ -113,7 +117,7 @@ namespace UGetADog.Controllers
 
         // GET api/user/firstname/lastname/address
         [HttpGet]
-        public ActionResult Index([Bind(Include = "FirstName,LastName")] User user, [Bind(Include = "Latitude,Longtitude")] Giver giver)
+        public ActionResult Index([Bind(Include = "FirstName,LastName")] User user, [Bind(Include = "Address,Latitude,Longtitude")] Giver giver)
         //public ActionResult Index(String FirstName, String LastName)
         {
             Func<Giver, Giver, Boolean> CheckDistance = (Giver userloc, Giver g) => { return Distance(userloc.Latitude, userloc.Longtitude, g.Latitude, lon2: g.Longtitude) < 20; };
@@ -122,7 +126,7 @@ namespace UGetADog.Controllers
                 if (Session["Role"].ToString() != null)
                 {
 
-                    if (user.FirstName == null && user.LastName == null)
+                    if (user.FirstName == null && user.LastName == null && giver.Latitude == 0 && giver.Longtitude == 0)
                     {
                         var GiversAndUsers = (from g in db.Givers
                                               join u in db.Users on g.UID equals u.UserID
@@ -180,7 +184,19 @@ namespace UGetADog.Controllers
                         TempData["FullGivers"] = fullGivers;
                         return View(fullGivers);
                     }
-                    return View();
+                    else
+                    {
+                        var fullGivers = (from g in db.Givers.AsEnumerable()
+                                          join u in db.Users.AsEnumerable() on g.UID equals u.UserID
+                                          where (CheckDistance(giver, g))
+                                          select new FullGiver
+                                          {
+                                              giver = g,
+                                              user = u
+                                          });
+                        TempData["FullGivers"] = fullGivers;
+                        return View(fullGivers);
+                    }
                 }
                 else
                 {
