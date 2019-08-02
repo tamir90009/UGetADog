@@ -62,23 +62,29 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["ID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
+                if (Session["Role"].ToString() == "Admin")
                 {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-                    User user = db.Users.Find(id);
-                    if (user == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(user);
+                    goto CanDetails;
+                }
+                if (Session["ID"].ToString() == id.ToString())
+                {
+                    goto CanDetails;
                 }
                 else
                 {
                     return RedirectToAction("MyAccount", "Users");
                 }
+            CanDetails:
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(user);
 
             }
             catch
@@ -175,23 +181,29 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["ID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
+                if (Session["Role"].ToString() == "Admin")
                 {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-                    User user = db.Users.Find(id);
-                    if (user == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(user);
+                    goto CanDelete;
+                }
+                if (Session["ID"].ToString() == id.ToString())
+                {
+                    goto CanDelete;
                 }
                 else
                 {
                     return RedirectToAction("login", "Users");
                 }
+            CanDelete:
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(user);
 
             }
             catch
@@ -239,17 +251,13 @@ namespace UGetADog.Controllers
                 Session["Role"] = v.Role.ToString();
                 if (v.Role.ToString() == "Giver" || v.Role.ToString() == "Admin")
                 {
-                var g = db.Givers.Where(b => b.UID.Equals(v.UserID)).FirstOrDefault();
-                if (g != null)
-                {
-                    Session["Address"] = g.Address.ToString();
-                    Session["GID"] = g.GiverID.ToString();
-                }
-                else
-                {
-                    Session["Address"] = "rishon lezion";
-                    Session["GID"] = 0;
-                }
+                    var g = db.Givers.Where(b => b.UID.Equals(v.UserID)).FirstOrDefault();
+                    if (g != null)
+                    {
+                        Session["Address"] = g.Address.ToString();
+                        Session["GID"] = g.GiverID.ToString();
+                    }
+
                 }
                 FormsAuthentication.SetAuthCookie(user.Email, false);
 

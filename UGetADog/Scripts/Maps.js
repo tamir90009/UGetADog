@@ -47,7 +47,6 @@ function handleGeocoderResult(results, status) {
 
 function showAddressIsNotValid() {
     $("#Address").val("Not Valid");
-    cleanPosition();
 }
 
 function deleteMap() {
@@ -81,8 +80,7 @@ function setInfoWindowForMarker(content, marker) {
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(initMap);
-        //navigator.geolocation.watchPosition(showPosition);
-        CheckAddress();
+        navigator.geolocation.watchPosition(showPosition);
     }
     else {
         $('#map')[0].innerHTML = "Geolocation is not supported by this browser.";
@@ -186,36 +184,6 @@ function getCurrentLocation() {
     }
 }
 function showPosition(position) {
-    document.getElementById("Latitude").value = position.coords.latitude;
-    document.getElementById("Longtitude").value = position.coords.longitude;
-}
-
-function cleanPosition() {
-    document.getElementById("Latitude").value = 0;
-    document.getElementById("Longtitude").value = 0;
-}
-
-
-function showLocationCheckBox() {
-    // Get the checkbox
-    var checkBox = document.getElementById("AddressBox");
-    var AddressText = document.getElementById("Address");
-    // If the checkbox is checked, display the output text
-    if (checkBox.checked == true) {
-        AddressText.disabled = true;
-        navigator.geolocation.watchPosition(showPosition);
-        AddressText.value = "";
-
-    } else {
-        AddressText.disabled = false;
-        cleanPosition();
-    }
-}
-
-function checkSearch() {
-    var AddressText = document.getElementById("Address");
-    if (AddressText.value != null || AddressText.value != "Not Valid") {
-        var geocoder = new google.maps.Geocoder();
-        convertAddressToGeolocation(geocoder, AddressText.value)
-    }
+    document.getElementById("giver_Latitude").value = position.coords.latitude;
+    document.getElementById("giver_Longtitude").value = position.coords.longitude;
 }

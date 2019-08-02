@@ -137,15 +137,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908020952275_db.cs" />
-    <Compile Include="Migrations\201908020952275_db.Designer.cs">
-      <DependentUpon>201908020952275_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908021043423_db2.cs" />
-    <Compile Include="Migrations\201908021043423_db2.Designer.cs">
-      <DependentUpon>201908021043423_db2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ML.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\FullGiver.cs" />
@@ -167,20 +158,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\20190611_221559.jpg" />
-    <Content Include="Images\d599izj-16cfed53-b657-477b-9f5e-27013887eff1.jpg" />
-    <Content Include="Images\dog.jfif" />
-    <Content Include="Images\download %281%29.jpg" />
-    <Content Include="Images\download.jpg" />
-    <Content Include="Images\golden-retriever-puppy.jpg" />
-    <Content Include="Images\IMG-20190619-WA0006.jpg" />
-    <Content Include="Images\jmy-elephant-in-the-style-of-salvador-dali-1948-r1.jpg" />
-    <Content Include="Images\signal group_chat.png" />
-    <Content Include="Images\signal.jpg" />
-    <Content Include="Images\threema group.jpeg" />
-    <Content Include="Images\threema.png" />
-    <Content Include="Images\פופאי עומד.jpeg" />
-    <Content Include="Images\פופאי שוכב.jpeg" />
     <Content Include="img\cute_dogs.mp4" />
     <Content Include="img\puppy_eyes.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -221,6 +198,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Maps\Maps.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -284,7 +262,6 @@
     <Content Include="Views\Adopting\Index.cshtml" />
     <Content Include="Views\Dogs\AdminIndex.cshtml" />
     <Content Include="Views\Givers\Weather.cshtml" />
-    <Content Include="Views\FullGivers\Details.cshtml" />
     <Content Include="Views\MLs\Create.cshtml" />
     <Content Include="Views\MLs\Delete.cshtml" />
     <Content Include="Views\MLs\Details.cshtml" />
@@ -305,14 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908020952275_db.resx">
-      <DependentUpon>201908020952275_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908021043423_db2.resx">
-      <DependentUpon>201908021043423_db2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

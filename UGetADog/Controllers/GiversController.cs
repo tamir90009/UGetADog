@@ -47,24 +47,29 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["GID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
+                if (Session["Role"].ToString() == "Admin")
                 {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-                    Giver giver = db.Givers.Find(id);
-                    if (giver == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(giver);
+                    goto CanDetails;
+                }
+                if (Session["GID"].ToString() == id.ToString())
+                {
+                    goto CanDetails;
                 }
                 else
                 {
                     return RedirectToAction("MyAccount", "Users");
                 }
-
+            CanDetails:
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Giver giver = db.Givers.Find(id);
+                if (giver == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(giver);
             }
             catch
             {
@@ -77,7 +82,7 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["ID"] != null || Session["Role"].ToString() == "Admin")
+                if (Session["ID"] != null)
                 {
                     return View();
                 }
@@ -118,24 +123,29 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["GID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
+                if (Session["Role"].ToString() == "Admin")
                 {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-                    Giver giver = db.Givers.Find(id);
-                    if (giver == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(giver);
+                    goto CanEdit;
+                }
+                if (Session["GID"].ToString() == id.ToString())
+                {
+                    goto CanEdit;
                 }
                 else
                 {
                     return RedirectToAction("MyAccount", "Users");
                 }
-
+            CanEdit:
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Giver giver = db.Givers.Find(id);
+                if (giver == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(giver);
             }
             catch
             {
@@ -167,24 +177,29 @@ namespace UGetADog.Controllers
         {
             try
             {
+                if (Session["Role"].ToString() == "Admin")
+                {
+                    goto CanDelete;
+                }
                 if (Session["GID"].ToString() == id.ToString() || Session["Role"].ToString() == "Admin")
                 {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-                    Giver giver = db.Givers.Find(id);
-                    if (giver == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(giver);
+                    goto CanDelete;
                 }
                 else
                 {
                     return RedirectToAction("MyAccount", "Users");
                 }
-
+            CanDelete:
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Giver giver = db.Givers.Find(id);
+                if (giver == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(giver);
             }
             catch
             {
