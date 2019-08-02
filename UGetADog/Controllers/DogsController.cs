@@ -18,12 +18,24 @@ namespace UGetADog.Controllers
         // GET: Dogs
         public ActionResult Index()
         {
-            //might be DOG
-            ViewBag.Selected = "Dogs";
+            try
+            {
+                if (Session["ID"] != null)
+                {
+                    //might be DOG
+                    ViewBag.Selected = "Dogs";
 
-            IEnumerable<Dog> dogs = (IEnumerable<Dog>)TempData["Dogs"] ?? db.Dogs.ToList();
+                    IEnumerable<Dog> dogs = (IEnumerable<Dog>)TempData["Dogs"] ?? db.Dogs.ToList();
 
-            return View(dogs);
+                    return View(dogs);
+                }
+                else 
+                    return RedirectToAction("login", "Users");
+            }
+            catch
+            {
+                return RedirectToAction("login", "Users");
+            }
         }
         
 
@@ -132,24 +144,32 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if (Session["GID"].ToString() == dog.GID.ToString() || Session["Role"].ToString() == "Admin")
+                if (Session["Role"].ToString() == "Admin")
                 {
-
-                    if (ModelState.IsValid)
-                    {
-                        var olddog = db.Dogs.Find(dog.DogID);
-                        dog.GID = olddog.GID;
-                        //db.Entry(dog).State = EntityState.Modified;
-                        db.Entry(olddog).CurrentValues.SetValues(dog);
-                        db.SaveChanges();
-                        return RedirectToAction("MyDogs");
-                    }
-                    return View(dog);
+                    goto CanEdit;
+                }
+                if (Session["GID"].ToString() == dog.GID.ToString())
+                {
+                    goto CanEdit;
+                    
+                
                 }
                 else
                 {
                     return RedirectToAction("MyDogs");
                 }
+            CanEdit:
+                if (ModelState.IsValid)
+                {
+                    var olddog = db.Dogs.Find(dog.DogID);
+                    dog.GID = olddog.GID;
+                    //db.Entry(dog).State = EntityState.Modified;
+                    db.Entry(olddog).CurrentValues.SetValues(dog);
+                    db.SaveChanges();
+                    return RedirectToAction("MyDogs");
+                }
+                
+                return View(dog);
             }
             catch
             {

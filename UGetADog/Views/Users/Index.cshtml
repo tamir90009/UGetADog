@@ -1,4 +1,6 @@
-﻿@model IEnumerable<UGetADog.Models.User>
+﻿<!DOCTYPE html>
+<html>
+@model IEnumerable<UGetADog.Models.User>
 
 @{
     ViewBag.Title = "Index";
@@ -38,38 +40,55 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+
+                @try
+                {
+                    if (Session["Role"].ToString() == "Admin")
+                    {
+                <td>@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.UserID }) |</td>
+                <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+            }
+            else
+            {
+                <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+            }
+        }
+        catch
+        {
+            <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+        }
+                </td>
+                </tr>
+            }
 
 </table>
+</html>

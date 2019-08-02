@@ -68,18 +68,55 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @{ // you can put the following in a back-end method and pass through ViewBag
-                var selectList = Enum.GetValues(typeof(UGetADog.Models.UserAuthorization))
-                                     .Cast<UGetADog.Models.UserAuthorization>()
-                                     .Where(e => e != UGetADog.Models.UserAuthorization.Admin)
-                                     .Select(e => new SelectListItem
-                                     {
-                                         Value = ((int)e).ToString(),
-                                         Text = e.ToString()
-                                     });
+            @try
+            {
+                if (Session["Role"].ToString() == "Admin")
+                {
+                    // you can put the following in a back-end method and pass through ViewBag
+                        var selectList = Enum.GetValues(typeof(UGetADog.Models.UserAuthorization))
+                                             .Cast<UGetADog.Models.UserAuthorization>()
+                                             .Where(e => (e != UGetADog.Models.UserAuthorization.Admin)||true)
+                                             .Select(e => new SelectListItem
+                                              {
+                                                  Value = ((int)e).ToString(),
+                                                  Text = e.ToString()
+                                              });
+                    
+                    @Html.DropDownListFor(model => model.Role, selectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    // you can put the following in a back-end method and pass through ViewBag
+                        var selectList = Enum.GetValues(typeof(UGetADog.Models.UserAuthorization))
+                                             .Cast<UGetADog.Models.UserAuthorization>()
+                                             .Where(e => e != UGetADog.Models.UserAuthorization.Admin)
+                                             .Select(e => new SelectListItem
+                                             {
+                                                 Value = ((int)e).ToString(),
+                                                 Text = e.ToString()
+                                             });
+                    
+                    @Html.DropDownListFor(model => model.Role, selectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                }
             }
-            @Html.DropDownListFor(model => model.Role, selectList, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            catch
+            {
+                // you can put the following in a back-end method and pass through ViewBag
+                    var selectList = Enum.GetValues(typeof(UGetADog.Models.UserAuthorization))
+                                         .Cast<UGetADog.Models.UserAuthorization>()
+                                         .Where(e => e != UGetADog.Models.UserAuthorization.Admin)
+                                         .Select(e => new SelectListItem
+                                         {
+                                             Value = ((int)e).ToString(),
+                                             Text = e.ToString()
+                                         });
+                
+                @Html.DropDownListFor(model => model.Role, selectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            }
+
         </div>
     </div>
 

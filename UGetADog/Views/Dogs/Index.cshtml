@@ -127,7 +127,7 @@
     <section>
         @try
         {
-            if (Session["Role"].ToString() == "Giver")
+            if (Session["GID"].ToString() != null)
             {
              
                 using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
