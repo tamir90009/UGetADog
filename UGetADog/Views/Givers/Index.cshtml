@@ -23,12 +23,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Latitude)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Longtitude)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -47,12 +47,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Address)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Latitude)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Longtitude)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.GiverID }) |
             @Html.ActionLink("Details", "Details", new { id = item.GiverID }) |

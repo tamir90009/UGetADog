@@ -128,17 +128,20 @@ namespace UGetADog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog)
+        public ActionResult Edit([Bind(Include = "DogID,GID,Name,Age,Breed,Trained,Immune,Castrated,Gender,Size,Description,File")] Dog dog, HttpPostedFileBase File)
         {
             try
             {
                 if (Session["GID"].ToString() == dog.GID.ToString() || Session["Role"].ToString() == "Admin")
                 {
-
                     if (ModelState.IsValid)
                     {
                         var olddog = db.Dogs.Find(dog.DogID);
                         dog.GID = olddog.GID;
+                        if(dog.File==null)
+                        {
+                            dog.File = olddog.File;
+                        }
                         //db.Entry(dog).State = EntityState.Modified;
                         db.Entry(olddog).CurrentValues.SetValues(dog);
                         db.SaveChanges();

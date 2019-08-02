@@ -43,12 +43,12 @@ namespace UGetADog.Models
         public String Password { get; set; }
 
         [Required(ErrorMessage = "First name is requried")]
-        [DataType(DataType.Text)]
+        [RegularExpression(@"^(([A-za-zא-ת]+[\s]{1}[A-za-zא-ת]+)|([A-Za-zא-ת]+))$",ErrorMessage ="Please enter valid name")]
         [Display(Name = "First name")]
         public String FirstName { get; set; }
 
         [Required(ErrorMessage = "Last name is requried")]
-        [DataType(DataType.Text)]
+        [RegularExpression(@"^(([A-za-zא-ת]+[\s]{1}[A-za-zא-ת]+)|([A-Za-zא-ת]+))$", ErrorMessage = "Please enter valid name")]
         [Display(Name = "Last name")]
         public String LastName { get; set; }
 
