@@ -54,29 +54,7 @@ function deleteMap() {
     $('#map').remove();
 }
 
-/*
-function putMarkerOnMapAndSetMapCenter(geolocation) {
-    var location = geolocation.geometry.location;
-    var position = { lat: location.lat(), lng: location.lng() };
 
-    map.setCenter(position);
-
-    var marker = new google.maps.Marker({
-        position: position
-    });
-    marker.setMap(map);
-
-    setInfoWindowForMarker(geolocation.formatted_address, marker);
-}
-*/
-/*
-function setInfoWindowForMarker(content, marker) {
-    var infoWindow = new google.maps.InfoWindow({
-        content: content
-    });
-    infoWindow.open(map, marker);
-}
-*/
 
 function getLocation() {
     if (navigator.geolocation) {
