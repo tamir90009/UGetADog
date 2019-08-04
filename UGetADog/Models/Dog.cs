@@ -39,6 +39,7 @@ namespace UGetADog.Models
 
         [Required(ErrorMessage = "Dog name is requried")]
         [Display(Name = "Dog Name")]
+        [RegularExpression(@"^(([A-za-zא-ת]+[\s]{1}[A-za-zא-ת]+)|([A-Za-zא-ת]+))$", ErrorMessage = "Please enter valid name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "dog age is requried")]
@@ -68,9 +69,10 @@ namespace UGetADog.Models
 
         public string Description { get; set; }
 
-        [DataType(DataType.Upload)]
+        [DataType(DataType.ImageUrl)]
         [Display(Name = "Upload File")]
-        [Required(ErrorMessage = "Please choose file to upload.")]
+        [RegularExpression(@"^.*\.(jpg|gif|jpeg|png|bmp)$",ErrorMessage = "Please use an image with an extension of .jpg, .png, .gif, .bmp")]
+
         public string File { get; set; }
 
 
