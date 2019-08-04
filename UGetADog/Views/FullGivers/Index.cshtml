@@ -40,15 +40,15 @@
                 </span>
             </div>
             <div class="searchContriner">
-                @Html.LabelFor(model => giver.Latitude, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.LabelFor(model => giver.Latitude, htmlAttributes: new { @class = "control-label col-md-3", @style = "display: none" })
                 <span class="col-md-4">
-                    @Html.EditorFor(model => giver.Latitude, new { htmlAttributes = new { @id = "Latitude", @class = "form-control" } })
+                    @Html.EditorFor(model => giver.Latitude, new { htmlAttributes = new { @id = "Latitude", @class = "form-control"  ,@style = "display: none" } })
                 </span>
             </div>
             <div class="searchContriner">
-                @Html.LabelFor(model => giver.Longtitude, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.LabelFor(model => giver.Longtitude, htmlAttributes: new { @class = "control-label col-md-3", @style = "display: none" })
                 <span class="col-md-4">
-                    @Html.EditorFor(model => giver.Longtitude, new { htmlAttributes = new { @id = "Longtitude", @class = "form-control" } })
+                    @Html.EditorFor(model => giver.Longtitude, new { htmlAttributes = new { @id = "Longtitude", @class = "form-control", @style = "display: none" } })
                 </span>
             </div>
 
@@ -94,9 +94,10 @@
             <th>
                 Longtitude
             </th>
-            <th>
-                Raiting
-            </th>
+            @{/*<th>
+Raiting
+</th>*/
+            }
 
             <th></th>
         </tr>
@@ -131,9 +132,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.giver.Longtitude)
             </td>
-            <td>
+            @{/*<td>
                 @Html.DisplayFor(modelItem => item.giver.Rating)
-            </td>
+            </td>*/}
             <td>
 
                 @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })

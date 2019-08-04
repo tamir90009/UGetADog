@@ -29,9 +29,10 @@
         <th>
             Address
         </th>
-        <th>
-            Raiting
-        </th>
+        @{/*<th>
+Raiting
+</th>*/
+        }
         <th></th>
     </tr>
 
@@ -59,9 +60,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.giver.Address)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giver.Rating)
-            </td>
+            @{/*<td>
+                    @Html.DisplayFor(modelItem => item.giver.Rating)
+                </td>*/
+            }
             <td>
                 @Html.ActionLink("Back to List", "Index")
             </td>

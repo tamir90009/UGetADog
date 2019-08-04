@@ -110,9 +110,21 @@ namespace UGetADog.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
+                try
+                {
+                    if(Session["Role"].ToString() == "Admin")
+                    {
+                        goto PassSessionInsert;
+                    }
+                }
+                catch
+                {
+                    
+                }
                 Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
                 Session["ID"] = user.UserID.ToString();
                 Session["Role"] = user.Role.ToString();
+            PassSessionInsert:
                 if (user.Role.ToString() == "Giver")
                 {
                     return RedirectToAction("Create", "Givers");

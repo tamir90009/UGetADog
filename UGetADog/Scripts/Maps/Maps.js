@@ -7,7 +7,7 @@ function initMap(user_position) {
         zoom: 15
     });
     new google.maps.Marker({ position: user, map: map });
-    buildCircle(map, user);
+    //buildCircle(map, user);
     tableToMap("FullGiverTable", map);
 }
 
@@ -214,7 +214,8 @@ function showLocationCheckBox() {
 
 function checkSearch() {
     var AddressText = document.getElementById("Address");
-    if (AddressText.value != null || AddressText.value != "Not Valid") {
+    var checkbox = document.getElementById("AddressBox");
+    if (!checkbox.checked && AddressText.value != null && AddressText.value != "Not Valid") {
         var geocoder = new google.maps.Geocoder();
         convertAddressToGeolocation(geocoder, AddressText.value)
     }
