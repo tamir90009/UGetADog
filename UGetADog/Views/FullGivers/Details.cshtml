@@ -1,5 +1,6 @@
 ﻿
 @model IEnumerable<UGetADog.Models.FullGiver>
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "Giver";
@@ -79,35 +80,35 @@ Raiting
     using (Html.BeginForm("Create", "Comments", new { id = item.giver.GiverID }, FormMethod.Post))
     {
 
-            @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
         var comment = new UGetADog.Models.Comment();
-<div id="comment_zone">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <p>
-        @Html.LabelFor(model => comment.Sendername, htmlAttributes: new { @class = "control-label col-md-3" })
-        @Html.EditorFor(model => comment.Sendername, new { htmlAttributes = new { @class = "form-control col-md-9" } })
-        @Html.ValidationMessageFor(model => comment.Sendername, "", new { @class = "text-danger" })
-    </p>
-  @{/*  <p>
-        @Html.LabelFor(model => comment.DogName, htmlAttributes: new { @class = "control-label col-md-3" })
-        @Html.EditorFor(model => comment.DogName, new { htmlAttributes = new { @class = "form-control col-md-9" } })
-        @Html.ValidationMessageFor(model => comment.DogName, "", new { @class = "text-danger" })
-    </p>
-          */}
-    <p>
-        @Html.LabelFor(model => comment.Content, htmlAttributes: new { @class = "control-label col-md-3" })
-        @Html.EditorFor(model => comment.Content, new { htmlAttributes = new { @class = "form-control col-md-9" } })
-        @Html.ValidationMessageFor(model => comment.Content, "", new { @class = "text-danger" })
-    </p>
-    <p>
-        <input type="submit" value="Send Message" class="btn btn-default" />
-    </p>
+        <div id="comment_zone">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <p>
+                @Html.LabelFor(model => comment.Sendername, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.EditorFor(model => comment.Sendername, new { htmlAttributes = new { @class = "form-control col-md-9" } })
+                @Html.ValidationMessageFor(model => comment.Sendername, "", new { @class = "text-danger" })
+            </p>
+            @{/*  <p>
+                    @Html.LabelFor(model => comment.DogName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    @Html.EditorFor(model => comment.DogName, new { htmlAttributes = new { @class = "form-control col-md-9" } })
+                    @Html.ValidationMessageFor(model => comment.DogName, "", new { @class = "text-danger" })
+                </p>
+                      */}
+            <p>
+                @Html.LabelFor(model => comment.Content, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.EditorFor(model => comment.Content, new { htmlAttributes = new { @class = "form-control col-md-9" } })
+                @Html.ValidationMessageFor(model => comment.Content, "", new { @class = "text-danger" })
+            </p>
+            <p>
+                <input type="submit" value="Send Message" class="btn btn-default" />
+            </p>
 
 
-</div>
+        </div>
     }
 
- }
+}
 
 
 

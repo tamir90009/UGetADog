@@ -1,4 +1,5 @@
 ﻿@model UGetADog.Models.Giver
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "Delete a giver";
@@ -53,7 +54,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

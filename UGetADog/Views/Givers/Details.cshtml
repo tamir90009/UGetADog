@@ -1,4 +1,5 @@
 ﻿@model UGetADog.Models.Giver
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "Details of a giver";
@@ -35,24 +36,24 @@
         </dd>
 
         @*<dt>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </dt>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Latitude)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Latitude)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Longtitude)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Longtitude)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Longtitude)
-        </dd>*@
+            <dd>
+                @Html.DisplayFor(model => model.Longtitude)
+            </dd>*@
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.GiverID }) |
-    @Html.ActionLink("Back to List", "Index") 
+    @Html.ActionLink("Back to List", "Index")
 </p>

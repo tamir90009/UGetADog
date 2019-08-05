@@ -1,4 +1,5 @@
 ﻿@model UGetADog.Models.Giver
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "Edit a giver";
@@ -10,6 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+}
 
 <div class="form-horizontal">
     <h4>Giver</h4>
@@ -57,7 +59,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Save" class="btn btn-default" onmouseover="checkSearch()" />
         </div>
     </div>
 </div>

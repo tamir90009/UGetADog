@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<UGetADog.Models.Dog>
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "AdminIndex";
@@ -7,17 +8,17 @@
 <h2>Statistics</h2>
 
 <div id="mainContent">
-        <div id="PieChartSection">
-            <h3>How many dogs are in each city </h3>
-        </div>
-        <div id="barChartSection">
-            <h3>Average dogs ages per breed</h3>
-        </div>
+    <div id="PieChartSection">
+        <h3>How many dogs are in each city </h3>
+    </div>
+    <div id="barChartSection">
+        <h3>Average dogs ages per breed</h3>
+    </div>
 
-        <script src=@Url.Content("~/Scripts/Charts/d3.js")></script>
-        <script src="~/Scripts/jquery-3.3.1.js"></script>
-        <script src=@Url.Content("~/Scripts/Charts/PieChart.js")></script>
-        <script src=@Url.Content("~/Scripts/Charts/BarChart.js")></script>
-   
+    <script src=@Url.Content("~/Scripts/Charts/d3.js")></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src=@Url.Content("~/Scripts/Charts/PieChart.js")></script>
+    <script src=@Url.Content("~/Scripts/Charts/BarChart.js")></script>
+
 
 </div>
