@@ -1,0 +1,29 @@
+﻿.title {
+    text-align:center;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    padding:20px;
+}
+
+video {
+    width: 500px;
+    height: 500px;
+}
+
+.transition {
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font: bold 18px sans-serif;
+    background: #fd7c2a;
+    text-align:center;
+    transition: background 2s; 
+}
+    .transition:hover {
+        background: #3cc16e;
+    }
+
+.newspapper {
+    column-count: 3;
+    direction: rtl;
+}

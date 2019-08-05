@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 @model IEnumerable<UGetADog.Models.User>
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "Index of users";
@@ -73,22 +74,22 @@
                 {
                     if (Session["Role"].ToString() == "Admin")
                     {
-                <td>@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { id = item.UserID }) |</td>
-                <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new { id = item.UserID }) |</td>
+                    <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+                }
+                else
+                {
+                    <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+                }
             }
-            else
+            catch
             {
                 <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
             }
-        }
-        catch
-        {
-            <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
-        }
                 </td>
-                </tr>
-            }
+            </tr>
+        }
 
 </table>
 </html>

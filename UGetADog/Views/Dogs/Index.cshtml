@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<UGetADog.Models.Dog>
+@Styles.Render("~/Style/Model.css")
 
 @{
     /**/
@@ -124,22 +125,22 @@
     </table>
 }
 
-    <section>
-        @try
+<section>
+    @try
+    {
+        if (Session["GID"].ToString() != null)
         {
-            if (Session["GID"].ToString() != null)
+
+            using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
             {
-             
-                using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
-                {
-                    <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
-                }
+                <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
             }
         }
-        catch
-        {
+    }
+    catch
+    {
 
-        }
+    }
 
-    </section>
+</section>
 

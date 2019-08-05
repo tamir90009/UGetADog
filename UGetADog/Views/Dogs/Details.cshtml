@@ -1,4 +1,5 @@
 ﻿@model UGetADog.Models.Dog
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "Details of dog";
@@ -94,23 +95,23 @@
     </dl>
 </div>
 
-    @try
+@try
+{
+    if (Session["GID"].ToString() == Model.GID.ToString() || Session["Role"].ToString() == "Admin")
     {
-        if (Session["GID"].ToString() == Model.GID.ToString() || Session["Role"].ToString() == "Admin")
-        {
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.DogID }) |
             @Html.ActionLink("Back to List", "Index")
         </p>
-        }
-        else
-        {
-            <p>@Html.ActionLink("Back to List", "Index")</p>
-        }
     }
-    catch
+    else
     {
-            <p>@Html.ActionLink("Back to List", "Index")</p>
+        <p>@Html.ActionLink("Back to List", "Index")</p>
     }
+}
+catch
+{
+    <p>@Html.ActionLink("Back to List", "Index")</p>
+}
 
 
