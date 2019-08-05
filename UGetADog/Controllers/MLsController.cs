@@ -25,7 +25,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             ML mL = db.MLs.Find(id);
             if (mL == null)
@@ -80,7 +80,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             ML mL = db.MLs.Find(id);
             if (mL == null)
@@ -171,7 +171,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             ML mL = db.MLs.Find(id);
             if (mL == null)

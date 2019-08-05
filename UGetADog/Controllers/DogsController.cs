@@ -44,7 +44,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             Dog dog = db.Dogs.Find(id);
             if (dog == null)
@@ -123,14 +123,40 @@ namespace UGetADog.Controllers
         // GET: Dogs/Edit/5
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             Dog dog = db.Dogs.Find(id);
+            try
+            {
+                if (Session["Role"].ToString() != "Admin")
+                {
+                    try
+                    {
+                        if (Session["GID"].ToString() != dog.GID.ToString())
+                        {
+                            return RedirectToAction("MyAccount", "Users");
+                        }
+                    }
+                    catch
+                    {
+                        return RedirectToAction("MyAccount", "Users");
+                    }
+                    
+                }
+            }
+            catch
+            {
+                return RedirectToAction("login", "Users");
+            }
+
+            
             if (dog == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("MyAccount", "Users");
+                //return HttpNotFound();
             }
             return View(dog);
         }
@@ -182,9 +208,32 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             Dog dog = db.Dogs.Find(id);
+            try
+            {
+                if (Session["Role"].ToString() != "Admin")
+                {
+                    try
+                    {
+                        if (Session["GID"].ToString() != dog.GID.ToString())
+                        {
+                            return RedirectToAction("MyAccount", "Users");
+                        }
+                    }
+                    catch
+                    {
+                        return RedirectToAction("MyAccount", "Users");
+                    }
+
+                }
+            }
+            catch
+            {
+                return RedirectToAction("login", "Users");
+            }
+
             if (dog == null)
             {
                 return HttpNotFound();
@@ -275,8 +324,21 @@ namespace UGetADog.Controllers
         public ActionResult AdminIndex()
         {
             //T.D.L:make that only admins will be able to see that page
-
-            return View(db.Dogs.ToList());
+            try
+            {
+                if (Session["Role"].ToString() == "Admin")
+                {
+                    return View(db.Dogs.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("login", "Users");
+            }
         }
 
         public ActionResult GetDogsPerCity()

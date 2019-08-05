@@ -49,7 +49,7 @@ namespace UGetADog.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("MyAccount", "Users");
                     }
 
                     var currgiver = (from g in db.Givers

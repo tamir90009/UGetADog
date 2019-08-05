@@ -20,12 +20,26 @@ namespace UGetADog.Controllers
         // GET: Comments
         public ActionResult Index(int? id)
         {
-            var comments = (IEnumerable<Comment>)TempData["Comments"] ?? db.Comments.Include(c => c.Giver).ToList();
-            if (id != null)
+            try
             {
-                return View(comments.Where(c => c.GiverID == id));
+                if (Session["Role"].ToString() != null)
+                {
+                    var comments = (IEnumerable<Comment>)TempData["Comments"] ?? db.Comments.Include(c => c.Giver).ToList();
+                    if (id != null)
+                    {
+                        return View(comments.Where(c => c.GiverID == id));
+                    }
+                    return View(comments);
+                }
+                else
+                {
+                    return RedirectToAction("login", "Users");
+                }
             }
-            return View(comments);
+            catch
+            {
+                return RedirectToAction("login", "Users");
+            }
         }
 
         // GET: Comments/Details/5
@@ -33,7 +47,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             Comment comment = db.Comments.Find(id);
             if (comment == null)
@@ -141,7 +155,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             Comment comment = db.Comments.Find(id);
             if (comment == null)

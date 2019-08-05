@@ -62,7 +62,7 @@ namespace UGetADog.Controllers
             CanDetails:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 Giver giver = db.Givers.Find(id);
                 if (giver == null)
@@ -138,7 +138,7 @@ namespace UGetADog.Controllers
             CanEdit:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 Giver giver = db.Givers.Find(id);
                 if (giver == null)
@@ -192,7 +192,7 @@ namespace UGetADog.Controllers
             CanDelete:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 Giver giver = db.Givers.Find(id);
                 if (giver == null)

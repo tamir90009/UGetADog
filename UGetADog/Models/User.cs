@@ -6,6 +6,7 @@ using System.Data.Entity.Core;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using System.Web.Mvc;
 
 namespace UGetADog.Models
 {
@@ -33,9 +34,13 @@ namespace UGetADog.Models
         public int UserID { get; set; }
 
         [Required(ErrorMessage = "Email is requried")]
+
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
+        //Using Remote validation attribute   
+        [Remote("IsAlreadySigned", "Users", HttpMethod = "POST", ErrorMessage = "EmailId already exists in database.")]
         public String Email { get; set; }
+        
 
         [Required(ErrorMessage = "Enter a password")]
         [DataType(DataType.Password)]

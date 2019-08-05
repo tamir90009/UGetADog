@@ -256,7 +256,6 @@
     <Content Include="Views\Comments\Delete.cshtml" />
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
-    <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Givers\Show.cshtml" />
     <Content Include="Views\Users\login.cshtml" />
     <Content Include="Views\Adopting\Index.cshtml" />
