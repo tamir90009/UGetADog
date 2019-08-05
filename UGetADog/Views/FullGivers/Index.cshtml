@@ -1,67 +1,68 @@
 ﻿
 @model IEnumerable<UGetADog.Models.FullGiver>
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "All givers";
 }
 <header>
     <h2>Search by Giver</h2>
-    
+
 </header>
-    <section id="search">
-        @using (Html.BeginForm("Index", "FullGivers", FormMethod.Get))
-        {
-            var user = new UGetADog.Models.User();
-            var giver = new UGetADog.Models.Giver();
-            //var fullGiver = new UGetADog.Models.FullGiver();
+<section id="search">
+    @using (Html.BeginForm("Index", "FullGivers", FormMethod.Get))
+    {
+        var user = new UGetADog.Models.User();
+        var giver = new UGetADog.Models.Giver();
+        //var fullGiver = new UGetADog.Models.FullGiver();
 
-            // insert check if user role
+        // insert check if user role
 
-            <div class="searchContriner">
-                @Html.LabelFor(model => user.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
-                <span class="col-md-4">
-                    @Html.EditorFor(model => user.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                </span>
-            </div>
-            <div class="searchContriner">
-                @Html.LabelFor(model => user.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
-                <span class="col-md-4">
-                    @Html.EditorFor(model => user.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                </span>
-            </div>
+        <div class="searchContriner">
+            @Html.LabelFor(model => user.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
+            <span class="col-md-4">
+                @Html.EditorFor(model => user.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            </span>
+        </div>
+        <div class="searchContriner">
+            @Html.LabelFor(model => user.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
+            <span class="col-md-4">
+                @Html.EditorFor(model => user.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            </span>
+        </div>
 
-            <div class="searchContriner">
-                @Html.LabelFor(model => giver.Address, htmlAttributes: new { @class = "control-label col-md-3" })
-                <span class="col-md-4">
-                    @Html.EditorFor(model => giver.Address, new { htmlAttributes = new { @id = "Address", @class = "form-control" } })
-                </span>
-            </div>
-            <div class="searchContriner">
-                @Html.Label("Current Location",htmlAttributes: new { @class = "control-label col-md-3" })
-                <span class="col-md-4">
-                    <input type="checkbox" id ="AddressBox" name="AddressBox" value="AddressBox" onclick="showLocationCheckBox()"><br>
-                </span>
-            </div>
-            <div class="searchContriner">
-                @Html.LabelFor(model => giver.Latitude, htmlAttributes: new { @class = "control-label col-md-3", @style = "display: none" })
-                <span class="col-md-4">
-                    @Html.EditorFor(model => giver.Latitude, new { htmlAttributes = new { @id = "Latitude", @class = "form-control"  ,@style = "display: none" } })
-                </span>
-            </div>
-            <div class="searchContriner">
-                @Html.LabelFor(model => giver.Longtitude, htmlAttributes: new { @class = "control-label col-md-3", @style = "display: none" })
-                <span class="col-md-4">
-                    @Html.EditorFor(model => giver.Longtitude, new { htmlAttributes = new { @id = "Longtitude", @class = "form-control", @style = "display: none" } })
-                </span>
-            </div>
+        <div class="searchContriner">
+            @Html.LabelFor(model => giver.Address, htmlAttributes: new { @class = "control-label col-md-3" })
+            <span class="col-md-4">
+                @Html.EditorFor(model => giver.Address, new { htmlAttributes = new { @id = "Address", @class = "form-control" } })
+            </span>
+        </div>
+        <div class="searchContriner">
+            @Html.Label("Current Location", htmlAttributes: new { @class = "control-label col-md-3" })
+            <span class="col-md-4">
+                <input type="checkbox" id="AddressBox" name="AddressBox" value="AddressBox" onclick="showLocationCheckBox()"><br>
+            </span>
+        </div>
+        <div class="searchContriner">
+            @Html.LabelFor(model => giver.Latitude, htmlAttributes: new { @class = "control-label col-md-3", @style = "display: none" })
+            <span class="col-md-4">
+                @Html.EditorFor(model => giver.Latitude, new { htmlAttributes = new { @id = "Latitude", @class = "form-control", @style = "display: none" } })
+            </span>
+        </div>
+        <div class="searchContriner">
+            @Html.LabelFor(model => giver.Longtitude, htmlAttributes: new { @class = "control-label col-md-3", @style = "display: none" })
+            <span class="col-md-4">
+                @Html.EditorFor(model => giver.Longtitude, new { htmlAttributes = new { @id = "Longtitude", @class = "form-control", @style = "display: none" } })
+            </span>
+        </div>
 
 
-            <div class="searchContriner">
-                <input class="btn btn-default" type="submit" name="Search" value="חפש" onmouseover="checkSearch()" />
-            </div>
-            //add searches for admin
-        }
-    </section>
+        <div class="searchContriner">
+            <input class="btn btn-default" type="submit" name="Search" value="חפש" onmouseover="checkSearch()" />
+        </div>
+        //add searches for admin
+    }
+</section>
 
 
 @if (Model.Count() > 0)
@@ -96,8 +97,8 @@
                 Longtitude
             </th>
             @{/*<th>
-Raiting
-</th>*/
+  Raiting
+  </th>*/
             }
 
             <th></th>
@@ -105,42 +106,42 @@ Raiting
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giver.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giver.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giver.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giver.Longtitude)
-            </td>
-            @{/*<td>
-                @Html.DisplayFor(modelItem => item.giver.Rating)
-            </td>*/}
-            <td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giver.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giver.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giver.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giver.Longtitude)
+                </td>
+                @{/*<td>
+                      @Html.DisplayFor(modelItem => item.giver.Rating)
+                  </td>*/}
+                <td>
 
-                @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })
-            </td>
-        </tr>
+                    @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })
+                </td>
+            </tr>
         }
 
     </table>
