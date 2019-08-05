@@ -5,6 +5,12 @@
 
     ViewBag.Title = "Dogs list";
 }
+<header>
+    <h2>Search A Dog</h2>
+    <p>they are all amazing</p>
+    <br />
+    <br />
+</header>
 
 <section id="search">
     @using (Html.BeginForm("Search", "Dogs", FormMethod.Get))
@@ -124,22 +130,22 @@
     </table>
 }
 
-    <section>
-        @try
+<section>
+    @try
+    {
+        if (Session["GID"].ToString() != null)
         {
-            if (Session["GID"].ToString() != null)
+
+            using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
             {
-             
-                using (Html.BeginForm("MyDogs", "Dogs", FormMethod.Get))
-                {
-                    <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
-                }
+                <input class="btn btn-default" type="submit" name="show" value="הכלבים שלי" />
             }
         }
-        catch
-        {
+    }
+    catch
+    {
 
-        }
+    }
 
-    </section>
+</section>
 

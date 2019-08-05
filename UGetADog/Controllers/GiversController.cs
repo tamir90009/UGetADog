@@ -167,6 +167,7 @@ namespace UGetADog.Controllers
                 //db.Entry(giver).State = EntityState.Modified;
                 db.Entry(oldgiver).CurrentValues.SetValues(giver);
                 db.SaveChanges();
+                Session["Address"] = giver.Address.ToString();
                 return RedirectToAction("MyAccount", "Users");
             }
             return View(giver);
@@ -218,6 +219,10 @@ namespace UGetADog.Controllers
             {
                 db.Comments.RemoveRange(giver.Comments);
 
+            }
+            if (user.UserID == int.Parse(Session["ID"].ToString()))
+            {
+                Session.Clear();
             }
             db.Givers.Remove(giver);
             db.Users.Remove(user);
