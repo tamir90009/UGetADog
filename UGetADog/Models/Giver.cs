@@ -1658,7 +1658,12 @@ namespace UGetADog.Models
         [Display(Name = "נוגה")]
         NOGAH,
         [Display(Name = "נווה")]
-        NAVE,
+        
+    
+    
+    
+    
+    E,
         [Display(Name = "נווה אבות")]
         NEWE_AVOT,
         [Display(Name = "נווה אור")]
