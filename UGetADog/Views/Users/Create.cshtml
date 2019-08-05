@@ -74,7 +74,7 @@
                      // you can put the following in a back-end method and pass through ViewBag
                         var selectList = Enum.GetValues(typeof(UGetADog.Models.UserAuthorization))
                                              .Cast<UGetADog.Models.UserAuthorization>()
-                                             .Where(e => (e != UGetADog.Models.UserAuthorization.Admin) || true)
+                                             .Where(e => e != UGetADog.Models.UserAuthorization.Giver)
                                              .Select(e => new SelectListItem
                                              {
                                                  Value = ((int)e).ToString(),
