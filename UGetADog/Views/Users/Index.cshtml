@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<UGetADog.Models.User>
+@Styles.Render("~/Style/Model.css")
 
 @{
     ViewBag.Title = "Index of users";
@@ -69,7 +70,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-               
+
             </td>
         </tr>
 
@@ -79,22 +80,22 @@
 
 @{/*<td>
 
-      @try
-  {
-  if (Session["Role"].ToString() == "Admin")
-  {
-  <td>@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |</td>
-  <td>@Html.ActionLink("Delete", "Delete", new { id = item.UserID }) |</td>
-  <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
-  }
-  else
-  {
-  <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
-  }
-  }
-  catch
-  {
-  <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+        @try
+    {
+    if (Session["Role"].ToString() == "Admin")
+    {
+    <td>@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |</td>
+    <td>@Html.ActionLink("Delete", "Delete", new { id = item.UserID }) |</td>
+    <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+    }
+    else
+    {
+    <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
+    }
+    }
+    catch
+    {
+    <td>@Html.ActionLink("Details", "Details", new { id = item.UserID })</td>
 
-  </td>}*/
+    </td>}*/
 }
