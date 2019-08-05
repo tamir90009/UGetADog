@@ -7,7 +7,7 @@ function initMap(user_position) {
         zoom: 15
     });
     new google.maps.Marker({ position: user, map: map });
-    buildCircle(map, user);
+    //buildCircle(map, user);
     tableToMap("FullGiverTable", map);
 }
 
@@ -54,29 +54,7 @@ function deleteMap() {
     $('#map').remove();
 }
 
-/*
-function putMarkerOnMapAndSetMapCenter(geolocation) {
-    var location = geolocation.geometry.location;
-    var position = { lat: location.lat(), lng: location.lng() };
 
-    map.setCenter(position);
-
-    var marker = new google.maps.Marker({
-        position: position
-    });
-    marker.setMap(map);
-
-    setInfoWindowForMarker(geolocation.formatted_address, marker);
-}
-*/
-/*
-function setInfoWindowForMarker(content, marker) {
-    var infoWindow = new google.maps.InfoWindow({
-        content: content
-    });
-    infoWindow.open(map, marker);
-}
-*/
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -214,7 +192,8 @@ function showLocationCheckBox() {
 
 function checkSearch() {
     var AddressText = document.getElementById("Address");
-    if (AddressText.value != null || AddressText.value != "Not Valid") {
+    var checkbox = document.getElementById("AddressBox");
+    if (!checkbox.checked && AddressText.value != null && AddressText.value != "Not Valid") {
         var geocoder = new google.maps.Geocoder();
         convertAddressToGeolocation(geocoder, AddressText.value)
     }

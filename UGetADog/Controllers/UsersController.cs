@@ -110,9 +110,31 @@ namespace UGetADog.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                Session["ID"] = user.UserID.ToString();
-                Session["Role"] = user.Role.ToString();
+                try
+                {
+                    if(Session["Role"].ToString() == "Admin")
+                    {
+                        goto PassSessionInsert;
+                    }
+                }
+                catch
+                {
+
+                }
+                if (Session.Keys.Count == 0)
+                {
+                        Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                        Session["ID"] = user.UserID.ToString();
+                        Session["Role"] = user.Role.ToString();
+                }
+                else if (Session["Role"].ToString() != "Admin")
+                    {
+                        Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                        Session["ID"] = user.UserID.ToString();
+                        Session["Role"] = user.Role.ToString();
+                    }
+
+                PassSessionInsert:
                 if (user.Role.ToString() == "Giver")
                 {
                     return RedirectToAction("Create", "Givers");
@@ -164,7 +186,8 @@ namespace UGetADog.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                Session["Role"] = user.Role.ToString();
+                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                //Session["Role"] = user.Role.ToString();
                 if (user.Role.ToString() == "Giver")
                 {
                     int id = int.Parse(Session["GID"].ToString());
@@ -218,6 +241,10 @@ namespace UGetADog.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             User user = db.Users.Find(id);
+            if (user.UserID == int.Parse(Session["ID"].ToString()))
+            {
+                Session.Clear();
+            }
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -266,28 +293,6 @@ namespace UGetADog.Controllers
 
 
             return View(); //change for error view
-        }
-
-        [HttpGet]
-        public bool IsUserAdmin(HttpSessionStateBase session)
-        {
-            bool IsUserAdmin = false;
-            if (session["Role"].ToString() == "Admin")
-            {
-                IsUserAdmin = true;
-            }
-            return IsUserAdmin;
-        }
-
-        [HttpGet]
-        public bool IsUserGiver(HttpSessionStateBase session)
-        {
-            bool IsUserGiver = false;
-            if (Session["Role"].ToString() == "Giver")
-            {
-                IsUserGiver = true;
-            }
-            return IsUserGiver;
         }
     }
 }

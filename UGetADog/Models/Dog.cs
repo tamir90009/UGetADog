@@ -71,13 +71,9 @@ namespace UGetADog.Models
 
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Upload File")]
-        //[RegularExpression(@"^.+\.(([gG][iI][fF])|([jJ][pP][gG])|([bB][mM][pP])|([pP][nN][gG])|([jJ][pP][eE][gG]))$", ErrorMessage = "Please use an image with an extension of .jpg, .png, .gif, .bmp")]
         
 
         public string File { get; set; }
-
-        //[RegularExpression(@"^.*\.(jpg|JPG|gif|GIF|doc|DOC|pdf|PDF)$", ErrorMessage = "Please use an image with an extension of .jpg, .png, .gif, .bmp")]
-
 
 
     }

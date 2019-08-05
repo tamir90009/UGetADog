@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,6 +9,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -36,8 +38,8 @@
                         if (Session["Role"].ToString() != "null")
                         {
                             <li>@Html.ActionLink("My Account", "MyAccount", "Users")</li>
-                            <li>@Html.ActionLink("FullGiver", "Index", "FullGivers")</li>
-                            <li>@Html.ActionLink("Dog", "Index", "Dogs")</li>
+                            <li>@Html.ActionLink("Giver search", "Index", "FullGivers")</li>
+                            <li>@Html.ActionLink("Dog Search", "Index", "Dogs")</li>
 
                         }
                         if (Session["Role"].ToString() == "Giver")
@@ -63,7 +65,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>Created by: Matan,Tamir,Noa and shachar</p>
+            <p>Contact information: help@weNeverAnswer.com</p>
+            <p>&copy; @DateTime.Now.Year - U get a dog </p>
         </footer>
     </div>
 
