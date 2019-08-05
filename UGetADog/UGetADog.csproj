@@ -145,6 +145,10 @@
     <Compile Include="Migrations\201908051710393_db_new.Designer.cs">
       <DependentUpon>201908051710393_db_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908052041596_db_new11.cs" />
+    <Compile Include="Migrations\201908052041596_db_new11.Designer.cs">
+      <DependentUpon>201908052041596_db_new11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ML.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -298,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908051710393_db_new.resx">
       <DependentUpon>201908051710393_db_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908052041596_db_new11.resx">
+      <DependentUpon>201908052041596_db_new11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
