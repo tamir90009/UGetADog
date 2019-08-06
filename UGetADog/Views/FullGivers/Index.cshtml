@@ -14,9 +14,6 @@
     {
         var user = new UGetADog.Models.User();
         var giver = new UGetADog.Models.Giver();
-        //var fullGiver = new UGetADog.Models.FullGiver();
-
-        // insert check if user role
 
         <div class="searchContriner">
             @Html.LabelFor(model => user.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -97,8 +94,8 @@
                 Longtitude
             </th>
             @{/*<th>
-  Raiting
-  </th>*/
+Raiting
+</th>*/
             }
 
             <th></th>
@@ -137,10 +134,11 @@
                 @{/*<td>
                       @Html.DisplayFor(modelItem => item.giver.Rating)
                   </td>*/}
-                <td>
+                @{/*<td>
 
-                    @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })
-                </td>
+                        @Html.ActionLink("Send Message", "Details", new { id = item.giver.GiverID })
+                    </td>*/
+                }
             </tr>
         }
 

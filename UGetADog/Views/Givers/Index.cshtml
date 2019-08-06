@@ -7,9 +7,6 @@
 
 <h2>Givers</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -18,18 +15,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Phone)
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Longtitude)
-            </th>*@
         <th></th>
     </tr>
 
@@ -42,23 +30,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Longtitude)
-                </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.GiverID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.GiverID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GiverID })|
-                @Html.ActionLink("Send Message", "Message", new { id = item.GiverID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.GiverID })
             </td>
         </tr>
     }

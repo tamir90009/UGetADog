@@ -17,14 +17,6 @@ namespace UGetADog.Controllers
         // GET: Givers
         public ActionResult Index()
         {
-
-            //might be with no s
-            //ViewBag.Selected = "Givers";
-
-            //IEnumerable<Giver> givers = (IEnumerable<Giver>)TempData["Givers"] ?? db.Givers.ToList();
-
-            // return View(givers);
-
             try
             {
                 if (Session["Role"].ToString() == "Admin")
@@ -62,7 +54,7 @@ namespace UGetADog.Controllers
             CanDetails:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 Giver giver = db.Givers.Find(id);
                 if (giver == null)
@@ -138,7 +130,7 @@ namespace UGetADog.Controllers
             CanEdit:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 Giver giver = db.Givers.Find(id);
                 if (giver == null)
@@ -193,7 +185,7 @@ namespace UGetADog.Controllers
             CanDelete:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 Giver giver = db.Givers.Find(id);
                 if (giver == null)

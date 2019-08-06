@@ -13,7 +13,6 @@ function onYouTubeIframeAPIReady() {
         width: '150',
         videoId: 'kk57tfBUoJo',
         events: {
-            'onStateChange': onPlayerStateChange
         }
     });
 }

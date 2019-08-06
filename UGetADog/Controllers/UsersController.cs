@@ -77,7 +77,7 @@ namespace UGetADog.Controllers
             CanDetails:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 User user = db.Users.Find(id);
                 if (user == null)
@@ -96,6 +96,7 @@ namespace UGetADog.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+            Session["From"] = "Create";
             return View();
         }
 
@@ -121,20 +122,12 @@ namespace UGetADog.Controllers
                 {
 
                 }
-                if (Session.Keys.Count == 0)
-                {
-                        Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                        Session["ID"] = user.UserID.ToString();
-                        Session["Role"] = user.Role.ToString();
-                }
-                else if (Session["Role"].ToString() != "Admin")
-                    {
-                        Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                        Session["ID"] = user.UserID.ToString();
-                        Session["Role"] = user.Role.ToString();
-                    }
 
-                PassSessionInsert:
+                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                Session["ID"] = user.UserID.ToString();
+                Session["Role"] = user.Role.ToString();
+
+            PassSessionInsert:
                 if (user.Role.ToString() == "Giver")
                 {
                     return RedirectToAction("Create", "Givers");
@@ -150,11 +143,13 @@ namespace UGetADog.Controllers
         {
             try
             {
-                if(Session["ID"].ToString()==id.ToString() || Session["Role"].ToString() == "Admin")
+                Session["From"] = "Edit";
+                Session["EditedUser"] = id;
+                if (Session["ID"].ToString()==id.ToString() || Session["Role"].ToString() == "Admin")
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("MyAccount", "Users");
                     }
                     User user = db.Users.Find(id);
                     if (user == null)
@@ -182,21 +177,39 @@ namespace UGetADog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,Email,Password,FirstName,LastName,Age,Gender,Role")] User user)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                //Session["Role"] = user.Role.ToString();
-                if (user.Role.ToString() == "Giver")
+                
+                if (Session["ID"].ToString() == user.UserID.ToString() || Session["Role"].ToString() == "Admin")
                 {
-                    int id = int.Parse(Session["GID"].ToString());
-                    string path = "Edit/" + id;
-                    return RedirectToAction(path, "Givers");
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(user).State = EntityState.Modified;
+                        db.SaveChanges();
+                        Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                        //Session["Role"] = user.Role.ToString();
+                        if (user.Role.ToString() == "Giver")
+                        {
+                            Giver giver = db.Givers.Where(b => b.UID.Equals(user.UserID)).FirstOrDefault();
+                            int id = giver.GiverID;
+                            string path = "Edit/" + id;
+                            return RedirectToAction(path, "Givers");
+                        }
+                        return RedirectToAction("MyAccount", "Users");
+                    }
+                    return View(user);
                 }
-                return RedirectToAction("MyAccount", "Users");
+                else
+                {
+                    return RedirectToAction("MyAccount", "Users");
+                }
             }
-            return View(user);
+            catch
+            {
+                return RedirectToAction("login", "Users");
+            }
+
         }
 
         // GET: Users/Delete/5
@@ -219,7 +232,7 @@ namespace UGetADog.Controllers
             CanDelete:
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("MyAccount", "Users");
                 }
                 User user = db.Users.Find(id);
                 if (user == null)
@@ -293,6 +306,96 @@ namespace UGetADog.Controllers
 
 
             return View(); //change for error view
+        }
+
+        [HttpGet]
+        public bool IsUserAdmin(HttpSessionStateBase session)
+        {
+            bool IsUserAdmin = false;
+            if (session["Role"].ToString() == "Admin")
+            {
+                IsUserAdmin = true;
+            }
+            return IsUserAdmin;
+        }
+
+        [HttpGet]
+        public bool IsUserGiver(HttpSessionStateBase session)
+        {
+            bool IsUserGiver = false;
+            if (Session["Role"].ToString() == "Giver")
+            {
+                IsUserGiver = true;
+            }
+            return IsUserGiver;
+        }
+
+        [HttpPost]
+        public JsonResult IsAlreadySigned(string Email)
+        {
+            if (Session["From"].ToString() == "Create")
+            {
+                return Json(IsUserAvailable(Email));
+            }
+            else
+            {
+                return Json(IsUserAvailableEdit(Email));
+            }
+        }
+
+        public bool IsUserAvailable(string EmailId)
+        {
+            // Assume these details coming from database  
+            IEnumerable<User> users = db.Users.ToList();
+
+            var RegEmailId = (from u in users
+                              where u.Email.ToUpper() == EmailId.ToUpper()
+                              select new { EmailId }).FirstOrDefault();
+
+            bool status;
+            if (RegEmailId != null)
+            {
+                //Already registered  
+                status = false;
+            }
+            else
+            {
+                //Available to use  
+                status = true;
+            }
+
+            return status;
+        }
+        public bool IsUserAvailableEdit(string EmailId)
+        {
+            // Assume these details coming from database  
+            IEnumerable<User> users = db.Users.ToList();
+
+            User user = db.Users.Find(Session["EditedUser"]);
+            if (EmailId.ToString().ToUpper() == user.Email.ToString().ToUpper())
+            {
+                //Available to use  
+                return true;
+            }
+
+            var RegEmailId = (from u in users
+                              where u.Email.ToUpper() == EmailId.ToUpper()
+                              select new { EmailId }).FirstOrDefault();
+
+            bool status;
+            if (RegEmailId != null)
+            {
+                //Already registered  
+                status = false;
+            }
+            else
+            {
+                //Available to use  
+                status = true;
+            }
+            
+
+            return status;
         }
     }
 }

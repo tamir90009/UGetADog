@@ -25,7 +25,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             ML mL = db.MLs.Find(id);
             if (mL == null)
@@ -57,30 +57,12 @@ namespace UGetADog.Controllers
             return RedirectToAction("Index");
         }
 
-
-        // POST: MLs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        /* [HttpPost]
-          [ValidateAntiForgeryToken]
-          public ActionResult Create([Bind(Include = "UserID,DogID,Age,Gender,FirstName,Breed")] ML mL)
-          {
-              if (ModelState.IsValid)
-              {
-                  db.MLs.Add(mL);
-                  db.SaveChanges();
-                  return RedirectToAction("Index");
-              }
-
-              return View(mL);
-          }*/
-
         // GET: MLs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             ML mL = db.MLs.Find(id);
             if (mL == null)
@@ -171,7 +153,7 @@ namespace UGetADog.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MyAccount", "Users");
             }
             ML mL = db.MLs.Find(id);
             if (mL == null)

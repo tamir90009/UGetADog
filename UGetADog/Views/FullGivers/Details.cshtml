@@ -89,12 +89,6 @@ Raiting
                 @Html.EditorFor(model => comment.Sendername, new { htmlAttributes = new { @class = "form-control col-md-9" } })
                 @Html.ValidationMessageFor(model => comment.Sendername, "", new { @class = "text-danger" })
             </p>
-            @{/*  <p>
-                    @Html.LabelFor(model => comment.DogName, htmlAttributes: new { @class = "control-label col-md-3" })
-                    @Html.EditorFor(model => comment.DogName, new { htmlAttributes = new { @class = "form-control col-md-9" } })
-                    @Html.ValidationMessageFor(model => comment.DogName, "", new { @class = "text-danger" })
-                </p>
-                      */}
             <p>
                 @Html.LabelFor(model => comment.Content, htmlAttributes: new { @class = "control-label col-md-3" })
                 @Html.EditorFor(model => comment.Content, new { htmlAttributes = new { @class = "form-control col-md-9" } })

@@ -12,7 +12,5 @@ namespace UGetADog.Models
     {
         public Giver giver { get; set; }
         public User user { get; set; }
-        /*public IEnumerable<Giver> giver { get; set; }
-        public IEnumerable<User> user { get; set; }*/
     }
 }
