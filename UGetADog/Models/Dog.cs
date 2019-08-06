@@ -71,7 +71,6 @@ namespace UGetADog.Models
 
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Upload File")]
-        
 
         public string File { get; set; }
 

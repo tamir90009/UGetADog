@@ -163,6 +163,10 @@ namespace UGetADog.Controllers
                 {
                     var olddog = db.Dogs.Find(dog.DogID);
                     dog.GID = olddog.GID;
+                    if (dog.File == null)
+                    {
+                        dog.File = olddog.File;
+                    }
                     //db.Entry(dog).State = EntityState.Modified;
                     db.Entry(olddog).CurrentValues.SetValues(dog);
                     db.SaveChanges();
