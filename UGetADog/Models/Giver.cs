@@ -29,6 +29,7 @@ namespace UGetADog.Models
 
         [DataType(DataType.Text)]
         [Display(Name = "Address")]
+        [RegularExpression(@"^(?!Not Valid).*$", ErrorMessage = "Please enter valid adress")]
         public String Address { get; set; }
         public Double Latitude { get; set; }
         public Double Longtitude { get; set; }

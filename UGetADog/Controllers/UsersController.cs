@@ -122,20 +122,41 @@ namespace UGetADog.Controllers
                 {
 
                 }
-                if (Session.Keys.Count == 0)
-                {
-                        Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                        Session["ID"] = user.UserID.ToString();
-                        Session["Role"] = user.Role.ToString();
-                }
-                else if (Session["Role"].ToString() != "Admin")
-                    {
-                        Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                        Session["ID"] = user.UserID.ToString();
-                        Session["Role"] = user.Role.ToString();
-                    }
 
-                PassSessionInsert:
+                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                Session["ID"] = user.UserID.ToString();
+                Session["Role"] = user.Role.ToString();
+
+            /*try
+            {
+                if (Session["Role"].ToString() != "Admin")
+                {
+                    Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                    Session["ID"] = user.UserID.ToString();
+                    Session["Role"] = user.Role.ToString();
+                }
+            }
+            catch
+            {
+                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                Session["ID"] = user.UserID.ToString();
+                Session["Role"] = user.Role.ToString();
+            }*/
+
+            /* if (Session.Keys.Count == 0)
+            {
+                    Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                    Session["ID"] = user.UserID.ToString();
+                    Session["Role"] = user.Role.ToString();
+            }
+            else if (Session["Role"].ToString() != "Admin")
+                {
+                    Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                    Session["ID"] = user.UserID.ToString();
+                    Session["Role"] = user.Role.ToString();
+                }*/
+
+            PassSessionInsert:
                 if (user.Role.ToString() == "Giver")
                 {
                     return RedirectToAction("Create", "Givers");
@@ -199,7 +220,8 @@ namespace UGetADog.Controllers
                         //Session["Role"] = user.Role.ToString();
                         if (user.Role.ToString() == "Giver")
                         {
-                            int id = int.Parse(Session["GID"].ToString());
+                            Giver giver = db.Givers.Where(b => b.UID.Equals(user.UserID)).FirstOrDefault();
+                            int id = giver.GiverID;
                             string path = "Edit/" + id;
                             return RedirectToAction(path, "Givers");
                         }

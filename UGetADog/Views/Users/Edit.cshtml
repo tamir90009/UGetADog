@@ -66,15 +66,12 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @{ /*@Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })*/
-            }
-            <div class="col-md-10">
-                @{ /* @Html.EditorFor(model => model.Role, new { @Value = Session["Role"].ToString() })*/
-                }
+       <div class="form-group">
+         <div class="col-md-10">
                 @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @style = "display: none" } })
             </div>
         </div>
+               
 
         @{ /*
                 <div class="form-group">
@@ -133,6 +130,7 @@
                 </div>
                 */
         }
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
