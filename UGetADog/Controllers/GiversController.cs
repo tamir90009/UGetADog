@@ -17,14 +17,6 @@ namespace UGetADog.Controllers
         // GET: Givers
         public ActionResult Index()
         {
-
-            //might be with no s
-            //ViewBag.Selected = "Givers";
-
-            //IEnumerable<Giver> givers = (IEnumerable<Giver>)TempData["Givers"] ?? db.Givers.ToList();
-
-            // return View(givers);
-
             try
             {
                 if (Session["Role"].ToString() == "Admin")

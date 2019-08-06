@@ -114,10 +114,7 @@ namespace UGetADog.Controllers
             catch
             {
                 return RedirectToAction("login", "Users");
-            }
-            //}
-            //change to you dont have permissions
-            
+            } 
         }
 
         // GET: Dogs/Edit/5

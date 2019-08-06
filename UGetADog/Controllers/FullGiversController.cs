@@ -13,33 +13,6 @@ namespace UGetADog.Controllers
         private const Double V = 20;
         private UGetADogContext db = new UGetADogContext();
         
-        // GET: FullGivers
-        /*public ActionResult Index()
-        {
-            var GiversAndUsers = (from g in db.Givers
-                                  join u in db.Users on g.UID equals u.UserID
-                                  select new FullGiver
-                                  {
-                                      giver = g,
-                                      user = u
-                                  });
-            try
-            {
-                if (Session["Role"].ToString() == "Admin")
-                {
-                    return View(GiversAndUsers);
-                }
-                else
-                {
-                    return RedirectToAction("MyAccount", "Users");
-                }
-            }
-            catch
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            
-        }*/
         // GET: Givers/Details/5
         public ActionResult Details(int? id)
         {

@@ -127,35 +127,6 @@ namespace UGetADog.Controllers
                 Session["ID"] = user.UserID.ToString();
                 Session["Role"] = user.Role.ToString();
 
-            /*try
-            {
-                if (Session["Role"].ToString() != "Admin")
-                {
-                    Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                    Session["ID"] = user.UserID.ToString();
-                    Session["Role"] = user.Role.ToString();
-                }
-            }
-            catch
-            {
-                Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                Session["ID"] = user.UserID.ToString();
-                Session["Role"] = user.Role.ToString();
-            }*/
-
-            /* if (Session.Keys.Count == 0)
-            {
-                    Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                    Session["ID"] = user.UserID.ToString();
-                    Session["Role"] = user.Role.ToString();
-            }
-            else if (Session["Role"].ToString() != "Admin")
-                {
-                    Session["user"] = user.FirstName.ToString() + " " + user.LastName.ToString();
-                    Session["ID"] = user.UserID.ToString();
-                    Session["Role"] = user.Role.ToString();
-                }*/
-
             PassSessionInsert:
                 if (user.Role.ToString() == "Giver")
                 {

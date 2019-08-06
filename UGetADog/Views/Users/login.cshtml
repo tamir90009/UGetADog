@@ -10,7 +10,6 @@
         @using (Html.BeginForm("login", "Users", FormMethod.Post))
         {
             <h4>Hello, please enter your credentials</h4>
-            //this is for create form tag
             @Html.AntiForgeryToken() // this is for prevent CSRF attack
             @Html.ValidationSummary(true)
             if (@ViewBag.Message != null)
